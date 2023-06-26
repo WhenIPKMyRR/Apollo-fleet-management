@@ -1,118 +1,159 @@
+using Models;
 using Controllers;
 
 namespace Views
 {
-
-    public class CreateClient : Form
+    public class ListClient : Form
     {
+        ListView listClient;
 
-        Label titleLabel;
-        Label nameLabel;
-        TextBox nameBox;
-        Label phoneLabel;
-        TextBox phoneBox;
-        Label addressLabel;
-        TextBox addressBox;
-        Label documentLabel;
-        TextBox documentBox;
-
-        public CreateClient()
+        private void AddListView_Click(Models.Client client)
         {
-            // this.Icon = new Icon("Assets/", 52,52);
-            this.Text = "Cadastro de cliente";
-            this.Size = new Size(400, 400);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = true;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.BackColor = Color.WhiteSmoke;
-            this.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(0)));
-            this.ControlBox = true;
-            this.ShowIcon = true;
-            this.ShowInTaskbar = true;
-
-            titleLabel = new Label();
-            titleLabel.Text = "Cadastro de cliente";
-            titleLabel.Location = new Point((this.ClientSize.Width - titleLabel.Width) / 2, 20);
-            titleLabel.AutoSize = true;
-            this.Controls.Add(titleLabel);
-            
-            nameLabel = new Label();
-            nameLabel.Text = "Nome";
-            nameLabel.Location = new ((this.ClientSize.Width - nameLabel.Width) / 3, titleLabel.Bottom + 10);
-            nameLabel.AutoSize = true;
-            this.Controls.Add(nameLabel);
-
-            nameBox = new TextBox();
-            int textBoxWidth = (int)(400 * 0.8);
-            nameBox.Location = new Point ((this.ClientSize.Width - nameBox.Width) / 2, nameLabel.Bottom + 5);
-            nameBox.Size = new Size(textBoxWidth, 30);
-            this.Controls.Add(nameBox);
-
-            phoneLabel = new Label();
-            phoneLabel.Text = "Telefone";
-            phoneLabel.Location = new ((this.ClientSize.Width - phoneLabel.Width) / 2, nameBox.Bottom + 10);
-            phoneLabel.AutoSize = true;
-            this.Controls.Add(phoneLabel);
-
-            phoneBox = new TextBox();   
-            phoneBox.Location = new Point ((this.ClientSize.Width - phoneBox.Width) / 2, phoneLabel.Bottom + 5);
-            phoneBox.Size = new Size(250, 30);
-            this.Controls.Add(phoneBox);
-
-            addressLabel = new Label();
-            addressLabel.Text = "Endereço";
-            addressLabel.Location = new ((this.ClientSize.Width - addressLabel.Width) / 2, phoneBox.Bottom + 10);
-            addressLabel.AutoSize = true;
-            this.Controls.Add(addressLabel);
-
-            addressBox = new TextBox();
-            addressBox.Location = new ((this.ClientSize.Width - addressBox.Width) / 2, addressLabel.Bottom + 5);
-            addressBox.Size = new Size(250, 30);
-            this.Controls.Add(addressBox);
-
-            documentLabel = new Label();
-            documentLabel.Text = "Documento";
-            documentLabel.Location = new ((this.ClientSize.Width - documentLabel.Width) / 2, addressBox.Bottom + 10);
-            documentLabel.AutoSize = true;
-            this.Controls.Add(documentLabel);
-
-            documentBox = new TextBox();
-            documentBox.Location = new ((this.ClientSize.Width - documentBox.Width) / 2, documentLabel.Bottom + 5);
-            documentBox.Size = new Size(250, 30);
-            this.Controls.Add(documentBox);
-            
-
-            Button btnCreateClient = new Button();
-            btnCreateClient.Text = "Cadastrar";
-            btnCreateClient.Location = new ((this.ClientSize.Width - btnCreateClient.Width) / 10, documentBox.Bottom + 30);
-            btnCreateClient.AutoSize = true;
-            btnCreateClient.Click += (sender, e) =>{
-                Controllers.Client.CreateClient(nameBox.Text, phoneBox.Text, addressBox.Text, documentBox.Text);
-                this.Close();
+            string[] row = 
+            {
+                client.ClientId.ToString(),
+                client.Name,
+                client.Telephone,
+                client.Address,
+                client.Document
             };
-            this.Controls.Add(btnCreateClient);
 
-            Button btnCancel = new Button();
-            btnCancel.Text = "Cancelar";
-            btnCancel.Location = new ((this.ClientSize.Width - btnCancel.Width) / 15, documentBox.Bottom + 30);
-            btnCancel.AutoSize = true;
-            btnCancel.Click += (sender, e) =>{
-                this.Close();
-            };
-            this.Controls.Add(btnCancel);
-            
-            
-
-
-
-            
+            ListViewItem item = new ListViewItem(row);
+            listClient.Items.Add(item);
         }
 
+        public void RefreshList()
+        {
+            listClient.Items.Clear();
 
+            IEnumerable<Models.Client> list = Models.Client.ReadAllClients();
 
+            foreach (Models.Client client in list)
+            {
+                AddListView_Click(client);
+            }
+        }
 
+        public Models.Client GetSelectedClient(Option option)
+        {
+            if(listClient.SelectedItems.Count > 0)
+            {
+                int selectedClientId = int.Parse(listClient.SelectedItems[0].Text);
+                return Models.Client.ReadByIdClient(selectedClientId);
+            }
+            else
+            {
+                throw new Exception($"Select a Client to {(option == Option.Update? "Update" : "Delete")}");
+            }
+        }
 
+        private void btCrt_Click(object sender, EventArgs e)
+        {
+            var CreateClient = new Views.CreateClient();
+            CreateClient.ShowDialog();
+        }
+
+        private void btUdpate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Models.Client client = GetSelectedClient(Option.Update);
+                var UpdateClient = new Views.UpdateClient(client);
+                UpdateClient.ShowDialog();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message);
+            }
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Models.Client client = GetSelectedClient(Option.Delete);
+                DialogResult result = MessageBox.Show("Do you really want to delete this client?", "Delete", MessageBoxButtons.YesNo);
+                if(result == DialogResult.Yes)
+                {
+                    Models.Client.DeleteClient(client.ClientId);
+                    RefreshList();
+                    MessageBox.Show("Client successfully deleted.");
+                }
+            }catch (Exception err)
+            {
+                if(err.InnerException != null)
+                {
+                    MessageBox.Show(err.InnerException.Message);
+                }
+                else
+                {
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        public ListClient()
+        {
+            this.Text = "Clients";
+            this.Size = new Size(800, 450);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+
+            listClient = new ListView();
+            listClient.Size = new Size(680, 260);
+            listClient.Location = new Point(50, 50);
+            listClient.View = View.Details;
+            listClient.Columns.Add("Id");
+            listClient.Columns.Add("Name");
+            listClient.Columns.Add("Telephone");
+            listClient.Columns.Add("Address");
+            listClient.Columns.Add("Document");
+            listClient.Columns[0].Width = 30;
+            listClient.Columns[1].Width = 100;
+            listClient.Columns[2].Width = 80;
+            listClient.Columns[3].Width = 100;
+            listClient.Columns[4].Width = 100;
+            listClient.FullRowSelect = true;
+            this.Controls.Add(listClient);
+
+            RefreshList();
+
+            Button btCrt = new Button();
+            btCrt.Text = "Add";
+            btCrt.Size = new Size(100, 30);
+            btCrt.Location = new Point(50, 330);
+            btCrt.Click += new EventHandler(btCrt_Click);
+            this.Controls.Add(btCrt);
+
+            Button btUpdate = new Button();
+            btUpdate.Text = "Update";
+            btUpdate.Size = new Size(100, 30);
+            btUpdate.Location = new Point(170, 330);
+            btUpdate.Click += new EventHandler(btUdpate_Click);
+            this.Controls.Add(btUpdate);
+
+            Button btDelete = new Button();
+            btDelete.Text = "Delete";
+            btDelete.Size = new Size(100, 30);
+            btDelete.Location = new Point(290, 330);
+            btDelete.Click += new EventHandler(btDelete_Click);
+            this.Controls.Add(btDelete);
+
+            Button btClose = new Button();
+            btClose.Text = "Exit";
+            btClose.Size = new Size(100, 30);
+            btClose.Location = new Point(450, 330);
+            btClose.Click += new EventHandler(btClose_Click);
+            this.Controls.Add(btClose);
+        }
     }
 }
-
-
