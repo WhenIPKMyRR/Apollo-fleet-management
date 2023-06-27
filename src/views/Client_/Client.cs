@@ -99,7 +99,7 @@ namespace Views
 
         public ListClient()
         {
-            this.Text = "Clients";
+            this.Text = "Clientes";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -113,10 +113,10 @@ namespace Views
             listClient.Location = new Point(50, 50);
             listClient.View = View.Details;
             listClient.Columns.Add("Id");
-            listClient.Columns.Add("Name");
-            listClient.Columns.Add("Telephone");
-            listClient.Columns.Add("Address");
-            listClient.Columns.Add("Document");
+            listClient.Columns.Add("Nome");
+            listClient.Columns.Add("Telefone");
+            listClient.Columns.Add("Endereço");
+            listClient.Columns.Add("Documento");
             listClient.Columns[0].Width = 30;
             listClient.Columns[1].Width = 100;
             listClient.Columns[2].Width = 80;
@@ -128,28 +128,28 @@ namespace Views
             RefreshList();
 
             Button btCrt = new Button();
-            btCrt.Text = "Add";
+            btCrt.Text = "Adicionar";
             btCrt.Size = new Size(100, 30);
             btCrt.Location = new Point(50, 330);
             btCrt.Click += new EventHandler(btCrt_Click);
             this.Controls.Add(btCrt);
 
             Button btUpdate = new Button();
-            btUpdate.Text = "Update";
+            btUpdate.Text = "Editar";
             btUpdate.Size = new Size(100, 30);
             btUpdate.Location = new Point(170, 330);
             btUpdate.Click += new EventHandler(btUdpate_Click);
             this.Controls.Add(btUpdate);
 
             Button btDelete = new Button();
-            btDelete.Text = "Delete";
+            btDelete.Text = "Deletar";
             btDelete.Size = new Size(100, 30);
             btDelete.Location = new Point(290, 330);
             btDelete.Click += new EventHandler(btDelete_Click);
             this.Controls.Add(btDelete);
 
             Button btClose = new Button();
-            btClose.Text = "Exit";
+            btClose.Text = "Sair";
             btClose.Size = new Size(100, 30);
             btClose.Location = new Point(450, 330);
             btClose.Click += new EventHandler(btClose_Click);

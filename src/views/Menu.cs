@@ -9,7 +9,7 @@ namespace Views
         {
             Form menu = new Form();
             menu.Text = "Apollo Fleet Management";
-            menu.Size = new Size(400, 400);
+            menu.Size = new Size(500, 400);
             menu.FormBorderStyle = FormBorderStyle.FixedSingle;
             menu.MaximizeBox = false;
             menu.StartPosition = FormStartPosition.CenterScreen;
