@@ -42,7 +42,7 @@ namespace Views
         {
             this.client = client;
 
-            this.Text = "Update Client";
+            this.Text = "Editar Cliente";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -52,44 +52,44 @@ namespace Views
             this.Size = new System.Drawing.Size(280, 360);
 
             this.lblName = new Label();
-            this.lblName.Text = "Name";
+            this.lblName.Text = "Nome:";
             this.lblName.Location = new Point(10, 40);
             this.lblName.Size = new Size(50, 20);
 
             this.txtName = new TextBox();
-            this.txtName.Location = new Point(80, 40);
+            this.txtName.Location = new Point(90, 40);
             this.txtName.Size = new Size(150, 20);
 
             this.lblTelephone = new Label();
-            this.lblTelephone.Text = "Telephone";
+            this.lblTelephone.Text = "Telefone:";
             this.lblTelephone.Location = new Point(10, 70);
-            this.lblTelephone.Size = new Size(50, 20);
+            this.lblTelephone.Size = new Size(60, 20);
 
             this.txtTelephone = new TextBox();
-            this.txtTelephone.Location = new Point(80, 70);
+            this.txtTelephone.Location = new Point(90, 70);
             this.txtTelephone.Size = new Size(150, 20);
 
             this.lblAddress = new Label();
-            this.lblAddress.Text = "Address";
-            this.lblAddress.Location = new Point(10, 110);
-            this.lblAddress.Size = new Size(50, 20);
+            this.lblAddress.Text = "Endereço:";
+            this.lblAddress.Location = new Point(10, 100);
+            this.lblAddress.Size = new Size(60, 20);
 
             this.txtAddress = new TextBox();
-            this.txtAddress.Location = new Point(80, 110);
+            this.txtAddress.Location = new Point(90, 100);
             this.txtAddress.Size = new Size(150, 20);
 
             this.lblDocument = new Label();
-            this.lblDocument.Text = "Document";
-            this.lblDocument.Location = new Point(10, 140);
-            this.lblDocument.Size = new Size(50, 20);
+            this.lblDocument.Text = "Documento:";
+            this.lblDocument.Location = new Point(10, 130);
+            this.lblDocument.Size = new Size(60, 20);
 
             this.txtDocument = new TextBox();
-            this.txtDocument.Location = new Point(80, 140);
+            this.txtDocument.Location = new Point(90, 130);
             this.txtDocument.Size = new Size(150, 20);
 
             this.btUpdate = new Button();
-            this.btUpdate.Text = "Update";
-            this.btUpdate.Location = new Point(80, 180);
+            this.btUpdate.Text = "Editar";
+            this.btUpdate.Location = new Point(90, 180);
             this.btUpdate.Size = new Size(150, 25);
             this.btUpdate.Click += new EventHandler(btUdpate_Click);
 
