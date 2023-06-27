@@ -6,12 +6,15 @@ namespace Models
         public int CarId {get; set;}
         public int ClientId {get; set;}
         public int SellerId {get; set;}
+        public DateTime Date {get; set;}
 
         public Sale(int CarId, int ClientId, int SellerId)
         {
             this.CarId = CarId;
             this.ClientId = ClientId;
             this.SellerId = SellerId;
+            this.Date = DateTime.Now;
+            
 
             Repository.Context context = new Repository.Context();
             context.Sales.Add(this);

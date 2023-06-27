@@ -1,80 +1,33 @@
-// using Controller;
-// using System;
-// using System.Windows.Forms;
+namespace Views
+{
+    public class CreateSale : Form
+    {
+        public Label lblDate;
+        public Label lblCarId;
+        public Label lblClientId;
+        public Label lblSellerId;
+        public TextBox txtDate;
+        public TextBox txtCarId;
+        public TextBox txtClientId;
+        public TextBox txtSellerId;
+        public Button btCrt;
 
-// namespace Views
-// {
-//     public class Sale
-//     {
-//     public static void cadastrarSale()
-//     {
-//         Form SaleForm = new Form();
-//         SaleForm.Text = "Cadastrar Venda";
-//         SaleForm.Size = new System.Drawing.Size(300, 300);
-//         SaleForm.StartPosition = FormStartPosition.CenterScreen;
-//         SaleForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-//         SaleForm.MaximizeBox = false;
-//         SaleForm.MinimizeBox = false;
-//         SaleForm.AutoSize = true;
-//         SaleForm.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-//         SaleForm.ShowIcon = false;
-//         SaleForm.ShowInTaskbar = false;
-//         SaleForm.TopMost = true;
-//         SaleForm.FormClosed += (s, ev) => { Application.Exit(); };
+        public void btCrt_Click(object sender, EventArgs e)
+        {
+            Controllers.Sale.CreateSale(
+                Convert.ToInt32(txtCarId.Text),
+                Convert.ToInt32(txtClientId.Text),
+                Convert.ToInt32(txtSellerId.Text)
+            );
 
-//     }
+            MessageBox.Show("Venda criada com sucesso");
 
-//     public static void listarSale()
-//     {
-//         Form SaleForm = new Form();
-//         SaleForm.Text = "Listar Vendas";
-//         SaleForm.Size = new System.Drawing.Size(300, 300);
-//         SaleForm.StartPosition = FormStartPosition.CenterScreen;
-//         SaleForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-//         SaleForm.MaximizeBox = false;
-//         SaleForm.MinimizeBox = false;
-//         SaleForm.AutoSize = true;
-//         SaleForm.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-//         SaleForm.ShowIcon = false;
-//         SaleForm.ShowInTaskbar = false;
-//         SaleForm.TopMost = true;
-//         SaleForm.FormClosed += (s, ev) => { Application.Exit(); };
-
-//     }
-
-//     public static void editarSale()
-//     {
-//         Form SaleForm = new Form();
-//         SaleForm.Text = "Editar Venda";
-//         SaleForm.Size = new System.Drawing.Size(300, 300);
-//         SaleForm.StartPosition = FormStartPosition.CenterScreen;
-//         SaleForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-//         SaleForm.MaximizeBox = false;
-//         SaleForm.MinimizeBox = false;
-//         SaleForm.AutoSize = true;
-//         SaleForm.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-//         SaleForm.ShowIcon = false;
-//         SaleForm.ShowInTaskbar = false;
-//         SaleForm.TopMost = true;
-//         SaleForm.FormClosed += (s, ev) => { Application.Exit(); };
-
-//     }
-
-//     public static void excluirSale()
-//     {
-//         Form SaleForm = new Form();
-//         SaleForm.Text = "Excluir Venda";
-//         SaleForm.Size = new System.Drawing.Size(300, 300);
-//         SaleForm.StartPosition = FormStartPosition.CenterScreen;
-//         SaleForm.FormBorderStyle = FormBorderStyle.FixedDialog;
-//         SaleForm.MaximizeBox = false;
-//         SaleForm.MinimizeBox = false;
-//         SaleForm.AutoSize = true;
-//         SaleForm.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-//         SaleForm.ShowIcon = false;
-//         SaleForm.ShowInTaskbar = false;
-//         SaleForm.TopMost = true;
-//         SaleForm.FormClosed += (s, ev) => { Application.Exit(); };
-//     }
-//     }
-// }
+            ListSale SaleList = Application.OpenForms.OfType<ListSale>().FirstOrDefault();
+            if (SaleList == null)
+            {
+                SaleList.RefreshList();
+            }
+            this.Close();
+        }
+    }
+}
