@@ -69,8 +69,8 @@ namespace Views
 
             this.btUdpate = new Button();
             this.btUdpate.Text = "Update";
-            this.btUdpate.Location = new Point(70, 90);
-            this.btUdpate.Size = new Size(100, 30);
+            this.btUdpate.Location = new Point(80, 100);
+            this.btUdpate.Size = new Size(150, 25);
             this.btUdpate.Click += new EventHandler(btUdpate_Click);
 
             this.Controls.Add(this.lblName);

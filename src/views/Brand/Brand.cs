@@ -64,7 +64,7 @@ namespace Views
                 DialogResult result = MessageBox.Show("Do you really want to delete this Brand?", "Confirm deletion", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    //Controllers.Brand.DeleteBrand(int BrandId);
+                    Models.Brand.DeleteBrand(brand.BrandId);
                     RefreshList();
                 }
             }
@@ -116,6 +116,8 @@ namespace Views
             listBrand.View = View.Details;
             listBrand.Columns.Add("Id");
             listBrand.Columns.Add("Name");
+            listBrand.Columns[0].Width = 30;
+            listBrand.Columns[1].Width = 100;
             listBrand.FullRowSelect = true;
             this.Controls.Add(listBrand);
 

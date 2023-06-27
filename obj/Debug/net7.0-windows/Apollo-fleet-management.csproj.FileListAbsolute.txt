@@ -32,3 +32,11 @@ C:\Users\User\Docs DevFac\apollo-fleet-menagement\Apollo-fleet-management\bin\De
 C:\Users\User\Docs DevFac\apollo-fleet-menagement\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\User\Docs DevFac\apollo-fleet-menagement\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
 C:\Users\User\Docs DevFac\apollo-fleet-menagement\Apollo-fleet-management\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.csproj.AssemblyReference.cache
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.AssemblyInfoInputs.cache
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.AssemblyInfo.cs
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.csproj.CoreCompileInputs.cache
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.dll
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\refint\Apollo-fleet-management.dll
+C:\Users\Barra Velha\Documents\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.pdb

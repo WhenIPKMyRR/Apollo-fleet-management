@@ -64,8 +64,9 @@ namespace Views
             this.comboBoxName.Items.Add("Citroën");
 
             this.btCrt = new Button();
-            this.btCrt.Location = new Point(10, 90);
-            this.btCrt.Size = new Size(100, 20);
+            this.btCrt.Text = "Add";
+            this.btCrt.Location = new Point(80, 160);
+            this.btCrt.Size = new Size(150, 25);
             this.btCrt.Click += btCrt_Click;
 
             this.Controls.Add(this.lblName);
