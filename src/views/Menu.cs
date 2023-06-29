@@ -33,7 +33,47 @@ namespace Views
                 menu.Show();
 
             };
+
+            Button carButton = new Button();
+            carButton.Text = "Carros";
+            carButton.Location = new Point((menu.ClientSize.Width - carButton.Width) / 2, clientButton.Bottom + 20);
+            carButton.AutoSize = true;
+            carButton.Click += (sender, e) => 
+            {
+                var createCar = new CreateCar();
+                createCar.ShowDialog();
+                menu.Show();
+
+            };
+
+            Button brandButton = new Button();
+            brandButton.Text = "Marcas";
+            brandButton.Location = new Point((menu.ClientSize.Width - brandButton.Width) / 2, carButton.Bottom + 20);
+            brandButton.AutoSize = true;
+            brandButton.Click += (sender, e) => 
+            {
+                var createBrand = new CreateBrand();
+                createBrand.ShowDialog();
+                menu.Show();
+
+            };
+
+            Button documentButton = new Button();
+            documentButton.Text = "Documentos";
+            documentButton.Location = new Point((menu.ClientSize.Width - documentButton.Width) / 2, brandButton.Bottom + 20);
+            documentButton.AutoSize = true;
+            documentButton.Click += (sender, e) => 
+            {
+                var createDocument = new CreateDocument();
+                createDocument.ShowDialog();
+                menu.Show();
+
+            };
+            
             menu.Controls.Add(clientButton);
+            menu.Controls.Add(carButton);
+            menu.Controls.Add(brandButton);
+            menu.Controls.Add(documentButton);
 
             menu.ShowDialog();
 
