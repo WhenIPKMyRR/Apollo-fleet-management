@@ -36,7 +36,7 @@ namespace Views
         {
             this.document = document;
 
-            this.Text = "Update Document";
+            this.Text = "Editar Documento";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -58,6 +58,7 @@ namespace Views
 
             this.txtType = new TextBox();
             this.txtType.Location = new Point(33, lblType.Bottom + 5);
+            this.txtType.BorderStyle = BorderStyle.FixedSingle;
             this.txtType.Size = new Size(220, 20);
 
             this.lblValue = new Label();
@@ -67,6 +68,7 @@ namespace Views
 
             this.txtValue = new TextBox();
             this.txtValue.Location = new Point(33, lblValue.Bottom + 5);
+            this.txtValue.BorderStyle = BorderStyle.FixedSingle;
             this.txtValue.Size = new Size(220, 20);
 
             this.lblCarId = new Label();
@@ -76,6 +78,7 @@ namespace Views
 
             this.txtCarId = new TextBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
+            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarId.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();

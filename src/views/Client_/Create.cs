@@ -24,7 +24,7 @@ namespace Views
                 this.txtDocument.Text
             );
 
-            MessageBox.Show("Client created successfully");
+            MessageBox.Show("Cliente cadastrado com sucesso.");
             
             ListClient ClientList = Application.OpenForms.OfType<ListClient>().FirstOrDefault();
             if(ClientList == null)

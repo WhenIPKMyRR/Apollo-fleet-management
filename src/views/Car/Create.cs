@@ -48,7 +48,7 @@ namespace Views
                 Convert.ToInt32(txtBrandId.Text)
            );
 
-           MessageBox.Show("Car created successfully");
+           MessageBox.Show("Carro criado com sucesso.");
 
            ListCar CarList = Application.OpenForms.OfType<ListCar>().FirstOrDefault();
            if (CarList == null)
@@ -60,7 +60,7 @@ namespace Views
 
         public CreateCar()
         {
-            this.Text = "Create Car";
+            this.Text = "Cadastro de Carro";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -70,117 +70,129 @@ namespace Views
             this.Size = new System.Drawing.Size(300, 900);
 
             this.lblTitle = new Label();
-            this.lblTitle.Text = "Create Car";
+            this.lblTitle.Text = "Cadastro de Carro";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new Point(60, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblYear = new Label();
-            this.lblYear.Text = "Year:";
+            this.lblYear.Text = "Ano:";
             this.lblYear.Location = new Point(33, lblTitle.Bottom + 10);
             this.lblYear.Size = new Size(70, 20);
 
             this.txtYear = new TextBox();
             this.txtYear.Location = new Point(33, lblYear.Bottom + 5);
+            this.txtYear.BorderStyle = BorderStyle.FixedSingle;
             this.txtYear.Size = new Size(220, 20);
 
             this.lblColor = new Label();
-            this.lblColor.Text = "Color:";
+            this.lblColor.Text = "Cor:";
             this.lblColor.Location = new Point(33, txtYear.Bottom + 10);
             this.lblColor.Size = new Size(70, 20);
 
             this.txtColor = new TextBox();
             this.txtColor.Location = new Point(33, lblColor.Bottom + 5);
+            this.txtColor.BorderStyle = BorderStyle.FixedSingle;
             this.txtColor.Size = new Size(220, 20);
 
             this.lblLicensePlate = new Label();
-            this.lblLicensePlate.Text = "Licence Plate:";
+            this.lblLicensePlate.Text = "Placa:";
             this.lblLicensePlate.Location = new Point(33, txtColor.Bottom + 10);
             this.lblLicensePlate.Size = new Size(110, 20);
 
             this.txtLicensePlate = new TextBox();
             this.txtLicensePlate.Location = new Point(33, lblLicensePlate.Bottom + 5);
+            this.txtLicensePlate.BorderStyle = BorderStyle.FixedSingle;
             this.txtLicensePlate.Size = new Size(220, 20);
 
             this.lblBodyworkType = new Label();
-            this.lblBodyworkType.Text = "Body Work:";
+            this.lblBodyworkType.Text = "Carroceria:";
             this.lblBodyworkType.Location = new Point(33, txtLicensePlate.Bottom + 10);
             this.lblBodyworkType.Size = new Size(100, 20);
 
             this.txtBodyworkType = new TextBox();
             this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
+            this.txtBodyworkType.BorderStyle = BorderStyle.FixedSingle;
             this.txtBodyworkType.Size = new Size(220, 20);
 
             this.lblPrice = new Label();
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = "Preço:";
             this.lblPrice.Location = new Point(33, txtBodyworkType.Bottom + 10);
             this.lblPrice.Size = new Size(70, 20);
 
             this.txtPrice = new TextBox();
             this.txtPrice.Location = new Point(33, lblPrice.Bottom + 5);
+            this.txtPrice.BorderStyle = BorderStyle.FixedSingle;
             this.txtPrice.Size = new Size(220, 20);
 
             this.lblChassisCode = new Label();
-            this.lblChassisCode.Text = "Chasis Code:";
+            this.lblChassisCode.Text = "Código do chassis:";
             this.lblChassisCode.Location = new Point(33, txtPrice.Bottom + 10);
             this.lblChassisCode.Size = new Size(120, 20);
 
             this.txtChassisCode = new TextBox();
             this.txtChassisCode.Location = new Point(33, lblChassisCode.Bottom + 5);
+            this.txtChassisCode.BorderStyle = BorderStyle.FixedSingle;
             this.txtChassisCode.Size = new Size(220, 20);
 
             this.lblRenavanCode = new Label();
-            this.lblRenavanCode.Text = "Renavam Code:";
+            this.lblRenavanCode.Text = "Código do renavan:";
             this.lblRenavanCode.Location = new Point(33, txtChassisCode.Bottom + 10);
             this.lblRenavanCode.Size = new Size(120, 20);
 
             this.txtRenavanCode = new TextBox();
             this.txtRenavanCode.Location = new Point(33, lblRenavanCode.Bottom + 5);
+            this.txtRenavanCode.BorderStyle = BorderStyle.FixedSingle;
             this.txtRenavanCode.Size = new Size(220, 20);
 
             this.lblFuelType = new Label();
-            this.lblFuelType.Text = "Fuel Type:";
+            this.lblFuelType.Text = "Combustível:";
             this.lblFuelType.Location = new Point(33, txtRenavanCode.Bottom + 10);
             this.lblFuelType.Size = new Size(100, 20);
 
             this.txtFuelType = new TextBox();
             this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
+            this.txtFuelType.BorderStyle = BorderStyle.FixedSingle;
             this.txtFuelType.Size = new Size(220, 20);
 
             this.lblCarTransmissionType = new Label();
-            this.lblCarTransmissionType.Text = "Transmission Type:";
+            this.lblCarTransmissionType.Text = "Transmissão:";
             this.lblCarTransmissionType.Location = new Point(33, txtFuelType.Bottom + 10);
             this.lblCarTransmissionType.Size = new Size(140, 20);
 
             this.txtCarTransmissionType = new TextBox();
             this.txtCarTransmissionType.Location = new Point(33, lblCarTransmissionType.Bottom + 5);
+            this.txtCarTransmissionType.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarTransmissionType.Size = new Size(220, 20);
 
             this.lblCarMileage = new Label();
-            this.lblCarMileage.Text = "Car Mileage:";
+            this.lblCarMileage.Text = "Quilometragem:";
             this.lblCarMileage.Location = new Point(33, txtCarTransmissionType.Bottom + 10);
             this.lblCarMileage.Size = new Size(110, 20);
 
             this.txtCarMileage = new TextBox();
             this.txtCarMileage.Location = new Point(33, lblCarMileage.Bottom + 5);
+            this.txtCarMileage.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarMileage.Size = new Size(220, 20);
 
             this.lblModelId = new Label();
-            this.lblModelId.Text = "Model:";
+            this.lblModelId.Text = "Modelo:";
             this.lblModelId.Location = new Point(33, txtCarMileage.Bottom + 10);
             this.lblModelId.Size = new Size(70, 20);
 
             this.txtModelId = new TextBox();
             this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
+            this.txtModelId.BorderStyle = BorderStyle.FixedSingle;
             this.txtModelId.Size = new Size(220, 20);
 
             this.lblBrandId = new Label();
-            this.lblBrandId.Text = "Brand:";
+            this.lblBrandId.Text = "Marca:";
             this.lblBrandId.Location = new Point(33, txtModelId.Bottom + 10);
             this.lblBrandId.Size = new Size(70, 20);
 
             this.txtBrandId = new TextBox();
             this.txtBrandId.Location = new Point(33, lblBrandId.Bottom + 5);
+            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();

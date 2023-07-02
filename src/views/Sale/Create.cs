@@ -96,35 +96,35 @@ namespace Views
             listSale.Location = new Point(10, 10);
             listSale.View = View.Details;
             listSale.FullRowSelect = true;
-            listSale.Columns.Add("SaleId", -2, HorizontalAlignment.Center);
-            listSale.Columns.Add("Date", -2, HorizontalAlignment.Center);
-            listSale.Columns.Add("CarId", -2, HorizontalAlignment.Center);
-            listSale.Columns.Add("ClientId", -2, HorizontalAlignment.Center);
-            listSale.Columns.Add("SellerId", -2, HorizontalAlignment.Center);
-            // this.listSale.MouseDoubleClick += new MouseEventHandler(this.listSale_MouseDoubleClick);
+            listSale.Columns.Add("Id", -2, HorizontalAlignment.Center);
+            listSale.Columns.Add("Data", -2, HorizontalAlignment.Center);
+            listSale.Columns.Add("Carro", -2, HorizontalAlignment.Center);
+            listSale.Columns.Add("Cliente", -2, HorizontalAlignment.Center);
+            listSale.Columns.Add("Vendedor", -2, HorizontalAlignment.Center);
+            this.Controls.Add(listSale);
 
             RefreshList();
 
             Button btCrt = new Button();
-            btCrt.Text = "Create";
+            btCrt.Text = "Adicionar";
             btCrt.Location = new Point(10, 520);
             btCrt.Click += new EventHandler(btCrt_Click);
             this.Controls.Add(btCrt);
 
             Button btUdpate = new Button();
-            btUdpate.Text = "Update";
+            btUdpate.Text = "Editar";
             btUdpate.Location = new Point(90, 520);
             btUdpate.Click += new EventHandler(btUdpate_Click);
             this.Controls.Add(btUdpate);
 
             Button btDelete = new Button();
-            btDelete.Text = "Delete";
+            btDelete.Text = "Deletar";
             btDelete.Location = new Point(170, 520);
             btDelete.Click += new EventHandler(btDelete_Click);
             this.Controls.Add(btDelete);
 
             Button btExit = new Button();
-            btExit.Text = "Exit";
+            btExit.Text = "Sair";
             btExit.Location = new Point(250, 520);
             btExit.Click += new EventHandler(btDelete_Click);
             this.Controls.Add(btExit);

@@ -16,7 +16,7 @@ namespace Views
                 comboBoxName.Text
             );
 
-            MessageBox.Show("Brand created successfully");
+            MessageBox.Show("Marca criada com sucesso.");
             
             ListBrand BrandList = Application.OpenForms.OfType<ListBrand>().FirstOrDefault();
             if(BrandList == null)

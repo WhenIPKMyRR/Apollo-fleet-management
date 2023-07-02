@@ -987,19 +987,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Barra Velha\\.nuget\\packages\\": {}
+    "C:\\Users\\gabriel oliveira\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
+      "projectUniqueName": "C:\\Users\\Public\\Downloads\\OneDriveB5-F7FBF4FBCEF5}\\Área de Trabalho\\faculdade\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
       "projectName": "Apollo-fleet-management",
-      "projectPath": "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
-      "packagesPath": "C:\\Users\\Barra Velha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\obj\\",
+      "projectPath": "C:\\Users\\Public\\Downloads\\OneDriveB5-F7FBF4FBCEF5}\\Área de Trabalho\\faculdade\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
+      "packagesPath": "C:\\Users\\gabriel oliveira\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Public\\Downloads\\OneDriveB5-F7FBF4FBCEF5}\\Área de Trabalho\\faculdade\\Apollo\\Apollo-fleet-management\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Barra Velha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\gabriel oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
@@ -1057,7 +1057,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
       }
     }
   }

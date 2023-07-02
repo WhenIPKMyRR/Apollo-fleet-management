@@ -21,7 +21,7 @@ namespace Views
                 Convert.ToInt32(txtCarId.Text)
             );
 
-            MessageBox.Show("Document created successfully");
+            MessageBox.Show("Documento cadastrado com sucesso.");
             
             ListDocument ListDocument = Application.OpenForms.OfType<ListDocument>().FirstOrDefault();
             if(ListDocument == null)
@@ -55,6 +55,7 @@ namespace Views
 
             this.txtType = new TextBox();
             this.txtType.Location = new Point(33, lblType.Bottom + 5);
+            this.txtType.BorderStyle = BorderStyle.FixedSingle;
             this.txtType.Size = new Size(220, 20);
 
             this.lblValue = new Label();
@@ -64,6 +65,7 @@ namespace Views
 
             this.txtValue = new TextBox();
             this.txtValue.Location = new Point(33, lblValue.Bottom + 5);
+            this.txtValue.BorderStyle = BorderStyle.FixedSingle;
             this.txtValue.Size = new Size(220, 20);
 
             this.lblCarId = new Label();
@@ -73,6 +75,7 @@ namespace Views
 
             this.txtCarId = new TextBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
+            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarId.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();
