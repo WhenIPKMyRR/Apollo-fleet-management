@@ -1,8 +1,8 @@
 namespace Controllers{
 
-    public class Saller{
+    public class Seller{
 
-        public static Models.Seller CreateSaller(
+        public static Models.Seller CreateSeller(
             string Name,
             string Email,
             string Telephone,
@@ -24,12 +24,12 @@ namespace Controllers{
             }
         }
 
-        public static IEnumerable<Models.Seller> ReadAllSaller()
+        public static IEnumerable<Models.Seller> ReadAllSeller()
         {
-            IEnumerable<Models.Seller> sallers = Models.Seller.ReadAllSeller();
+            IEnumerable<Models.Seller> sellers = Models.Seller.ReadAllSeller();
 
-            if(sallers != null){
-                return sallers;
+            if(sellers != null){
+                return sellers;
             }
             else
             {
@@ -37,12 +37,12 @@ namespace Controllers{
             }
         }
 
-        public static Models.Seller ReadSallerById(int id)
+        public static Models.Seller ReadSellerById(int id)
         {
-            Models.Seller saller = Models.Seller.ReadByIdSeller(id);
+            Models.Seller seller = Models.Seller.ReadByIdSeller(id);
             
-            if(saller != null){
-                return saller;
+            if(seller != null){
+                return seller;
             }
             else
             {
@@ -50,22 +50,22 @@ namespace Controllers{
             }
         }
 
-        public static Models.Seller UpdateSaler(
-            int SallerId,
+        public static Models.Seller UpdateSeller(
+            int SellerId,
             string Name,
             string Email,
             string Telephone,
             int Registration
         )
         {
-            Models.Seller saller = ReadSallerById(
-                SallerId
+            Models.Seller saller = ReadSellerById(
+                SellerId
             );
 
             if( saller != null)
             {
                 return Models.Seller.UpdateSeller(
-                    SallerId,
+                    SellerId,
                     Name,
                     Email,
                     Telephone,
@@ -78,14 +78,14 @@ namespace Controllers{
             }
         }
 
-        public static void DeleteSaller(
-            int SallerId
+        public static void DeleteSeller(
+            int SellerId
         )
         {
-            if( SallerId > 0)
+            if( SellerId > 0)
             {
                 Models.Seller.DeleteSeller(
-                    SallerId
+                    SellerId
                 );
             }
             else
