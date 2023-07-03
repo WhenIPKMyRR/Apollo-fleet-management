@@ -57,6 +57,7 @@ namespace Views
                 menu.Show();
 
             };
+            
 
             Button documentButton = new Button();
             documentButton.Text = "Documentos";
@@ -69,11 +70,37 @@ namespace Views
                 menu.Show();
 
             };
+
+            Button sellerButton = new Button();
+            sellerButton.Text = "Vendedores";
+            sellerButton.Location = new Point((menu.ClientSize.Width - sellerButton.Width) / 2, documentButton.Bottom + 20);
+            sellerButton.AutoSize = true;
+            sellerButton.Click += (sender, e) => 
+            {
+                var createSeller = new CreateSeller();
+                createSeller.ShowDialog();
+                menu.Show();
+
+            };
+
+            Button saleButton = new Button();
+            saleButton.Text = "Vendas";
+            saleButton.Location = new Point((menu.ClientSize.Width - saleButton.Width) / 2, sellerButton.Bottom + 20);
+            saleButton.AutoSize = true;
+            saleButton.Click += (sender, e) => 
+            {
+                var createSale = new CreateSale();
+                createSale.ShowDialog();
+                menu.Show();
+
+            };
             
             menu.Controls.Add(clientButton);
             menu.Controls.Add(carButton);
             menu.Controls.Add(brandButton);
             menu.Controls.Add(documentButton);
+            menu.Controls.Add(sellerButton);    
+            menu.Controls.Add(saleButton);
 
             menu.ShowDialog();
 

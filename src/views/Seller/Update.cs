@@ -47,7 +47,7 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false; 
-            this.Size = new System.Drawing.Size(300, 350);
+            this.Size = new System.Drawing.Size(300, 450);
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Vendedor";

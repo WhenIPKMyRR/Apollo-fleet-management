@@ -43,12 +43,12 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Size = new System.Drawing.Size(300, 350);
+            this.Size = new System.Drawing.Size(300, 450);
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Vendedor";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(60, 30);
+            this.lblTitle.Location = new Point(50, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblName = new Label();

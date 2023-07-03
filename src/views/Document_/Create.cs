@@ -43,9 +43,9 @@ namespace Views
             this.Size = new System.Drawing.Size(300, 380);
 
             this.lblTitle = new Label();
-            this.lblTitle.Text = "Editar Documento";
+            this.lblTitle.Text = "Cadastro de Documento";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(60, 30);
+            this.lblTitle.Location = new Point(45, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblType = new Label();
@@ -83,7 +83,7 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#0080FF");
+            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
             this.panel.ColumnCount = 3;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
