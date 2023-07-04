@@ -203,27 +203,49 @@ namespace Views
             menuItemStatements.DropDownItems.Add(subMenuItemStatementsSales);
 
 
-
             this.divHorizontal = new TableLayoutPanel();
             divHorizontal.Dock = DockStyle.Top;
-            divHorizontal.Size = new Size(this.ClientSize.Width , 190);
-            divHorizontal.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            divHorizontal.Size = new Size(870, 130);
             divHorizontal.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            divHorizontal.ColumnCount = 3;
+            divHorizontal.ColumnStyles.Clear();
             Controls.Add(this.divHorizontal);
+
+            int buttonCountDivHorizontal = 3;
+            int buttonWidthDivHorizontal = 200;
+            int buttonHeightDivHorizontal = 100;
+
+            for (int i = 0; i < buttonCountDivHorizontal; i++)
+            {
+                Button button = new Button();
+                button.Size = new Size(buttonWidthDivHorizontal, buttonHeightDivHorizontal);
+                button.BackColor = ColorTranslator.FromHtml("#F8F8F8");
+                button.ForeColor = ColorTranslator.FromHtml("#BFCBE9");
+                button.FlatStyle = FlatStyle.Flat;
+                button.TextAlign = ContentAlignment.MiddleCenter;
+                button.Text = "Button " + (i + 1);
+                button.Font = new Font("Segoe UI", 13f, FontStyle.Bold);
+                button.FlatStyle = FlatStyle.Flat;
+                button.FlatAppearance.BorderSize = 2;
+
+                divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / buttonCountDivHorizontal));
+                divHorizontal.Controls.Add(button, i, 0);
+            }
 
 
             int columnsSquare = 3;
             int rowsSquare = 2;
-            
-            this.divVertical  = new TableLayoutPanel();
+
+            this.divVertical = new TableLayoutPanel();
             divVertical.Size = new Size(630, 310);
-            divVertical.Location = new Point((ClientSize.Width - 630 ) / 2, divHorizontal.Bottom + 150);
+            divVertical.Location = new Point((ClientSize.Width - divVertical.Width) / 2, (ClientSize.Height - divVertical.Height) / 2 + 150);
             divVertical.ColumnCount = columnsSquare;
             divVertical.RowCount = rowsSquare;
             divVertical.BackColor = ColorTranslator.FromHtml("#ffffff");
             divVertical.ColumnStyles.Clear();
             divVertical.RowStyles.Clear();
-            divVertical.Dock = DockStyle.Fill;
+            divVertical.Dock = DockStyle.None;
+            divVertical.Padding = new Padding(10); // Espaçamento interno dos botões
             Controls.Add(this.divVertical);
 
             for (int i = 0; i < divVertical.ColumnCount; i++)
@@ -236,35 +258,37 @@ namespace Views
                 divVertical.RowStyles.Add(new RowStyle(SizeType.Percent, 100F / divVertical.RowCount));
             }
 
-            for (int i = 1; i <= 6; i++)
+            string[] buttonTexts = { "Carros", "Documentos", "Garagens", "Clientes", "Vendedores", "Balanços" };
+            string[] imagePaths = { "Assets/icon-car.png", "Assets/icon-document.png", "Assets/icon-garage.png", "Assets/icon-client.png", "Assets/icon-employee.png", "Assets/icon-balance.png" };
+
+            int buttonWidth = (divVertical.Width - divVertical.Padding.Horizontal) / divVertical.ColumnCount;
+            int buttonHeight = (divVertical.Height - divVertical.Padding.Vertical) / divVertical.RowCount;
+
+            for (int i = 0; i < buttonTexts.Length; i++)
             {
-
                 this.buttonsInformations = new Button();
-                buttonsInformations.Text = "Informações";
-                buttonsInformations.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-                // buttonsInformations.Location = new Point(0, 0);
-                buttonsInformations.Size = new Size(195, 135);
-                buttonsInformations.BackColor = Color.Transparent;
-                buttonsInformations.ForeColor = ColorTranslator.FromHtml("#000000");
+                buttonsInformations.Text = buttonTexts[i];
+                buttonsInformations.Font = new Font("Segoe UI", 13f, FontStyle.Bold);
+                buttonsInformations.Size = new Size(buttonWidth, buttonHeight);
+                buttonsInformations.BackColor = ColorTranslator.FromHtml("#F8F8F8");
+                buttonsInformations.ForeColor = ColorTranslator.FromHtml("#BFCBE9");
                 buttonsInformations.FlatStyle = FlatStyle.Flat;
-                buttonsInformations.FlatAppearance.BorderSize = 0;
-                buttonsInformations.Dock = DockStyle.Fill;
-                // buttonsInformations.Image = Image.FromFile("Assets/Icon-car.png");
-                // buttonsInformations.ImageAlign = ContentAlignment.MiddleLeft;
-                // buttonsInformations.Click += new EventHandler(Informations);
-                divVertical.Controls.Add(buttonsInformations, i, 0);
+                buttonsInformations.FlatAppearance.BorderSize = 2;
+                buttonsInformations.ImageAlign = ContentAlignment.MiddleCenter;
+                buttonsInformations.TextAlign = ContentAlignment.MiddleCenter;
+                buttonsInformations.TextImageRelation = TextImageRelation.ImageAboveText; 
+
+                // Carregar imagem e ajustar tamanho
+                Image image = Image.FromFile(imagePaths[i]);
+                float scale = Math.Min(buttonsInformations.Width / (float)image.Width, buttonsInformations.Height / (float)image.Height);
+                int imageWidth = (int)(image.Width * scale * 0.4f); 
+                int imageHeight = (int)(image.Height * scale * 0.4f); 
+                buttonsInformations.Image = new Bitmap(image, new Size(imageWidth, imageHeight));
+
+                int column = i % divVertical.ColumnCount;
+                int row = i / divVertical.ColumnCount;
+                divVertical.Controls.Add(buttonsInformations, column, row);
             }
-
-
-
-
-
-
-
-
-
-
-
 
         }
     }
