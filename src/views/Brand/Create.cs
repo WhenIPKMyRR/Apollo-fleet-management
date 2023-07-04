@@ -53,24 +53,25 @@ namespace Views
             this.comboBoxName.Size = new Size(220, 20);
             this.comboBoxName.Items.Add("Audi");
             this.comboBoxName.Items.Add("BMW");
-            this.comboBoxName.Items.Add("Porsche");
-            this.comboBoxName.Items.Add("Mercedes-Benz");
-            this.comboBoxName.Items.Add("Volvo");
-            this.comboBoxName.Items.Add("Land Rover");
-            this.comboBoxName.Items.Add("Volkswagen");
+            this.comboBoxName.Items.Add("CAOA Chery");
             this.comboBoxName.Items.Add("Chevrolet");
+            this.comboBoxName.Items.Add("Citroën");
             this.comboBoxName.Items.Add("Fiat");
             this.comboBoxName.Items.Add("Ford");
-            this.comboBoxName.Items.Add("Toyota");
-            this.comboBoxName.Items.Add("Nissan");
             this.comboBoxName.Items.Add("Honda");
             this.comboBoxName.Items.Add("Hyundai");
-            this.comboBoxName.Items.Add("Mitsubishi");
             this.comboBoxName.Items.Add("Jeep");
-            this.comboBoxName.Items.Add("CAOA Chery");
-            this.comboBoxName.Items.Add("Renault");
+            this.comboBoxName.Items.Add("Land Rover");
+            this.comboBoxName.Items.Add("Mercedes-Benz");
+            this.comboBoxName.Items.Add("Mitsubishi");
+            this.comboBoxName.Items.Add("Nissan");
             this.comboBoxName.Items.Add("Peugeot");
-            this.comboBoxName.Items.Add("Citroën");
+            this.comboBoxName.Items.Add("Porsche");
+            this.comboBoxName.Items.Add("Renault");
+            this.comboBoxName.Items.Add("Toyota");
+            this.comboBoxName.Items.Add("Volkswagen");
+            this.comboBoxName.Items.Add("Volvo");
+
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;

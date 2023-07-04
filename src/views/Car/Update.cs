@@ -15,15 +15,15 @@ namespace Views
         public Label lblCarMileage;
         public Label lblModelId;
         public Label lblBrandId;
-        public TextBox txtYear;
+        public ComboBox txtYear;
         public TextBox txtColor;
         public TextBox txtLicensePlate;
         public TextBox txtBodyworkType;
         public TextBox txtPrice;
         public TextBox txtChassisCode;
         public TextBox txtRenavanCode;
-        public TextBox txtFuelType;
-        public TextBox txtCarTransmissionType;
+        public ComboBox txtFuelType;
+        public ComboBox txtCarTransmissionType;
         public TextBox txtCarMileage;
         public TextBox txtModelId;
         public TextBox txtBrandId;
@@ -58,6 +58,21 @@ namespace Views
             }
             this.Close();
         }
+
+        private void ComboBoxAno()
+        {
+            int anoAtual = DateTime.Now.Year;
+
+            for (int ano = 1980; ano <= anoAtual; ano++)
+            {
+                txtYear.Items.Add(ano);
+            }
+        }
+
+        private void Load(object sender, EventArgs e)
+        {
+            ComboBoxAno();
+        }
         public UpdateCar()
         {
             this.Text = "Editar Carro";
@@ -80,18 +95,19 @@ namespace Views
             this.lblYear.Location = new Point(33, lblTitle.Bottom + 10);
             this.lblYear.Size = new Size(70, 20);
 
-            this.txtYear = new TextBox();
+            this.txtYear = new ComboBox();
             this.txtYear.Location = new Point(33, lblYear.Bottom + 5);
-            this.txtYear.BorderStyle = BorderStyle.FixedSingle;
             this.txtYear.Size = new Size(220, 20);
+            ComboBoxAno();
+            this.Controls.Add(txtYear);
 
             this.lblColor = new Label();
             this.lblColor.Text = "Cor:";
-            this.lblColor.Location = new Point(33, txtYear.Bottom + 10);
+            this.lblColor.Location = new Point(320, lblTitle.Bottom + 10);
             this.lblColor.Size = new Size(70, 20);
 
             this.txtColor = new TextBox();
-            this.txtColor.Location = new Point(33, lblColor.Bottom + 5);
+            this.txtColor.Location = new Point(320, txtYear.Bottom - 23);
             this.txtColor.BorderStyle = BorderStyle.FixedSingle;
             this.txtColor.Size = new Size(220, 20);
 
@@ -107,11 +123,11 @@ namespace Views
 
             this.lblBodyworkType = new Label();
             this.lblBodyworkType.Text = "Carroceria:";
-            this.lblBodyworkType.Location = new Point(33, txtLicensePlate.Bottom + 10);
+            this.lblBodyworkType.Location = new Point(320, lblLicensePlate.Bottom - 20);
             this.lblBodyworkType.Size = new Size(100, 20);
 
             this.txtBodyworkType = new TextBox();
-            this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
+            this.txtBodyworkType.Location = new Point(320, txtLicensePlate.Bottom - 23);
             this.txtBodyworkType.BorderStyle = BorderStyle.FixedSingle;
             this.txtBodyworkType.Size = new Size(220, 20);
 
@@ -126,52 +142,60 @@ namespace Views
             this.txtPrice.Size = new Size(220, 20);
 
             this.lblChassisCode = new Label();
-            this.lblChassisCode.Text = "Código do chassis:";
-            this.lblChassisCode.Location = new Point(33, txtPrice.Bottom + 10);
+            this.lblChassisCode.Text = "Código do Chassis:";
+            this.lblChassisCode.Location = new Point(320, lblPrice.Bottom - 20);
             this.lblChassisCode.Size = new Size(120, 20);
 
             this.txtChassisCode = new TextBox();
-            this.txtChassisCode.Location = new Point(33, lblChassisCode.Bottom + 5);
+            this.txtChassisCode.Location = new Point(320, txtPrice.Bottom - 23);
             this.txtChassisCode.BorderStyle = BorderStyle.FixedSingle;
             this.txtChassisCode.Size = new Size(220, 20);
 
+            this.lblFuelType = new Label();
+            this.lblFuelType.Text = "Combustível";
+            this.lblFuelType.Location = new Point(33, txtChassisCode.Bottom + 10);
+            this.lblFuelType.Size = new Size(120, 20);
+
+            this.txtFuelType = new ComboBox();
+            this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
+            this.txtFuelType.Size = new Size(220, 20);
+            this.txtFuelType.Items.Add("Diesel");
+            this.txtFuelType.Items.Add("Elétrico");
+            this.txtFuelType.Items.Add("Etanol");
+            this.txtFuelType.Items.Add("Flex");
+            this.txtFuelType.Items.Add("Gasolina");
+            this.txtFuelType.Items.Add("Gás");
+            this.txtFuelType.Items.Add("Híbrido");
+
             this.lblRenavanCode = new Label();
-            this.lblRenavanCode.Text = "Código renavan:";
-            this.lblRenavanCode.Location = new Point(33, txtChassisCode.Bottom + 10);
+            this.lblRenavanCode.Text = "Código do Renavan:";
+            this.lblRenavanCode.Location = new Point(320, lblFuelType.Bottom - 20);
             this.lblRenavanCode.Size = new Size(120, 20);
 
             this.txtRenavanCode = new TextBox();
-            this.txtRenavanCode.Location = new Point(33, lblRenavanCode.Bottom + 5);
+            this.txtRenavanCode.Location = new Point(320, txtFuelType.Bottom - 23);
             this.txtRenavanCode.BorderStyle = BorderStyle.FixedSingle;
             this.txtRenavanCode.Size = new Size(220, 20);
-
-            this.lblFuelType = new Label();
-            this.lblFuelType.Text = "Combustível:";
-            this.lblFuelType.Location = new Point(33, txtRenavanCode.Bottom + 10);
-            this.lblFuelType.Size = new Size(100, 20);
-
-            this.txtFuelType = new TextBox();
-            this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
-            this.txtFuelType.BorderStyle = BorderStyle.FixedSingle;
-            this.txtFuelType.Size = new Size(220, 20);
 
             this.lblCarTransmissionType = new Label();
             this.lblCarTransmissionType.Text = "Transmissão:";
             this.lblCarTransmissionType.Location = new Point(33, txtFuelType.Bottom + 10);
             this.lblCarTransmissionType.Size = new Size(140, 20);
 
-            this.txtCarTransmissionType = new TextBox();
+            this.txtCarTransmissionType = new ComboBox();
             this.txtCarTransmissionType.Location = new Point(33, lblCarTransmissionType.Bottom + 5);
-            this.txtCarTransmissionType.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarTransmissionType.Size = new Size(220, 20);
-
+            this.txtCarTransmissionType.Items.Add("Manual");
+            this.txtCarTransmissionType.Items.Add("Automático");
+            this.txtCarTransmissionType.Items.Add("Automatizado");
+            
             this.lblCarMileage = new Label();
             this.lblCarMileage.Text = "Quilometragem:";
-            this.lblCarMileage.Location = new Point(33, txtCarTransmissionType.Bottom + 10);
+            this.lblCarMileage.Location = new Point(320, lblCarTransmissionType.Bottom - 20);
             this.lblCarMileage.Size = new Size(110, 20);
 
             this.txtCarMileage = new TextBox();
-            this.txtCarMileage.Location = new Point(33, lblCarMileage.Bottom + 5);
+            this.txtCarMileage.Location = new Point(320, txtCarTransmissionType.Bottom - 23);
             this.txtCarMileage.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarMileage.Size = new Size(220, 20);
 
@@ -187,11 +211,11 @@ namespace Views
 
             this.lblBrandId = new Label();
             this.lblBrandId.Text = "Marca:";
-            this.lblBrandId.Location = new Point(33, txtModelId.Bottom + 10);
+            this.lblBrandId.Location = new Point(320, lblModelId.Bottom - 20);
             this.lblBrandId.Size = new Size(70, 20);
 
             this.txtBrandId = new TextBox();
-            this.txtBrandId.Location = new Point(33, lblBrandId.Bottom + 5);
+            this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
             this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
 
