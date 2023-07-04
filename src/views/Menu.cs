@@ -94,6 +94,18 @@ namespace Views
                 menu.Show();
 
             };
+
+            Button initialButton = new Button();
+            initialButton.Text = "Clientes";
+            initialButton.Location = new Point((menu.ClientSize.Width - initialButton.Width) / 2, saleButton.Bottom + 10);
+            initialButton.AutoSize = true;
+            initialButton.Click += (sender, e) => 
+            {
+                var createClient = new InitialScreen();
+                createClient.ShowDialog();
+                menu.Show();
+
+            };
             
             menu.Controls.Add(clientButton);
             menu.Controls.Add(carButton);
@@ -101,6 +113,7 @@ namespace Views
             menu.Controls.Add(documentButton);
             menu.Controls.Add(sellerButton);    
             menu.Controls.Add(saleButton);
+            menu.Controls.Add(initialButton);
 
             menu.ShowDialog();
 
