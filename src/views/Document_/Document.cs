@@ -48,7 +48,7 @@ namespace Views
                 if(DocumentUpdateView.ShowDialog() == DialogResult.OK)
                 {
                     RefreshList();
-                    MessageBox.Show("Document succesfully edited.");
+                    MessageBox.Show("Documento editado com sucesso.");
                 }
             }
             catch (Exception err)
@@ -62,7 +62,7 @@ namespace Views
             try
             {
                 Models.Document document = GetSelectedDocument(Option.Delete);
-                if (MessageBox.Show("Are you sure?", "Delete Document", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Tem certeza?", "Deletar Documento", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Models.Document.DeleteDocument(document.DocumentId);
                     RefreshList();
@@ -90,7 +90,7 @@ namespace Views
             }
             else
             {
-                throw new System.Exception($"Select a Document to {(option == Option.Update ? "update" : "delete")}");
+                throw new System.Exception($"Selecione um documento para {(option == Option.Update ? "editar" : "deletar")}");
             }
         }
 
@@ -101,7 +101,7 @@ namespace Views
 
         public ListDocument()
         {
-            this.Text = "Documents";
+            this.Text = "Documentos";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -115,9 +115,9 @@ namespace Views
             listDocument.Location = new Point(50, 50);
             listDocument.View = View.Details;
             listDocument.Columns.Add("Id");
-            listDocument.Columns.Add("Type");
-            listDocument.Columns.Add("Value");
-            listDocument.Columns.Add("Car");
+            listDocument.Columns.Add("Tipo");
+            listDocument.Columns.Add("Valor");
+            listDocument.Columns.Add("Carro");
             listDocument.Columns[0].Width = 30;
             listDocument.Columns[1].Width = 100;
             listDocument.Columns[2].Width = 100;
@@ -128,28 +128,28 @@ namespace Views
             RefreshList();
 
             Button btCrt = new Button();
-            btCrt.Text = "Add";
+            btCrt.Text = "Adicionar";
             btCrt.Size = new Size(100, 30);
             btCrt.Location = new Point(50, 330);
             btCrt.Click += new EventHandler(btCrt_Click);
             this.Controls.Add(btCrt);
 
             Button btUpdate = new Button();
-            btUpdate.Text = "Update";
+            btUpdate.Text = "Editar";
             btUpdate.Size = new Size(100, 30);
             btUpdate.Location = new Point(170, 330);
             btUpdate.Click += new EventHandler(btUdpate_Click);
             this.Controls.Add(btUpdate);
 
             Button btDelete = new Button();
-            btDelete.Text = "Delete";
+            btDelete.Text = "Deletar";
             btDelete.Size = new Size(100, 30);
             btDelete.Location = new Point(290, 330);
             btDelete.Click += new EventHandler(btDelete_Click);
             this.Controls.Add(btDelete);
 
             Button btClose = new Button();
-            btClose.Text = "Exit";
+            btClose.Text = "Sair";
             btClose.Size = new Size(100, 30);
             btClose.Location = new Point(450, 330);
             btClose.Click += new EventHandler(btClose_Click);

@@ -1,33 +1,138 @@
+using Models;
+using Controllers;
+
 namespace Views
 {
-    public class CreateSale : Form
+    public class ListSale : Form
     {
-        public Label lblDate;
-        public Label lblCarId;
-        public Label lblClientId;
-        public Label lblSellerId;
-        public TextBox txtDate;
-        public TextBox txtCarId;
-        public TextBox txtClientId;
-        public TextBox txtSellerId;
-        public Button btCrt;
+        ListView listSale;
 
-        public void btCrt_Click(object sender, EventArgs e)
+        private void AddListView(Models.Sale sale)
         {
-            Controllers.Sale.CreateSale(
-                Convert.ToInt32(txtCarId.Text),
-                Convert.ToInt32(txtClientId.Text),
-                Convert.ToInt32(txtSellerId.Text)
-            );
-
-            MessageBox.Show("Venda criada com sucesso");
-
-            ListSale SaleList = Application.OpenForms.OfType<ListSale>().FirstOrDefault();
-            if (SaleList == null)
+            string[] row = 
             {
-                SaleList.RefreshList();
-            }
-            this.Close();
+                sale.SaleId.ToString(),
+                sale.CarId.ToString(),
+                sale.ClientId.ToString(),
+                sale.SellerId.ToString(),
+                sale.Date.ToString()
+            };
+
+            ListViewItem item = new ListViewItem(row);
+            listSale.Items.Add(item);
         }
+
+        public void RefreshList()
+        {
+            listSale.Items.Clear();
+
+            IEnumerable<Models.Sale> list = Controllers.Sale.ReadAllSale();
+
+            foreach (Models.Sale sale in list)
+            {
+                AddListView(sale);
+            }
+        }
+
+        public Models.Sale GetSelectedSale(Option option)
+        {
+            if(listSale.SelectedItems.Count > 0)
+            {
+                int selectedSaleId = int.Parse(listSale.SelectedItems[0].Text);
+                return Models.Sale.ReadByIdSale(selectedSaleId);
+            }
+            else
+            {
+                throw new Exception($"Selecione uma opção {(option == Option.Update? "Atualizar" : "Deletar")}");
+            }
+        }
+
+        private void btCrt_Click(object sender, EventArgs e)
+        {
+            var CreateSale = new Views.CreateSale();
+            CreateSale.Show();
+        }
+
+        private void btUdpate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Models.Sale sale = GetSelectedSale(Option.Update);
+                var UpdateSale = new Views.UpdateSale(sale);
+                UpdateSale.ShowDialog();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Models.Sale sale = GetSelectedSale(Option.Delete);
+                if(MessageBox.Show("Tem certeza?", "Deletar Venda", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Controllers.Sale.DeleteSale(sale.SaleId);
+                    RefreshList();
+                    MessageBox.Show("Venda deletada com sucesso.");
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public ListSale()
+        {
+            Text = "Listar Vendas";
+            Size = new Size(800, 600);
+            StartPosition = FormStartPosition.CenterScreen;
+
+            listSale = new ListView();
+            listSale.Size = new Size(780, 500);
+            listSale.Location = new Point(10, 10);
+            listSale.View = View.Details;
+            listSale.FullRowSelect = true;
+            listSale.Columns.Add("Id");
+            listSale.Columns.Add("Data");
+            listSale.Columns.Add("Carro");
+            listSale.Columns.Add("Cliente");
+            listSale.Columns.Add("Vendedor");
+            listSale.Columns[0].Width = 50;
+            listSale.Columns[1].Width = 100;
+            listSale.Columns[2].Width = 100;
+            listSale.Columns[3].Width = 100;
+            listSale.Columns[4].Width = 100;
+            this.Controls.Add(listSale);
+
+            RefreshList();
+
+            Button btCrt = new Button();
+            btCrt.Text = "Adicionar";
+            btCrt.Location = new Point(10, 520);
+            btCrt.Click += new EventHandler(btCrt_Click);
+            this.Controls.Add(btCrt);
+
+            Button btUdpate = new Button();
+            btUdpate.Text = "Editar";
+            btUdpate.Location = new Point(90, 520);
+            btUdpate.Click += new EventHandler(btUdpate_Click);
+            this.Controls.Add(btUdpate);
+
+            Button btDelete = new Button();
+            btDelete.Text = "Deletar";
+            btDelete.Location = new Point(170, 520);
+            btDelete.Click += new EventHandler(btDelete_Click);
+            this.Controls.Add(btDelete);
+
+            Button btExit = new Button();
+            btExit.Text = "Sair";
+            btExit.Location = new Point(250, 520);
+            btExit.Click += new EventHandler(btDelete_Click);
+            this.Controls.Add(btExit);
+        }   
     }
 }
