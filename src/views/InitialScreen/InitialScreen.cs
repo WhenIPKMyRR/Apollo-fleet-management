@@ -15,6 +15,55 @@ namespace Views
         
 
 
+        // // Dentro do loop for onde você cria os botões, adicione o manipulador de eventos para cada botão
+        // for (int i = 0; i < buttonTexts.Length; i++)
+        // {
+        //     // Restante do código...
+
+        //     this.buttonsInformations.Click += Button_Click; // Substitua "Button_Click" pelo nome do manipulador de evento correspondente ao botão atual
+        // }
+
+        // Implementação do manipulador de eventos genérico para todos os botões
+        private void Button_Click(object sender)
+        {
+            Button button = (Button)sender;
+
+            switch (button.Text)
+            {
+                case "Carros":
+                    var carrosForm = new ListCar();
+                    carrosForm.ShowDialog();
+                    break;
+
+                case "Documentos":
+                    var documentosForm = new ListDocument();
+                    documentosForm.ShowDialog();
+                    break;
+
+                // case "Garagens":
+                //     var garageForm = new ListGarage();
+                //     documentosForm.ShowDialog();
+                //     break;
+
+                case "Clientes":
+                    var documentsForm = new ListDocument();
+                    documentsForm.ShowDialog();
+                    break;
+                
+                case "Vendedores":
+                    var employeeForm = new ListSeller();
+                    employeeForm.ShowDialog();
+                    break;
+
+                case "Balanços":
+                    var balancesForm = new ListSale();
+                    balancesForm.ShowDialog();
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         public InitialScreen()
         {
@@ -277,6 +326,13 @@ namespace Views
                 buttonsInformations.ImageAlign = ContentAlignment.MiddleCenter;
                 buttonsInformations.TextAlign = ContentAlignment.MiddleCenter;
                 buttonsInformations.TextImageRelation = TextImageRelation.ImageAboveText; 
+                buttonsInformations.Click += (sender, e) => 
+                {
+                   if(buttonsInformations != null)
+                   {
+                        Button_Click(buttonsInformations);
+                   }
+                };
 
                 // Carregar imagem e ajustar tamanho
                 Image image = Image.FromFile(imagePaths[i]);
@@ -291,5 +347,7 @@ namespace Views
             }
 
         }
+
+        
     }
 }
