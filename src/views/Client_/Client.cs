@@ -72,12 +72,12 @@ namespace Views
             try
             {
                 Models.Client client = GetSelectedClient(Option.Delete);
-                DialogResult result = MessageBox.Show("Do you really want to delete this client?", "Delete", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Tem certeza?", "Deletar Cliente", MessageBoxButtons.YesNo);
                 if(result == DialogResult.Yes)
                 {
                     Models.Client.DeleteClient(client.ClientId);
                     RefreshList();
-                    MessageBox.Show("Client successfully deleted.");
+                    MessageBox.Show("Cliente deletado com sucesso.");
                 }
             }catch (Exception err)
             {

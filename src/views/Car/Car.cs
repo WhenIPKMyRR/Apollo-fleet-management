@@ -51,7 +51,7 @@ namespace Views
             }
             else
             {
-                throw new Exception($"Select a Car to {(option == Option.Update? "Update" : "Delete")}");
+                throw new Exception($"Seleciona um carro para {(option == Option.Update? "editar" : "deletar")}");
             }
         }
 
@@ -71,7 +71,7 @@ namespace Views
                 if(CarUpdateView.ShowDialog() == DialogResult.OK)
                 {
                     RefreshList();
-                    MessageBox.Show("Car successfully updated.");
+                    MessageBox.Show("Carro editado com sucesso.");
                 }
             }
             catch (Exception err)
@@ -85,7 +85,7 @@ namespace Views
             try
             {
                 Models.Car car = GetSelectedCar(Option.Delete);
-                DialogResult result = MessageBox.Show("Do you want to delete this Car?", "Confirm deletion", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Tem certeza?", "Deletar Carro", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     RefreshList();
@@ -110,7 +110,7 @@ namespace Views
 
         public ListCar()
         {
-            this.Text = "Cars";
+            this.Text = "Carros";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -124,18 +124,18 @@ namespace Views
             listCar.Location = new Point(50, 50);
             listCar.View = View.Details;
             listCar.Columns.Add("Id");
-            listCar.Columns.Add("Year");
-            listCar.Columns.Add("Color");
-            listCar.Columns.Add("License Plate");
-            listCar.Columns.Add("Body Work");
-            listCar.Columns.Add("Price");
-            listCar.Columns.Add("Chassis Code");
-            listCar.Columns.Add("Renavan Code");
-            listCar.Columns.Add("Fuel Type");
-            listCar.Columns.Add("Transmission Type");
-            listCar.Columns.Add("Mileage");
-            listCar.Columns.Add("Model");
-            listCar.Columns.Add("Brand");
+            listCar.Columns.Add("Ano");
+            listCar.Columns.Add("Cor");
+            listCar.Columns.Add("Placa");
+            listCar.Columns.Add("Carroceria");
+            listCar.Columns.Add("Preço");
+            listCar.Columns.Add("Código do chassi");
+            listCar.Columns.Add("Código renavan");
+            listCar.Columns.Add("Combustível");
+            listCar.Columns.Add("Transmissão");
+            listCar.Columns.Add("Quilometragem");
+            listCar.Columns.Add("Modelo");
+            listCar.Columns.Add("Marca");
             listCar.Columns[0].Width = 30;
             listCar.Columns[1].Width = 60;
             listCar.Columns[2].Width = 60;
@@ -154,28 +154,28 @@ namespace Views
             RefreshList();
 
             Button btCrt = new Button();
-            btCrt.Text = "Add";
+            btCrt.Text = "Adicionar";
             btCrt.Size = new Size(100, 30);
             btCrt.Location = new Point(50, 330);
             btCrt.Click += new EventHandler(btCrt_Click);
             this.Controls.Add(btCrt);
 
             Button btUpdate = new Button();
-            btUpdate.Text = "Update";
+            btUpdate.Text = "Editar";
             btUpdate.Size = new Size(100, 30);
             btUpdate.Location = new Point(170, 330);
             btUpdate.Click += new EventHandler(btUdpate_Click);
             this.Controls.Add(btUpdate);
 
             Button btDelete = new Button();
-            btDelete.Text = "Delete";
+            btDelete.Text = "Deletar";
             btDelete.Size = new Size(100, 30);
             btDelete.Location = new Point(290, 330);
             btDelete.Click += new EventHandler(btDelete_Click);
             this.Controls.Add(btDelete);
 
             Button btClose = new Button();
-            btClose.Text = "Exit";
+            btClose.Text = "Sair";
             btClose.Size = new Size(100, 30);
             btClose.Location = new Point(450, 330);
             btClose.Click += new EventHandler(btClose_Click);

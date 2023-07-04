@@ -47,7 +47,7 @@ namespace Views
                 if(BrandUpdateView.ShowDialog() == DialogResult.OK)
                 {
                     RefreshList();
-                    MessageBox.Show("Brand succesfully edited.");
+                    MessageBox.Show("Marca editada com sucesso.");
                 }
             }
             catch (Exception err)
@@ -61,7 +61,7 @@ namespace Views
             try
             {
                 Models.Brand brand = GetSelectedBrand(Option.Delete);
-                DialogResult result = MessageBox.Show("Do you really want to delete this Brand?", "Confirm deletion", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Tem certeza?", "Deletar Marca", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     Models.Brand.DeleteBrand(brand.BrandId);
@@ -90,7 +90,7 @@ namespace Views
             }
             else
             {
-                throw new Exception($"Select a Brand to {(option == Option.Update? "udpate" : "delete" )}");
+                throw new Exception($"Selecione uma marca para {(option == Option.Update? "editar" : "deletar" )}");
             }
         }
 
@@ -101,7 +101,7 @@ namespace Views
 
         public ListBrand()
         {
-            this.Text = "Brands";
+            this.Text = "Marcas";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -115,7 +115,7 @@ namespace Views
             listBrand.Location = new Point(50, 50);
             listBrand.View = View.Details;
             listBrand.Columns.Add("Id");
-            listBrand.Columns.Add("Name");
+            listBrand.Columns.Add("Nome");
             listBrand.Columns[0].Width = 30;
             listBrand.Columns[1].Width = 100;
             listBrand.FullRowSelect = true;
@@ -124,28 +124,28 @@ namespace Views
             RefreshList();
 
             Button btCrt = new Button();
-            btCrt.Text = "Add";
+            btCrt.Text = "Adicionar";
             btCrt.Size = new Size(100, 30);
             btCrt.Location = new Point(50, 330);
             btCrt.Click += new EventHandler(btCrt_Click);
             this.Controls.Add(btCrt);
 
             Button btUpdate = new Button();
-            btUpdate.Text = "Update";
+            btUpdate.Text = "Editar";
             btUpdate.Size = new Size(100, 30);
             btUpdate.Location = new Point(170, 330);
             btUpdate.Click += new EventHandler(btUdpate_Click);
             this.Controls.Add(btUpdate);
 
             Button btDelete = new Button();
-            btDelete.Text = "Delete";
+            btDelete.Text = "Deletar";
             btDelete.Size = new Size(100, 30);
             btDelete.Location = new Point(290, 330);
             btDelete.Click += new EventHandler(btDelete_Click);
             this.Controls.Add(btDelete);
 
             Button btClose = new Button();
-            btClose.Text = "Exit";
+            btClose.Text = "Sair";
             btClose.Size = new Size(100, 30);
             btClose.Location = new Point(450, 330);
             btClose.Click += new EventHandler(btClose_Click);
