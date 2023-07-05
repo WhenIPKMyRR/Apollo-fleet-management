@@ -68,6 +68,7 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(300, 450);
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Venda";
@@ -120,7 +121,7 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             this.panel.ColumnCount = 3;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();

@@ -108,7 +108,8 @@ namespace Views
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = false; 
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             listDocument = new ListView();
             listDocument.Size = new Size(680, 260);
@@ -132,7 +133,7 @@ namespace Views
             panel.AutoSize = true;
             // panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel.Padding = new Padding(10, 10, 10, 10);
-            panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             panel.ColumnCount = 8;
             panel.RowCount = 1;
             panel.ColumnStyles.Clear();

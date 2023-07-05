@@ -87,9 +87,15 @@ namespace Views
 
         public ListSale()
         {
-            Text = "Listar Vendas";
-            Size = new Size(800, 450);
-            StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "Listar Vendas";
+            this.Size = new Size(800, 450);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             listSale = new ListView();
             listSale.Size = new Size(680, 260);
@@ -110,12 +116,12 @@ namespace Views
 
             RefreshList();
 
-             TableLayoutPanel panel = new TableLayoutPanel();
+            TableLayoutPanel panel = new TableLayoutPanel();
             panel.Dock = DockStyle.Bottom;
             panel.AutoSize = true;
             // panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel.Padding = new Padding(10, 10, 10, 10);
-            panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             panel.ColumnCount = 8;
             panel.RowCount = 1;
             panel.ColumnStyles.Clear();

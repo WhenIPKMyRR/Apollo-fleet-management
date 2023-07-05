@@ -107,7 +107,7 @@ namespace Views
             this.MinimizeBox = true;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            Color color = ColorTranslator.FromHtml("#F7F7F7");
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             listClient = new ListView();
             listClient.Size = new Size(680, 260);
@@ -132,7 +132,7 @@ namespace Views
             panel.Dock = DockStyle.Bottom;
             panel.AutoSize = true;
             panel.Padding = new Padding(10, 10, 10, 10);
-            panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             panel.ColumnCount = 8;
             panel.RowCount = 1;
             panel.ColumnStyles.Clear();
