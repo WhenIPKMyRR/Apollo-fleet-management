@@ -24,9 +24,8 @@ namespace Views
         // }
 
         // Implementação do manipulador de eventos genérico para todos os botões
-        private void Button_Click(object sender)
+        private void Button_Click(Button button)
         {
-            Button button = (Button)sender;
 
             switch (button.Text)
             {
@@ -326,12 +325,12 @@ namespace Views
                 buttonsInformations.ImageAlign = ContentAlignment.MiddleCenter;
                 buttonsInformations.TextAlign = ContentAlignment.MiddleCenter;
                 buttonsInformations.TextImageRelation = TextImageRelation.ImageAboveText; 
-                buttonsInformations.Click += (sender, e) => 
+                buttonsInformations.Click += (sender, e) =>
                 {
-                   if(buttonsInformations != null)
-                   {
-                        Button_Click(buttonsInformations);
-                   }
+                    if (sender is Button clickedButton)
+                    {
+                        Button_Click(clickedButton);
+                    }
                 };
 
                 // Carregar imagem e ajustar tamanho
