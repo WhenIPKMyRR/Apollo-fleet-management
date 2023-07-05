@@ -175,6 +175,7 @@ namespace Views
             this.lblPrice.Size = new Size(70, 20);
 
             this.txtPrice = new TextBox();
+            this.txtPrice.Text = "R$";
             this.txtPrice.Location = new Point(33, lblPrice.Bottom + 5);
             this.txtPrice.BorderStyle = BorderStyle.FixedSingle;
             this.txtPrice.Size = new Size(220, 20);
