@@ -94,7 +94,7 @@ namespace Views
             }
 
             this.btCrt = new Button();
-            this.btCrt.Text = "Editar";
+            this.btCrt.Text = "Cadastrar";
             //this.btCrt.Location = new Point(90, 180);
             this.btCrt.Size = new Size(200, 25);
             this.btCrt.Font = new Font("Arial", 8, FontStyle.Regular);
@@ -131,6 +131,7 @@ namespace Views
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.lblCarId);
             this.Controls.Add(this.txtCarId);
+            
         }   
     }
 }
