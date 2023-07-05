@@ -12,18 +12,10 @@ namespace Views
         private ToolStripMenuItem menuItemRegister;
         private ToolStripMenuItem menuItemViews;
         private ToolStripMenuItem menuItemStatements;
+        private Panel panelHorizontal;
+        
         
 
-
-        // // Dentro do loop for onde você cria os botões, adicione o manipulador de eventos para cada botão
-        // for (int i = 0; i < buttonTexts.Length; i++)
-        // {
-        //     // Restante do código...
-
-        //     this.buttonsInformations.Click += Button_Click; // Substitua "Button_Click" pelo nome do manipulador de evento correspondente ao botão atual
-        // }
-
-        // Implementação do manipulador de eventos genérico para todos os botões
         private void Button_Click(Button button)
         {
 
@@ -85,6 +77,8 @@ namespace Views
             menuStrip.Dock = DockStyle.Top;
             menuStrip.AutoSize = true;
             menuStrip.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            // menuStrip.ForeColor = ColorTranslator.FromHtml("#000000");
+            
 
             this.Controls.Add(menuStrip);
 
@@ -107,139 +101,133 @@ namespace Views
             subMenuItemRegisterCars.Text = "Carros";
             subMenuItemRegisterCars.Click += (sender, e) =>
             {
-                // var registerRoom = new RoomCreate();
-                // registerRoom.FormClosed += (s, args) => 
-                // {
-                //     AttStatusButton();
-                // };
+                var registerCar = new CreateCar();
+                registerCar.FormClosed += (s, args) => 
+                {
+                    // AttStatusButton();
+                };
                 
-                // registerRoom.ShowDialog();
+                registerCar.ShowDialog();
             }; 
 
             ToolStripMenuItem subMenuItRegisterDocuments = new ToolStripMenuItem();
             subMenuItRegisterDocuments.Text = "Documentos";
             subMenuItRegisterDocuments.Click += (sender, e) =>
             {
-                // var registerEmployee = new EmployeeCreate();
-                // registerEmployee.FormClosed += (s, args) => 
-                // {
-                //     AttStatusButton();
-                // };
-                // registerEmployee.ShowDialog();
+                var registerDocument = new CreateDocument();
+                registerDocument.FormClosed += (s, args) => 
+                {
+                    // AttStatusButton();
+                };
+                registerDocument.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemRegisterGarages = new ToolStripMenuItem();
             subMenuItemRegisterGarages.Text = "Garagens";
             subMenuItemRegisterGarages.Click += (sender, e) =>
             {
-                // var registerGuest = new CreateGuest();
-                // registerGuest.FormClosed += (s, args) => 
+                // var registerGarage = new createGarage();
+                // registerGarage.FormClosed += (s, args) => 
                 // {
                 //     AttStatusButton();
                 // };
-                // registerGuest.ShowDialog();
+                // registerGarage.ShowDialog();
             }; 
 
-            ToolStripMenuItem subMenuItemRegisterClients = new ToolStripMenuItem();
-            subMenuItemRegisterClients.Text = "Clientes";
-            subMenuItemRegisterClients.Click += (sender, e) =>
+            ToolStripMenuItem subMenuItemregisterEmployees = new ToolStripMenuItem();
+            subMenuItemregisterEmployees.Text = "Clientes";
+            subMenuItemregisterEmployees.Click += (sender, e) =>
             {
-                // var registerProduct = new CreateProduct();
-                //  registerProduct.FormClosed += (s, args) =>
-                // {
-                //     AttStatusButton(); 
-                // };
-                // registerProduct.ShowDialog();
+                var registerEmployee = new CreateClient();
+                 registerEmployee.FormClosed += (s, args) =>
+                {
+                    // AttStatusButton(); 
+                };
+                registerEmployee.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemRegisterEmployees = new ToolStripMenuItem();
             subMenuItemRegisterEmployees.Text = "Vendedores";
             subMenuItemRegisterEmployees.Click += (sender, e) =>
             {
-                // var registerProduct = new CreateProduct();
-                //  registerProduct.FormClosed += (s, args) =>
-                // {
-                //     AttStatusButton(); 
-                // };
-                // registerProduct.ShowDialog();
+                var registerEmployee = new CreateSeller();
+                 registerEmployee.FormClosed += (s, args) =>
+                {
+                    // AttStatusButton(); 
+                };
+                registerEmployee.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemViewsCars = new ToolStripMenuItem();
             subMenuItemViewsCars.Text = "Carros";
             subMenuItemViewsCars.Click += (sender, e) =>
             {
-                // var listRooms = new ListRoom();
-                // listRooms.FormClosed += (s, args) =>
-                // {
-                //     AttStatusButton(); 
-                // };
-                // listRooms.ShowDialog();
+                var listCars = new ListCar();
+                listCars.FormClosed += (s, args) =>
+                {
+                    // AttStatusButton(); 
+                };
+                listCars.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemViewsDocuments = new ToolStripMenuItem();
             subMenuItemViewsDocuments.Text = "Documentos";
             subMenuItemViewsDocuments.Click += (sender, e) =>
             {
-                // var listEmployees = new Views.ListEmployee();
-                //  listEmployees.Click += (s, args) =>
-                // {
+                var listDocument = new Views.ListDocument();
+                 listDocument.Click += (s, args) =>
+                {
                 //    AttStatusButton();
-                // };
-                // listEmployees.ShowDialog();
+                };
+                listDocument.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemViewsGarages = new ToolStripMenuItem();
             subMenuItemViewsGarages.Text = "Garagens";
             subMenuItemViewsGarages.Click += (sender, e) =>
             {
-                // var listGuests = new Views.ListGuest();
-                // listGuests.Click += (s, args) =>
+                // var listGarages = new Views.listGarages();
+                // listGarages.Click += (s, args) =>
                 // {
-                //    AttStatusButton();
+                // //    AttStatusButton();
                 // };
-                // listGuests.ShowDialog();
+                // listGarages.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemViewsClients = new ToolStripMenuItem();
             subMenuItemViewsClients.Text = "Clientes";
             subMenuItemViewsClients.Click += (sender, e) =>
             {
-                // var listProoducts = new List();
-                // listProoducts.ShowDialog();
-                // this.Show();
+                var listClients = new ListClient();
+                listClients.ShowDialog();
+                this.Show();
             }; 
 
             ToolStripMenuItem subMenuItemViewsEmployees = new ToolStripMenuItem();
             subMenuItemViewsEmployees.Text = "Vendedores";
             subMenuItemViewsEmployees.Click += (sender, e) =>
             {
-                // var listProoducts = new List();
-                // listProoducts.ShowDialog();
-                // this.Show();
-            }; ;
+                var listEmployee = new ListSeller();
+                listEmployee.ShowDialog();
+                this.Show();
+            }; 
 
             //Balanço
             ToolStripMenuItem subMenuItemStatementsSales = new ToolStripMenuItem();
             subMenuItemStatementsSales.Text = "Vendas";
             subMenuItemStatementsSales.Click += (sender, e) =>
             {
-                // var statementsProducts = new StatementsProducts();
-                // statementsProducts.ShowDialog();
-                // this.Show();
+                var balanceSales = new ListSale();
+                balanceSales.ShowDialog();
+                this.Show();
             };
 
-            // ToolStripMenuItem subMenuItemStatementsAccommodation = new ToolStripMenuItem();
-            // subMenuItemStatementsAccommodation.Text = "Hospedagem";
-            // subMenuItemStatementsAccommodation.Click += (sender, e) =>
-            // {
-            //     // var statementsAccommodation = new StatementsAccommodation();
-            //     // statementsAccommodation.ShowDialog();
-            //     // this.Show();
-            // };
-
-
+          
+            menuStrip.Items.Add(menuItemRegister);
+            menuStrip.Items.Add(menuItemViews);
+            menuStrip.Items.Add(menuItemStatements);
             menuItemRegister.DropDownItems.Add(subMenuItemRegisterCars);
-            menuItemRegister.DropDownItems.Add(subMenuItemRegisterClients);
+            menuItemRegister.DropDownItems.Add(subMenuItemregisterEmployees);
             menuItemRegister.DropDownItems.Add(subMenuItemRegisterEmployees);
             menuItemRegister.DropDownItems.Add(subMenuItemRegisterGarages);
             menuItemRegister.DropDownItems.Add(subMenuItRegisterDocuments);
@@ -251,35 +239,49 @@ namespace Views
             menuItemStatements.DropDownItems.Add(subMenuItemStatementsSales);
 
 
+            this.panelHorizontal = new Panel();
+            panelHorizontal.Dock = DockStyle.Top;
+            panelHorizontal.Size = new Size(800, 200);
+            panelHorizontal.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            panelHorizontal.Location = new Point((ClientSize.Width - panelHorizontal.Width) / 2, 150);
+            panelHorizontal.BackColor = Color.Transparent;
+            Controls.Add(this.panelHorizontal);
+
+
             this.divHorizontal = new TableLayoutPanel();
-            divHorizontal.Dock = DockStyle.Top;
-            divHorizontal.Size = new Size(870, 130);
-            divHorizontal.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            divHorizontal.Size = new Size(800, 100); 
+            divHorizontal.Location = new Point((ClientSize.Width - divHorizontal.Width) / 2, 250);
+            divHorizontal.BackColor = Color.Transparent;
             divHorizontal.ColumnCount = 3;
+            divHorizontal.RowCount = 1;
             divHorizontal.ColumnStyles.Clear();
+            divHorizontal.RowStyles.Clear();
+            divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / 3));
+            divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / 3));
+            divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / 3));
+            divHorizontal.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             Controls.Add(this.divHorizontal);
 
             int buttonCountDivHorizontal = 3;
-            int buttonWidthDivHorizontal = 200;
+            int buttonWidthDivHorizontal = 290; // Ajuste a largura para acomodar o espaçamento
             int buttonHeightDivHorizontal = 100;
 
             for (int i = 0; i < buttonCountDivHorizontal; i++)
             {
                 Button button = new Button();
                 button.Size = new Size(buttonWidthDivHorizontal, buttonHeightDivHorizontal);
+                button.Margin = new Padding(5); // Adicione margem para criar espaçamento entre os botões
                 button.BackColor = ColorTranslator.FromHtml("#F8F8F8");
                 button.ForeColor = ColorTranslator.FromHtml("#BFCBE9");
                 button.FlatStyle = FlatStyle.Flat;
                 button.TextAlign = ContentAlignment.MiddleCenter;
                 button.Text = "Button " + (i + 1);
                 button.Font = new Font("Segoe UI", 13f, FontStyle.Bold);
-                button.FlatStyle = FlatStyle.Flat;
                 button.FlatAppearance.BorderSize = 2;
 
                 divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / buttonCountDivHorizontal));
                 divHorizontal.Controls.Add(button, i, 0);
             }
-
 
             int columnsSquare = 3;
             int rowsSquare = 2;
