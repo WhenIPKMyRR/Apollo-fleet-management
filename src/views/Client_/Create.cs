@@ -17,21 +17,42 @@ namespace Views
 
         public void btCrt_Click(object sender, EventArgs e)
         {
-           Controllers.Client.CreateClient(
-                this.txtName.Text,
-                this.txtTelephone.Text,
-                this.txtAddress.Text,
-                this.txtDocument.Text
-            );
+           try
+           {
+                string name = txtName.Text;
+                string telephone = txtTelephone.Text;
+                string address = txtAddress.Text;
+                string document = txtDocument.Text;
 
-            MessageBox.Show("Cliente cadastrado com sucesso.");
-            
+                Models.Client.CreateClient(
+                    name,
+                    telephone,
+                    address,
+                    document
+                );
+                
+                MessageBox.Show("Cliente cadastrado com sucesso.");
+                ClearForm();
+           }
+           catch (Exception err)
+           {
+                MessageBox.Show(err.Message);
+           }
+
             ListClient ClientList = Application.OpenForms.OfType<ListClient>().FirstOrDefault();
             if(ClientList == null)
             {
                 ClientList.RefreshList();
             }
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtName.Clear();
+            txtTelephone.Clear();
+            txtAddress.Clear();
+            txtDocument.Clear();
         }
 
         public CreateClient()

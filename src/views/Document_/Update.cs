@@ -18,18 +18,16 @@ namespace Views
         {
            try 
            {
-                int type = Convert.ToInt32(txtType.Text);
-                int value = Convert.ToInt32(txtValue.Text);
+                string type = txtType.Text;
+                string value = txtValue.Text;
                 int carId = Convert.ToInt32(txtCarId.Text);
 
                 Controllers.Document.UpdateDocument(
                     document.DocumentId,
-                    type.ToString(),
-                    value.ToString(),
+                    type,
+                    value,
                     carId
                 );
-
-                Controllers.Document.UpdateDocument(document.DocumentId, document.Type, document.Value, document.CarId);
 
                 MessageBox.Show("Document editado com sucesso!");
                 ClearForm();

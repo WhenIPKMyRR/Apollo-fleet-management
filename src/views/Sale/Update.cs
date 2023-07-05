@@ -8,7 +8,7 @@ namespace Views
         public Label lblCarId;
         public Label lblClientId;
         public Label lblSellerId;
-        public TextBox txtDate;
+        public DateTimePicker txtDate;
         public TextBox txtCarId;
         public TextBox txtClientId;
         public TextBox txtSellerId;
@@ -20,13 +20,26 @@ namespace Views
 
         public void btUpdate_Click(object sender, EventArgs e)
         {
-            Models.Sale saleUpdate = this.sale;
-            Controllers.Sale.UpdateSale(
-                saleUpdate.SaleId,
-                saleUpdate.CarId,
-                saleUpdate.ClientId,
-                saleUpdate.SellerId
-            );
+            try
+            {
+                int carId = Convert.ToInt32(txtCarId.Text);
+                int clientId = Convert.ToInt32(txtClientId.Text);
+                int sellerId = Convert.ToInt32(txtSellerId.Text);
+
+                Controllers.Sale.UpdateSale(
+                    sale.SaleId,
+                    carId,
+                    clientId,
+                    sellerId
+                );
+
+                MessageBox.Show("Venda editada com sucesso!");
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
             ListSale SaleList = Application.OpenForms.OfType<ListSale>().FirstOrDefault();
             if (SaleList != null)
@@ -34,6 +47,13 @@ namespace Views
                 SaleList.RefreshList();
             }
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtCarId.Clear();
+            txtClientId.Clear();
+            txtSellerId.Clear();
         }
 
         public UpdateSale(Models.Sale sale)
@@ -60,10 +80,10 @@ namespace Views
             this.lblDate.Location = new Point(33, lblTitle.Bottom + 10);
             this.lblDate.Size = new Size(70, 20);
 
-            this.txtDate = new TextBox();
+            this.txtDate = new DateTimePicker();
             this.txtDate.Location = new Point(33, lblDate.Bottom + 5);
-            this.txtDate.BorderStyle = BorderStyle.FixedSingle;
             this.txtDate.Size = new Size(220, 20);
+            txtDate.Format = DateTimePickerFormat.Short;
 
             this.lblCarId = new Label();
             this.lblCarId.Text = "Carro:";

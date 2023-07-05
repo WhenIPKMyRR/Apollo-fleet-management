@@ -88,6 +88,7 @@ namespace Views
                 DialogResult result = MessageBox.Show("Tem certeza?", "Deletar Carro", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
+                    Models.Car.DeleteCar(car.CarId);
                     RefreshList();
                 }
             }catch (Exception err)
@@ -121,7 +122,7 @@ namespace Views
             Color color = ColorTranslator.FromHtml("#F7F7F7"); 
 
             listCar = new ListView();
-            listCar.Size = new Size(880, 350);
+            listCar.Size = new Size(880, 360);
             listCar.Location = new Point(50, 50);
             listCar.View = View.Details;
             listCar.Columns.Add("Id");
@@ -223,10 +224,10 @@ namespace Views
                 this.Close();
             };
             
-            panel.Controls.Add(btCrt, 4, 0);
-            panel.Controls.Add(btUpdate, 5, 0);
-            panel.Controls.Add(btDelete, 6, 0);
-            panel.Controls.Add(btClose, 7, 0); 
+            panel.Controls.Add(btCrt, 2, 0);
+            panel.Controls.Add(btUpdate, 3, 0);
+            panel.Controls.Add(btDelete, 4, 0);
+            panel.Controls.Add(btClose, 5, 0); 
             this.Controls.Add(panel);
         }
     }

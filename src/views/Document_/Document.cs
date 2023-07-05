@@ -195,10 +195,10 @@ namespace Views
                 this.Close();
             };
             
-            panel.Controls.Add(btCrt, 4, 0);
-            panel.Controls.Add(btUpdate, 5, 0);
-            panel.Controls.Add(btDelete, 6, 0);
-            panel.Controls.Add(btClose, 7, 0); 
+            panel.Controls.Add(btCrt, 2, 0);
+            panel.Controls.Add(btUpdate, 3, 0);
+            panel.Controls.Add(btDelete, 4, 0);
+            panel.Controls.Add(btClose, 5, 0); 
             this.Controls.Add(panel);
         }
     }

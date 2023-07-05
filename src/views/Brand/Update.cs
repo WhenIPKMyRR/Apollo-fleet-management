@@ -15,11 +15,22 @@ namespace Views
         public Models.Brand brand;
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Brand brandUpdate = this.brand;
-            Controllers.Brand.UpdateBrand(
-                brandUpdate.BrandId,
-                brandUpdate.Name
-            );
+            try
+            {
+                string name = comboBoxName.Text;
+
+                Controllers.Brand.UpdateBrand(
+                    brand.BrandId,
+                    name
+                );
+
+                MessageBox.Show("Marca editada com sucesso!");
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
             ListBrand BrandList = Application.OpenForms.OfType<ListBrand>().FirstOrDefault();
             if (BrandList != null)
@@ -27,6 +38,11 @@ namespace Views
                 BrandList.RefreshList();
             }
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            comboBoxName.Text = "";
         }
         public UpdateBrand(Models.Brand brand)
         {
