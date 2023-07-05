@@ -7,7 +7,7 @@ namespace Views
         public Label lblCarId;
         public Label lblClientId;
         public Label lblSellerId;
-        public TextBox txtDate;
+        public DateTimePicker txtDate;
         public TextBox txtCarId;
         public TextBox txtClientId;
         public TextBox txtSellerId;
@@ -55,10 +55,10 @@ namespace Views
             this.lblDate.Location = new Point(33, lblTitle.Bottom + 10);
             this.lblDate.Size = new Size(70, 20);
 
-            this.txtDate = new TextBox();
+            this.txtDate = new DateTimePicker();
             this.txtDate.Location = new Point(33, lblDate.Bottom + 5);
-            this.txtDate.BorderStyle = BorderStyle.FixedSingle;
             this.txtDate.Size = new Size(220, 20);
+            txtDate.Format = DateTimePickerFormat.Short;
 
             this.lblCarId = new Label();
             this.lblCarId.Text = "Carro:";
@@ -95,7 +95,7 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             this.panel.ColumnCount = 3;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();

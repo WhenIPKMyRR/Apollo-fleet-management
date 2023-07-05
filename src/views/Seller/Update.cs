@@ -19,14 +19,28 @@ namespace Views
 
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Seller sellerUpdate = this.seller;
-            Controllers.Seller.UpdateSeller(
-                sellerUpdate.SellerId,
-                sellerUpdate.Name,
-                sellerUpdate.Email,
-                sellerUpdate.Telephone,
-                sellerUpdate.Registration
-            );
+            try
+            {
+                string name = txtName.Text;
+                string email = txtEmail.Text;
+                string telephone = txtTelephone.Text;
+                int registration = Convert.ToInt32(txtRegistration.Text);
+
+                Controllers.Seller.UpdateSeller(
+                    seller.SellerId,
+                    name,
+                    email,
+                    telephone,
+                    registration
+                );
+
+                MessageBox.Show("Vendedor editado com sucesso!");
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
             ListSeller SellerList = Application.OpenForms.OfType<ListSeller>().FirstOrDefault();
             if (SellerList != null)
@@ -34,6 +48,14 @@ namespace Views
                 SellerList.RefreshList();
             }
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtName.Clear();
+            txtEmail.Clear();
+            txtTelephone.Clear();
+            txtRegistration.Clear();
         }
 
         public UpdateSeller(Models.Seller seller)

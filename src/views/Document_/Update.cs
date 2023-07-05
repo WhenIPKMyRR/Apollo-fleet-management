@@ -16,13 +16,26 @@ namespace Views
         public Models.Document document;
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Document documentUpdate = this.document;
-            Controllers.Document.UpdateDocument(
-                documentUpdate.DocumentId,
-                documentUpdate.Type,
-                documentUpdate.Value,
-                documentUpdate.CarId
-            );
+           try 
+           {
+                string type = txtType.Text;
+                string value = txtValue.Text;
+                int carId = Convert.ToInt32(txtCarId.Text);
+
+                Controllers.Document.UpdateDocument(
+                    document.DocumentId,
+                    type,
+                    value,
+                    carId
+                );
+
+                MessageBox.Show("Document editado com sucesso!");
+                ClearForm();
+           }
+           catch(Exception ex) 
+           {
+                MessageBox.Show(ex.Message);
+           }
 
             ListDocument DocumentList = Application.OpenForms.OfType<ListDocument>().FirstOrDefault();
             if (DocumentList != null)
@@ -30,6 +43,13 @@ namespace Views
                 DocumentList.RefreshList();
             }
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtType.Clear();
+            txtValue.Clear();
+            txtCarId.Clear();
         }
 
         public UpdateDocument(Models.Document document)
@@ -44,6 +64,7 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(300, 380);
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Documento";
@@ -86,7 +107,7 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#0080FF");
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             this.panel.ColumnCount = 3;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
@@ -128,13 +149,13 @@ namespace Views
 
             this.Controls.Add(panel);
             this.Controls.Add(lblTitle);
-            this.Controls.Add(lblType);
-            this.Controls.Add(txtType);
-            this.Controls.Add(lblValue);
-            this.Controls.Add(txtValue);
-            this.Controls.Add(lblCarId);
-            this.Controls.Add(txtCarId);
-            this.Controls.Add(btUdpate);
+            this.Controls.Add(this.lblType);
+            this.Controls.Add(this.txtType);
+            this.Controls.Add(this.lblValue);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.lblCarId);
+            this.Controls.Add(this.txtCarId);
+
         }
     }
 }

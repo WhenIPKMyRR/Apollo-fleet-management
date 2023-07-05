@@ -18,7 +18,7 @@ namespace Views
         public ComboBox txtYear;
         public TextBox txtColor;
         public TextBox txtLicensePlate;
-        public TextBox txtBodyworkType;
+        public ComboBox txtBodyworkType;
         public TextBox txtPrice;
         public TextBox txtChassisCode;
         public TextBox txtRenavanCode;
@@ -34,29 +34,62 @@ namespace Views
 
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Car carToUpdate = this.car;
-            Controllers.Car.UpdateCar(
-                carToUpdate.CarId,
-                carToUpdate.Year,
-                carToUpdate.Color,
-                carToUpdate.LicensePlate,
-                carToUpdate.BodyworkType,
-                carToUpdate.Price,
-                carToUpdate.ChassisCode,
-                carToUpdate.RenavanCode,
-                carToUpdate.FuelType,
-                carToUpdate.TransmissionType,
-                carToUpdate.CarMileage,
-                carToUpdate.ModelId,
-                carToUpdate.BrandId
-            );
+            try 
+            {
+                int year = int.Parse(txtYear.Text);
+                string color = txtColor.Text;
+                string licensePlate = txtLicensePlate.Text;
+                string bodyworkType = txtBodyworkType.Text;
+                decimal price = decimal.Parse(txtPrice.Text);
+                string chassisCode = txtChassisCode.Text;
+                string renavanCode = txtRenavanCode.Text;
+                string fuelType = txtFuelType.Text;
+                string carTransmissionType = txtCarTransmissionType.Text;
+                int carMileage = int.Parse(txtCarMileage.Text);
+                int modelId = int.Parse(txtModelId.Text);
+                int brandId = int.Parse(txtBrandId.Text);
+
+                Models.Car.UpdateCar(
+                    car.CarId,
+                    year,
+                    color,
+                    licensePlate,
+                    bodyworkType,
+                    price,
+                    chassisCode,
+                    renavanCode,
+                    fuelType,
+                    carTransmissionType,
+                    carMileage,
+                    modelId,
+                    brandId
+                );
+
+                MessageBox.Show("Carro editado com sucesso.");
+                ClearForm();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
 
             ListCar CarList = Application.OpenForms.OfType<ListCar>().FirstOrDefault();
-            if (CarList == null)
+            if (CarList != null)
             {
                 CarList.RefreshList();
             }
-            this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtColor.Clear();
+            txtLicensePlate.Clear();
+            txtPrice.Clear();
+            txtChassisCode.Clear();
+            txtRenavanCode.Clear();
+            txtCarMileage.Clear();
+            txtModelId.Clear();
+            txtBrandId.Clear();
         }
 
         private void ComboBoxAno()
@@ -82,12 +115,13 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Size = new System.Drawing.Size(300, 900);
+            this.Size = new System.Drawing.Size(590, 580);
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Carro";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(60, 30);
+            this.lblTitle.Location = new Point(210, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblYear = new Label();
@@ -111,25 +145,30 @@ namespace Views
             this.txtColor.BorderStyle = BorderStyle.FixedSingle;
             this.txtColor.Size = new Size(220, 20);
 
+            this.lblBodyworkType = new Label();
+            this.lblBodyworkType.Text = "Carroceria:";
+            this.lblBodyworkType.Location = new Point(33, txtColor.Bottom + 10);
+            this.lblBodyworkType.Size = new Size(110, 20);
+
+            this.txtBodyworkType = new ComboBox();
+            this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
+            this.txtBodyworkType.Size = new Size(220, 20);
+            this.txtBodyworkType.Items.Add("Conversível");
+            this.txtBodyworkType.Items.Add("Coupé");
+            this.txtBodyworkType.Items.Add("Hatch");
+            this.txtBodyworkType.Items.Add("Picape");
+            this.txtBodyworkType.Items.Add("Sedan");
+            this.txtBodyworkType.Items.Add("SUV");
+
             this.lblLicensePlate = new Label();
             this.lblLicensePlate.Text = "Placa:";
-            this.lblLicensePlate.Location = new Point(33, txtColor.Bottom + 10);
+            this.lblLicensePlate.Location = new Point(320, lblBodyworkType.Bottom - 20);
             this.lblLicensePlate.Size = new Size(110, 20);
 
             this.txtLicensePlate = new TextBox();
-            this.txtLicensePlate.Location = new Point(33, lblLicensePlate.Bottom + 5);
+            this.txtLicensePlate.Location = new Point(320, txtBodyworkType.Bottom - 23);
             this.txtLicensePlate.BorderStyle = BorderStyle.FixedSingle;
             this.txtLicensePlate.Size = new Size(220, 20);
-
-            this.lblBodyworkType = new Label();
-            this.lblBodyworkType.Text = "Carroceria:";
-            this.lblBodyworkType.Location = new Point(320, lblLicensePlate.Bottom - 20);
-            this.lblBodyworkType.Size = new Size(100, 20);
-
-            this.txtBodyworkType = new TextBox();
-            this.txtBodyworkType.Location = new Point(320, txtLicensePlate.Bottom - 23);
-            this.txtBodyworkType.BorderStyle = BorderStyle.FixedSingle;
-            this.txtBodyworkType.Size = new Size(220, 20);
 
             this.lblPrice = new Label();
             this.lblPrice.Text = "Preço:";
@@ -137,6 +176,7 @@ namespace Views
             this.lblPrice.Size = new Size(70, 20);
 
             this.txtPrice = new TextBox();
+            this.txtPrice.Text = "R$";
             this.txtPrice.Location = new Point(33, lblPrice.Bottom + 5);
             this.txtPrice.BorderStyle = BorderStyle.FixedSingle;
             this.txtPrice.Size = new Size(220, 20);
@@ -218,13 +258,12 @@ namespace Views
             this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
             this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
-
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             this.panel.ColumnCount = 3;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();

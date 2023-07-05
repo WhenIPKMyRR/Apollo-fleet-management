@@ -14,7 +14,7 @@
 <h3>Instalação</h3>
 <p>Para obter uma cópia do projeto, você pode clonar este repositório:</p>
 
-<pre><code>git clone https://github.com/marianagsantana/Apollo-Fleet-Management.git</code></pre>
+<pre><code>git clone https://github.com/Brokollis/Apollo-fleet-management.git</code></pre>
 
 <p>Após clonar o repositório, certifique-se de configurar corretamente o ambiente de desenvolvimento e o banco de dados de acordo com as configurações do projeto.</p>
 
