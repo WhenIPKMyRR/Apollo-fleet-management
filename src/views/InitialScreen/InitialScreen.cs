@@ -9,28 +9,48 @@ namespace Views
         private TableLayoutPanel divHorizontal;
         private TableLayoutPanel divVertical;
         private Button buttonsInformations;
+        private Button button;
         private MenuStrip menuStrip;
         private ToolStripMenuItem menuItemRegister;
         private ToolStripMenuItem menuItemViews;
         private ToolStripMenuItem menuItemStatements;
 
         
-        // private string[] GetValuesToHorizontalPanel()
-        // {
-        //     IEnumerable<Models.Car> cars = Controllers.Car.ReadAllCars();
-        //     IEnumerable<Models.Client> clients = Controllers.Client.ReadAllClients();
-        //     IEnumerable<Models.Sale> sales = Controllers.Sale.ReadAllSale();
+        private string[] GetValuesToHorizontalPanel()
+        {
+            IEnumerable<Models.Car> cars = Controllers.Car.ReadAllCars();
+            IEnumerable<Models.Client> clients = Controllers.Client.ReadAllClients();
+            IEnumerable<Models.Sale> sales = Controllers.Sale.ReadAllSale();
+
+            int quantityCars = cars.Count();
+            int quantityClients = clients.Count();
+            int quantitySales = sales.Count();
 
 
-        //     string[] textPanels = {
-        //         $"{cars.Count()}\nCarros cadastrados",
-        //         $"{clients.Count()}\nClientes satisfeitos",
-        //         $"{sales.Count()}\nVendas realizadas"
-        //     };
+            string[] textPanels = {
+                $"{quantityCars}\nCarros cadastrados",
+                $"{quantityClients}\nClientes satisfeitos",
+                $"{quantitySales}\nVendas realizadas"
+            };
 
-        //     return textPanels;
-        // }
+            return textPanels;
+        }
 
+        // Método para atualizar os valores do texto dos botões
+        private void UpdateButtonLabels()
+        {
+            string[] buttonLabels = GetValuesToHorizontalPanel();
+            int buttonIndex = 0;
+
+            foreach (Control control in divHorizontal.Controls)
+            {
+                if (control is Button button)
+                {
+                    button.Text = buttonLabels[buttonIndex];
+                    buttonIndex++;
+                }
+            }
+        }
 
         private void Button_Click(Button button)
         {
@@ -39,11 +59,19 @@ namespace Views
             {
                 case "Carros":
                     var carrosForm = new ListCar();
+                    carrosForm.FormClosed += (s, args) =>
+                    {
+                        UpdateButtonLabels();
+                    };
                     carrosForm.ShowDialog();
                     break;
 
                 case "Documentos":
                     var documentosForm = new ListDocument();
+                    documentosForm.FormClosed += (s, args) =>
+                    {
+                        UpdateButtonLabels();
+                    };  
                     documentosForm.ShowDialog();
                     break;
 
@@ -54,16 +82,28 @@ namespace Views
 
                 case "Clientes":
                     var documentsForm = new ListDocument();
+                    documentsForm.FormClosed += (s, args) =>
+                    {
+                        UpdateButtonLabels();
+                    };
                     documentsForm.ShowDialog();
                     break;
                 
                 case "Vendedores":
                     var employeeForm = new ListSeller();
+                    employeeForm.FormClosed += (s, args) =>
+                    {
+                        UpdateButtonLabels();
+                    };
                     employeeForm.ShowDialog();
                     break;
 
                 case "Balanços":
                     var balancesForm = new ListSale();
+                    balancesForm.FormClosed += (s, args) =>
+                    {
+                        UpdateButtonLabels();
+                    };
                     balancesForm.ShowDialog();
                     break;
                 default:
@@ -120,7 +160,7 @@ namespace Views
                 var registerCar = new CreateCar();
                 registerCar.FormClosed += (s, args) => 
                 {
-                    // AttStatusButton();
+                    UpdateButtonLabels();
                 };
                 
                 registerCar.ShowDialog();
@@ -133,7 +173,7 @@ namespace Views
                 var registerDocument = new CreateDocument();
                 registerDocument.FormClosed += (s, args) => 
                 {
-                    // AttStatusButton();
+                   UpdateButtonLabels();
                 };
                 registerDocument.ShowDialog();
             };
@@ -155,9 +195,9 @@ namespace Views
             subMenuItemregisterEmployees.Click += (sender, e) =>
             {
                 var registerEmployee = new CreateClient();
-                 registerEmployee.FormClosed += (s, args) =>
+                registerEmployee.FormClosed += (s, args) =>
                 {
-                    // AttStatusButton(); 
+                    UpdateButtonLabels();
                 };
                 registerEmployee.ShowDialog();
             };
@@ -169,7 +209,7 @@ namespace Views
                 var registerEmployee = new CreateSeller();
                  registerEmployee.FormClosed += (s, args) =>
                 {
-                    // AttStatusButton(); 
+                    UpdateButtonLabels(); 
                 };
                 registerEmployee.ShowDialog();
             };
@@ -181,7 +221,7 @@ namespace Views
                 var listCars = new ListCar();
                 listCars.FormClosed += (s, args) =>
                 {
-                    // AttStatusButton(); 
+                    UpdateButtonLabels(); 
                 };
                 listCars.ShowDialog();
             };
@@ -193,7 +233,7 @@ namespace Views
                 var listDocument = new Views.ListDocument();
                  listDocument.Click += (s, args) =>
                 {
-                //    AttStatusButton();
+                    UpdateButtonLabels();
                 };
                 listDocument.ShowDialog();
             };
@@ -215,6 +255,10 @@ namespace Views
             subMenuItemViewsClients.Click += (sender, e) =>
             {
                 var listClients = new ListClient();
+                listClients.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels();
+                };
                 listClients.ShowDialog();
                 this.Show();
             }; 
@@ -224,6 +268,10 @@ namespace Views
             subMenuItemViewsEmployees.Click += (sender, e) =>
             {
                 var listEmployee = new ListSeller();
+                listEmployee.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels();
+                };
                 listEmployee.ShowDialog();
                 this.Show();
             }; 
@@ -234,8 +282,12 @@ namespace Views
             subMenuItemStatementsSales.Click += (sender, e) =>
             {
                 var balanceSales = new ListSale();
+                balanceSales.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels();
+
+                };
                 balanceSales.ShowDialog();
-                this.Show();
             };
 
           
@@ -284,7 +336,7 @@ namespace Views
             int buttonWidthDivHorizontal = 290;
             int buttonHeightDivHorizontal = 100;
 
-            // string[] buttonLabels = GetValuesToHorizontalPanel();
+            string[] buttonLabels = GetValuesToHorizontalPanel();
 
             for (int i = 0; i < buttonCountDivHorizontal; i++)
             {
@@ -292,11 +344,12 @@ namespace Views
                 button.Size = new Size(buttonWidthDivHorizontal, buttonHeightDivHorizontal);
                 button.Margin = new Padding(5); // Adicione margem para criar espaçamento entre os botões
                 button.BackColor = ColorTranslator.FromHtml("#F8F8F8");
-                button.ForeColor = ColorTranslator.FromHtml("#BFCBE9");
+                button.ForeColor = ColorTranslator.FromHtml("#242424");
+                button.FlatAppearance.BorderColor = ColorTranslator.FromHtml("#BFCBE9");
                 button.FlatStyle = FlatStyle.Flat;
                 button.TextAlign = ContentAlignment.MiddleCenter;
-                // button.Text = buttonLabels[i];
-                button.Font = new Font("Segoe UI", 13f, FontStyle.Bold);
+                button.Text = buttonLabels[i];
+                button.Font = new Font("Segoe UI", 13f, FontStyle.Regular);
                 button.FlatAppearance.BorderSize = 2;
 
                 divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / buttonCountDivHorizontal));

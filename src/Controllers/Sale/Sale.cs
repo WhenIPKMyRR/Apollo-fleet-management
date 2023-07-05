@@ -29,7 +29,7 @@ namespace Controllers{
 
             if(sales == null)
             {
-                throw new System.ArgumentException("Nenhuma venda encontrada");
+                throw new System.ArgumentException("Não foi possivel listar as vendas");
             }
             return sales;
         }
