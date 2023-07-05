@@ -47,13 +47,12 @@ namespace Controllers{
         {
             IEnumerable<Models.Car> cars = Models.Car.ReadAllCars();
 
-            if(cars != null){
-                return cars;
-            }
-            else
+            if(cars == null)
             {
                 throw new System.ArgumentException("Nenhum carro encontrado");
             }
+
+            return cars;
         }
 
         public static Models.Car ReadCarById(int id)

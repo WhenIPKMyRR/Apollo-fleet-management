@@ -56,13 +56,11 @@ namespace Controllers{
         {
             IEnumerable<Models.Client> clients = Models.Client.ReadAllClients();
 
-            if(clients != null){
-                return clients;
-            }
-            else
+            if(clients == null)
             {
                 throw new System.ArgumentException("Nenhum cliente encontrado");
             }
+            return clients;
         }
 
         public static void UpdateClient(

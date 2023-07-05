@@ -5,6 +5,7 @@ namespace Views
 {
     public class InitialScreen : Form
     {
+        private Panel panelHorizontal;
         private TableLayoutPanel divHorizontal;
         private TableLayoutPanel divVertical;
         private Button buttonsInformations;
@@ -12,9 +13,24 @@ namespace Views
         private ToolStripMenuItem menuItemRegister;
         private ToolStripMenuItem menuItemViews;
         private ToolStripMenuItem menuItemStatements;
-        private Panel panelHorizontal;
+
         
-        
+        // private string[] GetValuesToHorizontalPanel()
+        // {
+        //     IEnumerable<Models.Car> cars = Controllers.Car.ReadAllCars();
+        //     IEnumerable<Models.Client> clients = Controllers.Client.ReadAllClients();
+        //     IEnumerable<Models.Sale> sales = Controllers.Sale.ReadAllSale();
+
+
+        //     string[] textPanels = {
+        //         $"{cars.Count()}\nCarros cadastrados",
+        //         $"{clients.Count()}\nClientes satisfeitos",
+        //         $"{sales.Count()}\nVendas realizadas"
+        //     };
+
+        //     return textPanels;
+        // }
+
 
         private void Button_Click(Button button)
         {
@@ -240,18 +256,18 @@ namespace Views
 
 
             this.panelHorizontal = new Panel();
-            panelHorizontal.Dock = DockStyle.Top;
-            panelHorizontal.Size = new Size(800, 200);
+            panelHorizontal.Size = new Size(ClientSize.Width, 260);
             panelHorizontal.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            panelHorizontal.Location = new Point((ClientSize.Width - panelHorizontal.Width) / 2, 150);
-            panelHorizontal.BackColor = Color.Transparent;
+            panelHorizontal.Location = new Point((ClientSize.Width - panelHorizontal.Width) / 2, 0);
             Controls.Add(this.panelHorizontal);
+            panelHorizontal.Controls.Add(divHorizontal);
 
 
             this.divHorizontal = new TableLayoutPanel();
             divHorizontal.Size = new Size(800, 100); 
-            divHorizontal.Location = new Point((ClientSize.Width - divHorizontal.Width) / 2, 250);
+            divHorizontal.Location = new Point((ClientSize.Width - divHorizontal.Width) / 2, 200);
             divHorizontal.BackColor = Color.Transparent;
+            divHorizontal.ForeColor = Color.Transparent;
             divHorizontal.ColumnCount = 3;
             divHorizontal.RowCount = 1;
             divHorizontal.ColumnStyles.Clear();
@@ -261,10 +277,14 @@ namespace Views
             divHorizontal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F / 3));
             divHorizontal.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             Controls.Add(this.divHorizontal);
+            divHorizontal.BringToFront();
+
 
             int buttonCountDivHorizontal = 3;
-            int buttonWidthDivHorizontal = 290; // Ajuste a largura para acomodar o espaçamento
+            int buttonWidthDivHorizontal = 290;
             int buttonHeightDivHorizontal = 100;
+
+            // string[] buttonLabels = GetValuesToHorizontalPanel();
 
             for (int i = 0; i < buttonCountDivHorizontal; i++)
             {
@@ -275,7 +295,7 @@ namespace Views
                 button.ForeColor = ColorTranslator.FromHtml("#BFCBE9");
                 button.FlatStyle = FlatStyle.Flat;
                 button.TextAlign = ContentAlignment.MiddleCenter;
-                button.Text = "Button " + (i + 1);
+                // button.Text = buttonLabels[i];
                 button.Font = new Font("Segoe UI", 13f, FontStyle.Bold);
                 button.FlatAppearance.BorderSize = 2;
 
@@ -288,7 +308,7 @@ namespace Views
 
             this.divVertical = new TableLayoutPanel();
             divVertical.Size = new Size(630, 310);
-            divVertical.Location = new Point((ClientSize.Width - divVertical.Width) / 2, (ClientSize.Height - divVertical.Height) / 2 + 150);
+            divVertical.Location = new Point((ClientSize.Width - divVertical.Width) / 2, (ClientSize.Height - divVertical.Height) / 2 + 100);
             divVertical.ColumnCount = columnsSquare;
             divVertical.RowCount = rowsSquare;
             divVertical.BackColor = ColorTranslator.FromHtml("#ffffff");
