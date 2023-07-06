@@ -43,7 +43,7 @@ namespace Views
             }
             else
             {
-                throw new Exception($"Select a Client to {(option == Option.Update? "Update" : "Delete")}");
+                throw new Exception($"Selecione um cliente para {(option == Option.Update? "editar" : "deletar")}");
             }
         }
 
@@ -103,8 +103,8 @@ namespace Views
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = true;
-            this.MinimizeBox = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             Color color = ColorTranslator.FromHtml("#F8F8F8");

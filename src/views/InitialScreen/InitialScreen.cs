@@ -81,12 +81,17 @@ namespace Views
                 //     break;
 
                 case "Clientes":
+<<<<<<< HEAD
                     var documentsForm = new ListDocument();
                     documentsForm.FormClosed += (s, args) =>
                     {
                         UpdateButtonLabels();
                     };
                     documentsForm.ShowDialog();
+=======
+                    var clientForm = new ListClient();
+                    clientForm.ShowDialog();
+>>>>>>> ce78f1ae9f216fdfa70fad0d1aba9610a913ffe6
                     break;
                 
                 case "Vendedores":
