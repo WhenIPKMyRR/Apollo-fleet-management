@@ -75,18 +75,22 @@ namespace Views
                     documentosForm.ShowDialog();
                     break;
 
-                // case "Garagens":
-                //     var garageForm = new ListGarage();
-                //     documentosForm.ShowDialog();
-                //     break;
-
-                case "Clientes":
-                    var documentsForm = new ListDocument();
-                    documentsForm.FormClosed += (s, args) =>
+                case "Garagens":
+                    var garageForm = new ListGarage();
+                    garageForm.FormClosed += (s, args) =>
                     {
                         UpdateButtonLabels();
                     };
-                    documentsForm.ShowDialog();
+                    garageForm.ShowDialog();
+                    break;
+
+                case "Clientes":
+                    var clientForm = new ListClient();
+                    clientForm.FormClosed += (s, args) =>
+                    {
+                        UpdateButtonLabels();
+                    };
+                    clientForm.ShowDialog();
                     break;
                 
                 case "Vendedores":
@@ -182,12 +186,12 @@ namespace Views
             subMenuItemRegisterGarages.Text = "Garagens";
             subMenuItemRegisterGarages.Click += (sender, e) =>
             {
-                // var registerGarage = new createGarage();
-                // registerGarage.FormClosed += (s, args) => 
-                // {
-                //     AttStatusButton();
-                // };
-                // registerGarage.ShowDialog();
+                var registerGarage = new CreateGarage();
+                registerGarage.FormClosed += (s, args) => 
+                {
+                    UpdateButtonLabels();
+                };
+                registerGarage.ShowDialog();
             }; 
 
             ToolStripMenuItem subMenuItemregisterEmployees = new ToolStripMenuItem();
@@ -242,12 +246,12 @@ namespace Views
             subMenuItemViewsGarages.Text = "Garagens";
             subMenuItemViewsGarages.Click += (sender, e) =>
             {
-                // var listGarages = new Views.listGarages();
-                // listGarages.Click += (s, args) =>
-                // {
-                // //    AttStatusButton();
-                // };
-                // listGarages.ShowDialog();
+                var listGarages = new Views.ListGarage();
+                listGarages.Click += (s, args) =>
+                {
+                    UpdateButtonLabels();
+                };
+                listGarages.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemViewsClients = new ToolStripMenuItem();
