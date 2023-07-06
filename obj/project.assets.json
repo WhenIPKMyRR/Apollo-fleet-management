@@ -987,16 +987,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\User\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\Facu\\.nuget\\packages\\": {}
->>>>>>> ce78f1ae9f216fdfa70fad0d1aba9610a913ffe6
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\User\\Docs DevFac\\apollo-fleet-menagement\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
       "projectName": "Apollo-fleet-management",
       "projectPath": "C:\\Users\\User\\Docs DevFac\\apollo-fleet-menagement\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
@@ -1005,16 +1000,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
-      "projectName": "Apollo-fleet-management",
-      "projectPath": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
-      "packagesPath": "C:\\Users\\Facu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\Facu\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> ce78f1ae9f216fdfa70fad0d1aba9610a913ffe6
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
@@ -1072,12 +1057,16 @@
             "privateAssets": "none"
           }
         },
-<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.107\\RuntimeIdentifierGraph.json"
->>>>>>> ce78f1ae9f216fdfa70fad0d1aba9610a913ffe6
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\User\\Docs DevFac\\apollo-fleet-menagement\\Apollo-fleet-management\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

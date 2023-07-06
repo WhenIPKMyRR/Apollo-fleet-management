@@ -84,24 +84,17 @@ namespace Models
 
             return garage;
         }
-
-        public static Garage UpdateGarage(
-            int GarageId,
-            string Name
-        )
+        public static Garage UpdateGarage(int garageId, string name, string address, string phoneNumber)
         {
-            Garage garage = ReadGarageById(
-                GarageId
-            );
-
-            garage.Name = Name;
+            Garage garage = ReadGarageById(garageId);
 
             Repository.Context context = new Repository.Context();
             context.Garages.Update(garage);
             context.SaveChanges();
-
+            
             return garage;
         }
+
 
         public static void DeleteGarage(
             int GarageId

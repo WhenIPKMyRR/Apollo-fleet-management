@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\User\\Docs DevFac\\apollo-fleet-menagement\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-    "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
-        "projectName": "Apollo-fleet-management",
-        "projectPath": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
-        "packagesPath": "C:\\Users\\Facu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Facu\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> ce78f1ae9f216fdfa70fad0d1aba9610a913ffe6
         ],
         "originalTargetFrameworks": [
           "net7.0-windows"
@@ -89,11 +72,7 @@
               "privateAssets": "none"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.107\\RuntimeIdentifierGraph.json"
->>>>>>> ce78f1ae9f216fdfa70fad0d1aba9610a913ffe6
         }
       }
     }
