@@ -123,7 +123,7 @@ namespace Views
             this.ShowIcon = true;
             this.ShowInTaskbar = true;
             this.WindowState = FormWindowState.Maximized;
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.Bounds = Screen.PrimaryScreen.Bounds;
             this.ControlBox = true;
             this.BackColor = ColorTranslator.FromHtml("#ffffff");

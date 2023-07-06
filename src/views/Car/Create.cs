@@ -33,8 +33,10 @@ namespace Views
 
         public void btCrt_Click(object sender, EventArgs e)
         {
-          try
-          {
+            try
+            {
+                int modelId = Convert.ToInt32(txtModelId.Text);
+                int brandId = Convert.ToInt32(txtBrandId.Text);
                 int year = Convert.ToInt32(txtYear.Text);
                 string color = txtColor.Text;
                 string licensePlate = txtLicensePlate.Text;
@@ -45,8 +47,7 @@ namespace Views
                 string fuelType = txtFuelType.Text;
                 string carTransmissionType = txtCarTransmissionType.Text;
                 int carMileage = Convert.ToInt32(txtCarMileage.Text);
-                int modelId = Convert.ToInt32(txtModelId.Text);
-                int brandId = Convert.ToInt32(txtBrandId.Text);
+
 
                 Models.Car.CreateCar(
                     year,
@@ -116,13 +117,33 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(590, 580);
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
+            this.BackColor = ColorTranslator.FromHtml("#ffffff");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Carros";
             this.lblTitle.Font = new Font("Segoe UI", 15, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new Point(190, 30);
             this.lblTitle.Size = new Size(250, 40);
+
+            this.lblModelId = new Label();
+            this.lblModelId.Text = "Modelo:";
+            this.lblModelId.Location = new Point(33, txtCarMileage.Bottom + 10);
+            this.lblModelId.Size = new Size(70, 20);
+
+            this.txtModelId = new TextBox();
+            this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
+            this.txtModelId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtModelId.Size = new Size(220, 20);
+
+            this.lblBrandId = new Label();
+            this.lblBrandId.Text = "Marca:";
+            this.lblBrandId.Location = new Point(320, lblModelId.Bottom - 20);
+            this.lblBrandId.Size = new Size(70, 20);
+
+            this.txtBrandId = new TextBox();
+            this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
+            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtBrandId.Size = new Size(220, 20);
 
             this.lblYear = new Label();
             this.lblYear.Text = "Ano:";
@@ -239,25 +260,6 @@ namespace Views
             this.txtCarMileage.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarMileage.Size = new Size(220, 20);
 
-            this.lblModelId = new Label();
-            this.lblModelId.Text = "Modelo:";
-            this.lblModelId.Location = new Point(33, txtCarMileage.Bottom + 10);
-            this.lblModelId.Size = new Size(70, 20);
-
-            this.txtModelId = new TextBox();
-            this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
-            this.txtModelId.BorderStyle = BorderStyle.FixedSingle;
-            this.txtModelId.Size = new Size(220, 20);
-
-            this.lblBrandId = new Label();
-            this.lblBrandId.Text = "Marca:";
-            this.lblBrandId.Location = new Point(320, lblModelId.Bottom - 20);
-            this.lblBrandId.Size = new Size(70, 20);
-
-            this.txtBrandId = new TextBox();
-            this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
-            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
-            this.txtBrandId.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
@@ -288,7 +290,6 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
             this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
@@ -304,6 +305,10 @@ namespace Views
             this.panel.Controls.Add(btCrt, 2, 0);
             this.panel.Controls.Add(btClose, 3, 0);
 
+            this.Controls.Add(lblModelId);
+            this.Controls.Add(txtModelId);
+            this.Controls.Add(lblBrandId);
+            this.Controls.Add(txtBrandId);
             this.Controls.Add(panel);
             this.Controls.Add(lblTitle);
             this.Controls.Add(lblYear);
@@ -326,10 +331,7 @@ namespace Views
             this.Controls.Add(txtCarTransmissionType);
             this.Controls.Add(lblCarMileage);
             this.Controls.Add(txtCarMileage);
-            this.Controls.Add(lblModelId);
-            this.Controls.Add(txtModelId);
-            this.Controls.Add(lblBrandId);
-            this.Controls.Add(txtBrandId);
+
         }
     }
 }

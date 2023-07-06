@@ -12,18 +12,18 @@ namespace Views
             string[]row = 
             {
                 car.CarId.ToString(),
+                car.ModelId.ToString(),
+                car.BrandId.ToString(),
                 car.Year.ToString(),
                 car.Color,
                 car.LicensePlate,
                 car.BodyworkType,
                 car.Price.ToString(),
-                car.ChassisCode,
-                car.RenavanCode,
                 car.FuelType,
                 car.TransmissionType,
                 car.CarMileage.ToString(),
-                car.ModelId.ToString(),
-                car.BrandId.ToString()
+                car.ChassisCode,
+                car.RenavanCode,
             };
 
             ListViewItem item = new ListViewItem(row);
@@ -119,38 +119,45 @@ namespace Views
             this.MinimizeBox = true;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            Color color = ColorTranslator.FromHtml("#F8F8F8"); 
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
 
             listCar = new ListView();
             listCar.Size = new Size(880, 360);
             listCar.Location = new Point(50, 50);
+            listCar.BackColor = ColorTranslator.FromHtml("#ffffff");
+            listCar.Font = new Font("Arial", 10, FontStyle.Regular);
+            listCar.ForeColor = ColorTranslator.FromHtml("#242424");
+            listCar.FullRowSelect = true;
+            listCar.AllowColumnReorder = true;
+            listCar.BorderStyle = BorderStyle.FixedSingle;  
             listCar.View = View.Details;
             listCar.Columns.Add("Id");
+            listCar.Columns.Add("Marca");
+            listCar.Columns.Add("Modelo");
             listCar.Columns.Add("Ano");
             listCar.Columns.Add("Cor");
             listCar.Columns.Add("Placa");
             listCar.Columns.Add("Carroceria");
             listCar.Columns.Add("Preço");
-            listCar.Columns.Add("Código do chassi");
-            listCar.Columns.Add("Código renavan");
             listCar.Columns.Add("Combustível");
             listCar.Columns.Add("Transmissão");
             listCar.Columns.Add("Quilometragem");
-            listCar.Columns.Add("Modelo");
-            listCar.Columns.Add("Marca");
+            listCar.Columns.Add("Código do chassi");
+            listCar.Columns.Add("Código renavan");
+
             listCar.Columns[0].Width = 30;
             listCar.Columns[1].Width = 60;
-            listCar.Columns[2].Width = 60;
+            listCar.Columns[2].Width = 100;
             listCar.Columns[3].Width = 80;
-            listCar.Columns[4].Width = 100;
-            listCar.Columns[5].Width = 60;
-            listCar.Columns[6].Width = 120;
-            listCar.Columns[7].Width = 120;
+            listCar.Columns[4].Width = 80;
+            listCar.Columns[5].Width = 100;
+            listCar.Columns[6].Width = 100;
+            listCar.Columns[7].Width = 100;
             listCar.Columns[8].Width = 100;
             listCar.Columns[9].Width = 100;
-            listCar.Columns[10].Width = 120;
-            listCar.Columns[11].Width = 80;
-            listCar.Columns[12].Width = 80;
+            listCar.Columns[10].Width = 80;
+            listCar.Columns[11].Width = 120;
+            listCar.Columns[12].Width = 120;
             listCar.FullRowSelect = true;
             this.Controls.Add(listCar);
 
@@ -159,7 +166,6 @@ namespace Views
             TableLayoutPanel panel = new TableLayoutPanel();
             panel.Dock = DockStyle.Bottom;
             panel.AutoSize = true;
-            // panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel.Padding = new Padding(10, 10, 10, 10);
             panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             panel.ColumnCount = 8;
@@ -174,7 +180,6 @@ namespace Views
             Button btCrt = new Button();
             btCrt.Text = "Adicionar";
             btCrt.Size = new Size(30, 30);
-            // btCrt.Location = new Point(50, 330);
             btCrt.Font = new Font("Roboto", 8, FontStyle.Regular);
             btCrt.FlatStyle = FlatStyle.Flat;
             btCrt.FlatAppearance.BorderSize = 0;
@@ -186,7 +191,6 @@ namespace Views
             Button btUpdate = new Button();
             btUpdate.Text = "Editar";
             btUpdate.Size = new Size(30, 30);
-            //btUpdate.Location = new Point(170, 330);
             btUpdate.Font = new Font("Roboto", 8, FontStyle.Regular);
             btUpdate.FlatStyle = FlatStyle.Flat;
             btUpdate.FlatAppearance.BorderSize = 0;
@@ -199,7 +203,6 @@ namespace Views
             Button btDelete = new Button();
             btDelete.Text = "Deletar";
             btDelete.Size = new Size(30, 30);
-            // btDelete.Location = new Point(290, 330);
             btDelete.Font = new Font("Roboto", 8, FontStyle.Regular);
             btDelete.FlatStyle = FlatStyle.Flat;
             btDelete.FlatAppearance.BorderSize = 0;
@@ -212,7 +215,6 @@ namespace Views
             Button btClose = new Button();
             btClose.Text = "Voltar";
             btClose.Size = new Size(30, 30);
-            // btClose.Location = new Point(410, 330);
             btClose.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             btClose.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             btClose.Font = new Font("Roboto", 8, FontStyle.Regular);
