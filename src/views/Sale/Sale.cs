@@ -43,7 +43,7 @@ namespace Views
             }
             else
             {
-                throw new Exception($"Selecione uma opção {(option == Option.Update? "Atualizar" : "Deletar")}");
+                throw new Exception($"Selecione uma venda para {(option == Option.Update? "editar" : "deletar")}");
             }
         }
 

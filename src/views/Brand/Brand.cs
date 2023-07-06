@@ -105,8 +105,8 @@ namespace Views
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = true;
-            this.MinimizeBox = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false; 
 
