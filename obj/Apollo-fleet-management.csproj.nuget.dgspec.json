@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {}
+    "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {
+    "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
+        "projectUniqueName": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
         "projectName": "Apollo-fleet-management",
-        "projectPath": "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
-        "packagesPath": "C:\\Users\\Barra Velha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Barra Velha\\Documents\\Apollo\\Apollo-fleet-management\\obj\\",
+        "projectPath": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\Apollo-fleet-management.csproj",
+        "packagesPath": "C:\\Users\\Facu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Facu\\Documents\\3ª FASE\\Apollo\\Apollo-fleet-management\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Barra Velha\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Facu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0-windows"
@@ -72,7 +72,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.107\\RuntimeIdentifierGraph.json"
         }
       }
     }

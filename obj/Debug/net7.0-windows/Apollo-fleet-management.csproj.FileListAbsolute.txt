@@ -202,3 +202,37 @@ C:\Users\gabriel.oliveira20\Desktop\Apollo-fleet-management\obj\Debug\net7.0-win
 C:\Users\gabriel.oliveira20\Desktop\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.pdb
 C:\Users\gabriel.oliveira20\Desktop\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.genruntimeconfig.cache
 C:\Users\gabriel.oliveira20\Desktop\Apollo-fleet-management\obj\Debug\net7.0-windows\ref\Apollo-fleet-management.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Apollo-fleet-management.exe
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Apollo-fleet-management.deps.json
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Apollo-fleet-management.runtimeconfig.json
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Apollo-fleet-management.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Apollo-fleet-management.pdb
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Humanizer.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Mono.TextTemplating.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\MySqlConnector.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\bin\Debug\net7.0-windows\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.csproj.AssemblyReference.cache
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.AssemblyInfoInputs.cache
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.AssemblyInfo.cs
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.csproj.CoreCompileInputs.cache
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.csproj.CopyComplete
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\refint\Apollo-fleet-management.dll
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.pdb
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\Apollo-fleet-management.genruntimeconfig.cache
+C:\Users\Facu\Documents\3ª FASE\Apollo\Apollo-fleet-management\obj\Debug\net7.0-windows\ref\Apollo-fleet-management.dll

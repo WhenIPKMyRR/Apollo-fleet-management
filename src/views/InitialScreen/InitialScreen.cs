@@ -53,8 +53,8 @@ namespace Views
                 //     break;
 
                 case "Clientes":
-                    var documentsForm = new ListDocument();
-                    documentsForm.ShowDialog();
+                    var clientForm = new ListClient();
+                    clientForm.ShowDialog();
                     break;
                 
                 case "Vendedores":
