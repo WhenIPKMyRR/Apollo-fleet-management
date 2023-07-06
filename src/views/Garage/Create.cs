@@ -65,7 +65,7 @@ namespace Views
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Garagem";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(55, 30);
+            this.lblTitle.Location = new Point(5, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblName = new Label();
