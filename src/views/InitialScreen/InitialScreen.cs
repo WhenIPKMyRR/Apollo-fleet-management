@@ -14,6 +14,7 @@ namespace Views
         private ToolStripMenuItem menuItemRegister;
         private ToolStripMenuItem menuItemViews;
         private ToolStripMenuItem menuItemStatements;
+        private PictureBox pictureBox;
 
         
         private string[] GetValuesToHorizontalPanel()
@@ -119,12 +120,12 @@ namespace Views
         public InitialScreen()
         {
             
-            // this.Icon = new Icon("Assets/logoUm.ico", 52, 52);
+            //this.Icon = new Icon("Assets/logoApollo.ico", 52, 52);
             this.Text = "Bem vindo";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.MaximizeBox = true;
             this.MinimizeBox = true;
-            this.ShowIcon = true;
+            this.ShowIcon = false;
             this.ShowInTaskbar = true;
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -317,6 +318,13 @@ namespace Views
             panelHorizontal.Location = new Point((ClientSize.Width - panelHorizontal.Width) / 2, 0);
             Controls.Add(this.panelHorizontal);
             panelHorizontal.Controls.Add(divHorizontal);
+
+            this.pictureBox = new PictureBox();
+            pictureBox.Size = new Size(150, 150);
+            pictureBox.Location = new Point((panelHorizontal.Width - pictureBox.Width) / 2, 20);
+            pictureBox.Image = Image.FromFile("Assets/icon-apollo.png");
+            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            panelHorizontal.Controls.Add(pictureBox);
 
 
             this.divHorizontal = new TableLayoutPanel();

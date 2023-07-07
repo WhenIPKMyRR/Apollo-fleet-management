@@ -76,7 +76,7 @@ namespace Views
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Cliente";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(60, 30);
+            this.lblTitle.Location = new Point(75, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblName = new Label();
