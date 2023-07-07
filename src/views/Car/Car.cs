@@ -9,6 +9,7 @@ namespace Views
 
         private void AddListView(Models.Car car)
         {
+            string priceFormated = car.Price.ToString("R$: ");
             string[]row = 
             {
                 car.CarId.ToString(),
@@ -18,7 +19,7 @@ namespace Views
                 car.Color,
                 car.LicensePlate,
                 car.BodyworkType,
-                car.Price.ToString(),
+                priceFormated,
                 car.FuelType,
                 car.TransmissionType,
                 car.CarMileage.ToString(),
