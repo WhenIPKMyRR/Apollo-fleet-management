@@ -111,6 +111,9 @@ namespace Views
             listGarage = new ListView();
             listGarage.Size = new Size(680, 260);
             listGarage.Location = new Point(50, 50);
+            listGarage.BackColor = ColorTranslator.FromHtml("#ffffff");
+            listGarage.Font = new Font("Arial", 10, FontStyle.Regular);
+            listGarage.ForeColor = ColorTranslator.FromHtml("#242424");
             listGarage.View = View.Details;
             listGarage.Columns.Add("Id");
             listGarage.Columns.Add("Nome");

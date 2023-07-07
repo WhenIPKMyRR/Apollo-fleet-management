@@ -111,6 +111,9 @@ namespace Views
 
             listClient = new ListView();
             listClient.Size = new Size(680, 260);
+            listClient.BackColor = ColorTranslator.FromHtml("#ffffff");
+            listClient.Font = new Font("Arial", 10, FontStyle.Regular);
+            listClient.ForeColor = ColorTranslator.FromHtml("#242424");
             listClient.Location = new Point(50, 50);
             listClient.View = View.Details;
             listClient.Columns.Add("Id");
