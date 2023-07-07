@@ -3,53 +3,62 @@ using Controllers;
 
 namespace Views
 {
-    public class ListDocument : Form
+    public class ListGarage : Form
     {
-        ListView listDocument;
-        private void AddListView(Models.Document document)
+        ListView listGarage;
+
+        private void AddListView_Click(Models.Garage garage)
         {
-            string[]row = 
+            string[] row = 
             {
-                document.DocumentId.ToString(),
-                document.Type,
-                document.Value,
-                document.CarId.ToString()
+                garage.GarageId.ToString(),
+                garage.Name,
+                garage.Address,
+                garage.PhoneNumber
             };
 
             ListViewItem item = new ListViewItem(row);
-            listDocument.Items.Add(item);
+            listGarage.Items.Add(item);
         }
 
         public void RefreshList()
         {
-            listDocument.Items.Clear();
+            listGarage.Items.Clear();
 
-            IEnumerable<Models.Document> list = Models.Document.ReadAllDocument();
+            IEnumerable<Models.Garage> list = Models.Garage.ReadAllGarages();
 
-            foreach (Models.Document document in list)
+            foreach (Models.Garage garage in list)
             {
-                AddListView(document);
+                AddListView_Click(garage);
+            }
+        }
+
+        public Models.Garage GetSelectedGarage(Option option)
+        {
+            if(listGarage.SelectedItems.Count > 0)
+            {
+                int selectedGarageId = int.Parse(listGarage.SelectedItems[0].Text);
+                return Models.Garage.ReadGarageById(selectedGarageId);
+            }
+            else 
+            {
+                throw new Exception($"Selecione uma garagem para {(option == Option.Update? "editar" : "deletar")}");
             }
         }
 
         private void btCrt_Click(object sender, EventArgs e)
         {
-            var CreateDocument = new Views.CreateDocument();
-            CreateDocument.Show();
+            var CreateGarage = new Views.CreateGarage();
+            CreateGarage.ShowDialog();
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
         {
             try
             {
-                Models.Document document = GetSelectedDocument(Option.Update);
-                RefreshList();
-                var DocumentUpdateView = new Views.UpdateDocument(document);
-                if(DocumentUpdateView.ShowDialog() == DialogResult.OK)
-                {
-                    RefreshList();
-                    MessageBox.Show("Documento editado com sucesso.");
-                }
+                Models.Garage garage = GetSelectedGarage(Option.Update);
+                var UpdateGarage = new Views.UpdateGarage(garage);
+                UpdateGarage.ShowDialog();
             }
             catch (Exception err)
             {
@@ -61,16 +70,17 @@ namespace Views
         {
             try
             {
-                Models.Document document = GetSelectedDocument(Option.Delete);
-                if (MessageBox.Show("Tem certeza?", "Deletar Documento", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                Models.Garage garage = GetSelectedGarage(Option.Delete);
+                DialogResult result = MessageBox.Show("Tem certeza ?", "Deletar garagem", MessageBoxButtons.YesNo);
+                if(result == DialogResult.Yes)
                 {
-                    Models.Document.DeleteDocument(document.DocumentId);
+                    Models.Garage.DeleteGarage(garage.GarageId);
+                    MessageBox.Show("Garagem deletada com sucesso.");
                     RefreshList();
                 }
-            }
-            catch (Exception err)
+            }catch(Exception err)
             {
-                if(err.InnerException != null)
+               if(err.InnerException != null)
                 {
                     MessageBox.Show(err.InnerException.Message);
                 }
@@ -81,60 +91,46 @@ namespace Views
             }
         }
 
-        public Models.Document GetSelectedDocument(Option option)
-        {
-            if (listDocument.SelectedItems.Count > 0)
-            {
-                int selectedDocumentId = int.Parse(listDocument.SelectedItems[0].Text);
-                return Models.Document.ReadByIdDocument(selectedDocumentId);
-            }
-            else
-            {
-                throw new System.Exception($"Selecione um documento para {(option == Option.Update ? "editar" : "deletar")}");
-            }
-        }
-
         private void btClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        public ListDocument()
+        public ListGarage()
         {
-            this.Text = "Documentos";
+            this.Text = "Garagens";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = true;
-            this.MinimizeBox = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.ShowIcon = false;
-            this.ShowInTaskbar = false; 
+            this.ShowInTaskbar = false;
             Color color = ColorTranslator.FromHtml("#F8F8F8");
 
-            listDocument = new ListView();
-            listDocument.Size = new Size(680, 260);
-            listDocument.Location = new Point(50, 50);
-            listDocument.BackColor = ColorTranslator.FromHtml("#ffffff");
-            listDocument.Font = new Font("Arial", 10, FontStyle.Regular);
-            listDocument.ForeColor = ColorTranslator.FromHtml("#242424");
-            listDocument.View = View.Details;
-            listDocument.Columns.Add("Id");
-            listDocument.Columns.Add("Tipo");
-            listDocument.Columns.Add("Valor");
-            listDocument.Columns.Add("Carro");
-            listDocument.Columns[0].Width = 30;
-            listDocument.Columns[1].Width = 100;
-            listDocument.Columns[2].Width = 100;
-            listDocument.Columns[3].Width = 100;
-            listDocument.FullRowSelect = true;
-            this.Controls.Add(listDocument);
+            listGarage = new ListView();
+            listGarage.Size = new Size(680, 260);
+            listGarage.Location = new Point(50, 50);
+            listGarage.BackColor = ColorTranslator.FromHtml("#ffffff");
+            listGarage.Font = new Font("Arial", 10, FontStyle.Regular);
+            listGarage.ForeColor = ColorTranslator.FromHtml("#242424");
+            listGarage.View = View.Details;
+            listGarage.Columns.Add("Id");
+            listGarage.Columns.Add("Nome");
+            listGarage.Columns.Add("Endereço");
+            listGarage.Columns.Add("Telefone");
+            listGarage.Columns[0].Width = 30;
+            listGarage.Columns[1].Width = 100;
+            listGarage.Columns[2].Width = 100;
+            listGarage.Columns[3].Width = 100;
+            listGarage.FullRowSelect = true;
+            this.Controls.Add(listGarage);
 
-            RefreshList();
+             RefreshList();
 
             TableLayoutPanel panel = new TableLayoutPanel();
             panel.Dock = DockStyle.Bottom;
             panel.AutoSize = true;
-            // panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel.Padding = new Padding(10, 10, 10, 10);
             panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             panel.ColumnCount = 8;

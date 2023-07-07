@@ -1,39 +1,36 @@
 namespace Views
 {
-    public class UpdateClient : Form
+    public class UpdateGarage : Form
     {
         public Label lblTitle;
         public Label lblName;
-        public Label lblTelephone;
         public Label lblAddress;
-        public Label lblDocument;
+        public Label lblPhoneNumber;
         public TextBox txtName;
-        public TextBox txtTelephone;
         public TextBox txtAddress;
-        public TextBox txtDocument;
+        public TextBox txtPhoneNumber;
         public Button btUpdate;
         public Button btClose;
         public TableLayoutPanel panel;
 
-        public Models.Client client;
+        public Models.Garage garage;
+
         public void btUdpate_Click(object sender, EventArgs e)
         {
             try
             {
                 string name = txtName.Text;
-                string telephone = txtTelephone.Text;
                 string address = txtAddress.Text;
-                string document = txtDocument.Text;
+                string phoneNumber = txtPhoneNumber.Text;
 
-                Models.Client.UpdateClient(
-                    client.ClientId,
+                Models.Garage.UpdateGarage(
+                    garage.GarageId,
                     name,
-                    telephone,
                     address,
-                    document
+                    phoneNumber
                 );
 
-                MessageBox.Show("Cliente editado com sucesso.");
+                MessageBox.Show("Garagem editada com sucesso.");
                 ClearForm();
             }
             catch (Exception err)
@@ -41,11 +38,10 @@ namespace Views
                 MessageBox.Show(err.Message);
             }
 
-
-            ListClient ClientList = Application.OpenForms.OfType<ListClient>().FirstOrDefault();
-            if (ClientList != null)
+            ListGarage GarageList = Application.OpenForms.OfType<ListGarage>().FirstOrDefault();
+            if (GarageList != null)
             {
-                ClientList.RefreshList();
+                GarageList.RefreshList();
             }
             this.Close();
         }
@@ -53,30 +49,24 @@ namespace Views
         private void ClearForm()
         {
             txtName.Clear();
-            txtTelephone.Clear();
             txtAddress.Clear();
-            txtDocument.Clear();
+            txtPhoneNumber.Clear();
         }
 
-
-        public UpdateClient(Models.Client client)
+        public UpdateGarage(Models.Garage garage)
         {
-            this.client = client;
-
-            this.Text = "Editar Cliente";
+            this.garage = garage;
+            this.Text = "Editar Garagem";
+            this.Size = new Size(400, 250);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Size = new System.Drawing.Size(300, 440);
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Cliente";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(80, 30);
+            this.lblTitle.Location = new Point(60, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblName = new Label();
@@ -89,19 +79,9 @@ namespace Views
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
 
-            this.lblTelephone = new Label();
-            this.lblTelephone.Text = "Telefone:";
-            this.lblTelephone.Location = new Point(33, txtName.Bottom + 10);
-            this.lblTelephone.Size = new Size(70, 20);
-
-            this.txtTelephone = new TextBox();
-            this.txtTelephone.Location = new Point(33, lblTelephone.Bottom + 5);
-            this.txtTelephone.BorderStyle = BorderStyle.FixedSingle;
-            this.txtTelephone.Size = new Size(220, 20);
-
             this.lblAddress = new Label();
             this.lblAddress.Text = "Endereço:";
-            this.lblAddress.Location = new Point(33, txtTelephone.Bottom + 10);
+            this.lblAddress.Location = new Point(33, txtName.Bottom + 10);
             this.lblAddress.Size = new Size(70, 20);
 
             this.txtAddress = new TextBox();
@@ -109,15 +89,15 @@ namespace Views
             this.txtAddress.BorderStyle = BorderStyle.FixedSingle;
             this.txtAddress.Size = new Size(220, 20);
 
-            this.lblDocument = new Label();
-            this.lblDocument.Text = "Documento:";
-            this.lblDocument.Location = new Point(33, txtAddress.Bottom + 10);
-            this.lblDocument.Size = new Size(80, 20);
+            this.lblPhoneNumber = new Label();
+            this.lblPhoneNumber.Text = "Telefone:";
+            this.lblPhoneNumber.Location = new Point(33, txtAddress.Bottom + 10);
+            this.lblPhoneNumber.Size = new Size(70, 20);
 
-            this.txtDocument = new TextBox();
-            this.txtDocument.Location = new Point(33, lblDocument.Bottom + 5);
-            this.txtDocument.BorderStyle = BorderStyle.FixedSingle;
-            this.txtDocument.Size = new Size(220, 20);
+            this.txtPhoneNumber = new TextBox();
+            this.txtPhoneNumber.Location = new Point(33, lblPhoneNumber.Bottom + 5);
+            this.txtPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            this.txtPhoneNumber.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
@@ -168,12 +148,10 @@ namespace Views
             this.Controls.Add(lblTitle);
             this.Controls.Add(lblName);
             this.Controls.Add(txtName);
-            this.Controls.Add(lblTelephone);
-            this.Controls.Add(txtTelephone);
             this.Controls.Add(lblAddress);
             this.Controls.Add(txtAddress);
-            this.Controls.Add(lblDocument);
-            this.Controls.Add(txtDocument);
+            this.Controls.Add(lblPhoneNumber);
+            this.Controls.Add(txtPhoneNumber);
         }
     }
 }
