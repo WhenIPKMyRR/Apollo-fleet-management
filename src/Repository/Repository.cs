@@ -13,7 +13,7 @@ namespace Repository {
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Document> Documents { get; set; }
         public DbSet<Garage> Garages { get; set; }
-        public const string _CONNETION = "Server=localhost;User Id=root;Password=;Database=apollofleetmanagement";
+        public const string _CONNETION = "Server=localhost;User Id=root;Password=Wheniparkmyrr_1234;Database=apollofleetmanagement";
         protected override void OnConfiguring(
             DbContextOptionsBuilder optionsBuilder)
             { 

@@ -38,17 +38,15 @@ namespace Views
                 int modelId = Convert.ToInt32(txtModelId.Text);
                 int brandId = Convert.ToInt32(txtBrandId.Text);
                 int year = Convert.ToInt32(txtYear.Text);
-                string color = txtColor.Text;
-                string licensePlate = mskLicensePlate .Text;
+                string color = txtColor.Text.ToUpper();
+                string licensePlate = mskLicensePlate .Text.ToUpper();
                 string bodyworkType = txtBodyworkType.Text;
-                string chassisCode = txtChassisCode.Text;
-                string renavanCode = txtRenavanCode.Text;
+                string chassisCode = txtChassisCode.Text.ToUpper();
+                string renavanCode = txtRenavanCode.Text.ToUpper();
                 string fuelType = txtFuelType.Text;
                 string carTransmissionType = txtCarTransmissionType.Text;
                 int carMileage = Convert.ToInt32(txtCarMileage.Text);
-                string priceText = txtPrice.Text; // Obtém o valor inserido na MaskedTextBox
-                priceText = priceText.Replace("R$ ", "").Replace(",", ""); // Remove o símbolo "R$" e a vírgula
-                decimal price = Convert.ToDecimal(priceText); // Converte o valor em decimal
+                decimal price = Convert.ToDecimal(txtPrice.Text);
 
 
 
