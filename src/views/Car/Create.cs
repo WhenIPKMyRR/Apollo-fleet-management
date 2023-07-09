@@ -25,18 +25,41 @@ namespace Views
         public ComboBox txtFuelType;
         public ComboBox txtCarTransmissionType;
         public TextBox txtCarMileage;
-        public TextBox txtModelId;
-        public TextBox txtBrandId;
+        public ComboBox txtModelId;
+        public ComboBox txtBrandId;
         public TableLayoutPanel panel;
         public Button btClose;
         public Button btCrt;
+
+
+        public static List<Models.Model> GetModelsToComboBox(){
+            List<Models.Model> models = new List<Models.Model>();
+            foreach(Models.Model model in Controllers.Model.ReadAllModels()){
+                if((model.ModelId != 0) && (model.Name != null)){
+                    models.Add(model);
+                }
+            }
+
+            return models;
+        } 
+
+        public static List<Models.Brand> GetBrandsToComboBox(){
+            List<Models.Brand> brands = new List<Models.Brand>();
+            foreach(Models.Brand brand in Models.Brand.ReadAllBrands()){
+                if((brand.BrandId != 0) && (brand.Name != null)){
+                    brands.Add(brand);
+                }
+            }
+
+            return brands;
+        } 
 
         public void btCrt_Click(object sender, EventArgs e)
         {
             try
             {
-                int modelId = Convert.ToInt32(txtModelId.Text);
-                int brandId = Convert.ToInt32(txtBrandId.Text);
+                int modelId = Convert.ToInt32(txtModelId.SelectedValue);
+                int brandId = Convert.ToInt32(txtBrandId.SelectedValue);
                 int year = Convert.ToInt32(txtYear.Text);
                 string color = txtColor.Text.ToUpper();
                 string licensePlate = mskLicensePlate .Text.ToUpper();
@@ -89,8 +112,6 @@ namespace Views
             txtChassisCode.Clear();
             txtRenavanCode.Clear();
             txtCarMileage.Clear();
-            txtModelId.Clear();
-            txtBrandId.Clear();
         }
 
         private void ComboBoxAno()
@@ -183,9 +204,6 @@ namespace Views
             this.txtPrice.Size = new Size(220, 20);
 
 
-
-
-
             this.lblChassisCode = new Label();
             this.lblChassisCode.Text = "Código do Chassis:";
             this.lblChassisCode.Location = new Point(320, lblPrice.Bottom - 20);
@@ -250,9 +268,17 @@ namespace Views
             this.lblModelId.Location = new Point(33, txtCarMileage.Bottom + 10);
             this.lblModelId.Size = new Size(70, 20);
 
-            this.txtModelId = new TextBox();
+            this.txtModelId = new ComboBox();
             this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
-            this.txtModelId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtModelId.Size = new Size(220, 20);
+            this.txtModelId.FlatStyle = FlatStyle.Flat;
+            this.txtModelId.ValueMember = "ModelId";
+            this.txtModelId.DisplayMember = "Name";
+            this.txtModelId.DataSource = GetModelsToComboBox();
+            if (txtModelId.Items.Count > 0)
+            {
+                txtModelId.SelectedIndex = 0;
+            }
             this.txtModelId.Size = new Size(220, 20);
 
             this.lblBrandId = new Label();
@@ -260,9 +286,15 @@ namespace Views
             this.lblBrandId.Location = new Point(320, lblModelId.Bottom - 20);
             this.lblBrandId.Size = new Size(70, 20);
 
-            this.txtBrandId = new TextBox();
+            this.txtBrandId = new ComboBox();
             this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
-            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtBrandId.ValueMember = "BrandId";
+            this.txtBrandId.DisplayMember = "Name";
+            this.txtBrandId.DataSource = GetBrandsToComboBox();
+            if (txtBrandId.Items.Count > 0)
+            {
+                txtBrandId.SelectedIndex = 0;
+            }
             this.txtBrandId.Size = new Size(220, 20);
 
 

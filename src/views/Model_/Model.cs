@@ -108,6 +108,7 @@ namespace Views
             this.MinimizeBox = true;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
 
             listModel = new ListView();
             listModel.Size = new Size(700, 300);
@@ -117,8 +118,8 @@ namespace Views
             listModel.Columns.Add("Nome");
             listModel.Columns.Add("Marca");
             listModel.Columns[0].Width = 30;
-            listModel.Columns[1].Width = 100;
-            listModel.Columns[2].Width = 80;
+            listModel.Columns[1].Width = 150;
+            listModel.Columns[2].Width = 150;
             listModel.FullRowSelect = true;
             this.Controls.Add(listModel);
 

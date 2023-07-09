@@ -106,7 +106,7 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listGarage = new ListView();
             listGarage.Size = new Size(680, 260);
@@ -120,9 +120,9 @@ namespace Views
             listGarage.Columns.Add("Endereço");
             listGarage.Columns.Add("Telefone");
             listGarage.Columns[0].Width = 30;
-            listGarage.Columns[1].Width = 100;
-            listGarage.Columns[2].Width = 100;
-            listGarage.Columns[3].Width = 100;
+            listGarage.Columns[1].Width = 150;
+            listGarage.Columns[2].Width = 200;
+            listGarage.Columns[3].Width = 150;
             listGarage.FullRowSelect = true;
             this.Controls.Add(listGarage);
 

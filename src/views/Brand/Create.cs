@@ -90,7 +90,6 @@ namespace Views
 
             this.btCrt = new Button();
             this.btCrt.Text = "Adicionar";
-            //this.btCrt.Location = new Point(80, panel.Bottom + 10);
             this.btCrt.Size = new Size(200, 25);
             this.btCrt.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btCrt.FlatStyle = FlatStyle.Flat;

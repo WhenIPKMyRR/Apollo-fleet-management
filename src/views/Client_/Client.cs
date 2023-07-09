@@ -107,7 +107,7 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listClient = new ListView();
             listClient.Size = new Size(680, 260);
@@ -122,10 +122,10 @@ namespace Views
             listClient.Columns.Add("Endereço");
             listClient.Columns.Add("Documento");
             listClient.Columns[0].Width = 30;
-            listClient.Columns[1].Width = 100;
-            listClient.Columns[2].Width = 80;
-            listClient.Columns[3].Width = 100;
-            listClient.Columns[4].Width = 100;
+            listClient.Columns[1].Width = 200;
+            listClient.Columns[2].Width = 120;
+            listClient.Columns[3].Width = 200;
+            listClient.Columns[4].Width = 120;
             listClient.FullRowSelect = true;
             this.Controls.Add(listClient);
 

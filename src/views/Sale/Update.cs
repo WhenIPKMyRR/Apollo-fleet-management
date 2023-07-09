@@ -82,6 +82,7 @@ namespace Views
             this.lblDate.Size = new Size(70, 20);
 
             this.txtDate = new DateTimePicker();
+            this.txtDate.Text = sale.Date.ToString();
             this.txtDate.Location = new Point(33, lblDate.Bottom + 5);
             this.txtDate.Size = new Size(220, 20);
             txtDate.Format = DateTimePickerFormat.Short;
@@ -92,6 +93,7 @@ namespace Views
             this.lblCarId.Size = new Size(70, 20);
 
             this.txtCarId = new TextBox();
+            this.txtCarId.Text = sale.CarId.ToString();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
             this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarId.Size = new Size(220, 20);
@@ -102,6 +104,7 @@ namespace Views
             this.lblClientId.Size = new Size(70, 20);
 
             this.txtClientId = new TextBox();
+            this.txtClientId.Text = sale.ClientId.ToString();
             this.txtClientId.Location = new Point(33, lblClientId.Bottom + 5);
             this.txtClientId.BorderStyle = BorderStyle.FixedSingle;
             this.txtClientId.Size = new Size(220, 20);
@@ -112,6 +115,7 @@ namespace Views
             this.lblSellerId.Size = new Size(70, 20);
 
             this.txtSellerId = new TextBox();
+            this.txtSellerId.Text = sale.SellerId.ToString();
             this.txtSellerId.Location = new Point(33, lblSellerId.Bottom + 5);
             this.txtSellerId.BorderStyle = BorderStyle.FixedSingle;
             this.txtSellerId.Size = new Size(220, 20);
@@ -122,7 +126,7 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

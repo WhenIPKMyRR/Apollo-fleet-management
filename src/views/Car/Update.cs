@@ -106,8 +106,10 @@ namespace Views
         {
             ComboBoxAno();
         }
-        public UpdateCar()
+        public UpdateCar(Models.Car car)
         {
+            this.car = car;
+
             this.Text = "Editar Carro";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -130,6 +132,7 @@ namespace Views
             this.lblYear.Size = new Size(70, 20);
 
             this.txtYear = new ComboBox();
+            this.txtYear.Text = car.Year.ToString();
             this.txtYear.Location = new Point(33, lblYear.Bottom + 5);
             this.txtYear.Size = new Size(220, 20);
             ComboBoxAno();
@@ -141,6 +144,7 @@ namespace Views
             this.lblColor.Size = new Size(70, 20);
 
             this.txtColor = new TextBox();
+            this.txtColor.Text = car.Color;
             this.txtColor.Location = new Point(320, txtYear.Bottom - 23);
             this.txtColor.BorderStyle = BorderStyle.FixedSingle;
             this.txtColor.Size = new Size(220, 20);
@@ -151,6 +155,7 @@ namespace Views
             this.lblBodyworkType.Size = new Size(110, 20);
 
             this.txtBodyworkType = new ComboBox();
+            this.txtBodyworkType.Text = car.BodyworkType;
             this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
             this.txtBodyworkType.Size = new Size(220, 20);
             this.txtBodyworkType.Items.Add("Conversível");
@@ -166,6 +171,7 @@ namespace Views
             this.lblLicensePlate.Size = new Size(110, 20);
 
             this.txtLicensePlate = new TextBox();
+            this.txtLicensePlate.Text = car.LicensePlate;
             this.txtLicensePlate.Location = new Point(320, txtBodyworkType.Bottom - 23);
             this.txtLicensePlate.BorderStyle = BorderStyle.FixedSingle;
             this.txtLicensePlate.Size = new Size(220, 20);
@@ -176,7 +182,7 @@ namespace Views
             this.lblPrice.Size = new Size(70, 20);
 
             this.txtPrice = new TextBox();
-            this.txtPrice.Text = "R$";
+            this.txtPrice.Text = car.Price.ToString();
             this.txtPrice.Location = new Point(33, lblPrice.Bottom + 5);
             this.txtPrice.BorderStyle = BorderStyle.FixedSingle;
             this.txtPrice.Size = new Size(220, 20);
@@ -187,6 +193,7 @@ namespace Views
             this.lblChassisCode.Size = new Size(120, 20);
 
             this.txtChassisCode = new TextBox();
+            this.txtChassisCode.Text = car.ChassisCode;
             this.txtChassisCode.Location = new Point(320, txtPrice.Bottom - 23);
             this.txtChassisCode.BorderStyle = BorderStyle.FixedSingle;
             this.txtChassisCode.Size = new Size(220, 20);
@@ -197,6 +204,7 @@ namespace Views
             this.lblFuelType.Size = new Size(120, 20);
 
             this.txtFuelType = new ComboBox();
+            this.txtFuelType.Text = car.FuelType;
             this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
             this.txtFuelType.Size = new Size(220, 20);
             this.txtFuelType.Items.Add("Diesel");
@@ -213,6 +221,7 @@ namespace Views
             this.lblRenavanCode.Size = new Size(120, 20);
 
             this.txtRenavanCode = new TextBox();
+            this.txtRenavanCode.Text = car.RenavanCode;
             this.txtRenavanCode.Location = new Point(320, txtFuelType.Bottom - 23);
             this.txtRenavanCode.BorderStyle = BorderStyle.FixedSingle;
             this.txtRenavanCode.Size = new Size(220, 20);
@@ -223,6 +232,7 @@ namespace Views
             this.lblCarTransmissionType.Size = new Size(140, 20);
 
             this.txtCarTransmissionType = new ComboBox();
+            this.txtCarTransmissionType.Text = car.TransmissionType;
             this.txtCarTransmissionType.Location = new Point(33, lblCarTransmissionType.Bottom + 5);
             this.txtCarTransmissionType.Size = new Size(220, 20);
             this.txtCarTransmissionType.Items.Add("Manual");
@@ -235,6 +245,7 @@ namespace Views
             this.lblCarMileage.Size = new Size(110, 20);
 
             this.txtCarMileage = new TextBox();
+            this.txtCarMileage.Text = car.CarMileage.ToString();
             this.txtCarMileage.Location = new Point(320, txtCarTransmissionType.Bottom - 23);
             this.txtCarMileage.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarMileage.Size = new Size(220, 20);
@@ -245,6 +256,7 @@ namespace Views
             this.lblModelId.Size = new Size(70, 20);
 
             this.txtModelId = new TextBox();
+            this.txtModelId.Text = car.ModelId.ToString();
             this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
             this.txtModelId.BorderStyle = BorderStyle.FixedSingle;
             this.txtModelId.Size = new Size(220, 20);
@@ -255,9 +267,12 @@ namespace Views
             this.lblBrandId.Size = new Size(70, 20);
 
             this.txtBrandId = new TextBox();
+            this.txtBrandId.Text = car.BrandId.ToString();
             this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
             this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
+
+            
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;

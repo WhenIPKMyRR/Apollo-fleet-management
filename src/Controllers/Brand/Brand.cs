@@ -33,9 +33,9 @@ namespace Controllers{
             }
         }
 
-        public static Brand ReadBrandById(int id)
+        public static Models.Brand ReadBrandById(int id)
         {
-            Brand brand = Brand.ReadBrandById(id);
+            Models.Brand brand = Models.Brand.ReadBrandById(id);
             
             if(brand != null){
                 return brand;

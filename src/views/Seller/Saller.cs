@@ -110,7 +110,7 @@ namespace Views
             this.MinimizeBox = true;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
+           this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listSeller = new ListView();
             listSeller.Size = new Size(680, 260);
@@ -125,10 +125,10 @@ namespace Views
             listSeller.Columns.Add("Telefone");
             listSeller.Columns.Add("Matrícula");
             listSeller.Columns[0].Width = 30;
-            listSeller.Columns[1].Width = 100;
-            listSeller.Columns[2].Width = 100;
-            listSeller.Columns[3].Width = 100;
-            listSeller.Columns[4].Width = 100;
+            listSeller.Columns[1].Width = 200;
+            listSeller.Columns[2].Width = 150;
+            listSeller.Columns[3].Width = 120;
+            listSeller.Columns[4].Width = 120;
             listSeller.FullRowSelect = true;
             this.Controls.Add(listSeller);
 

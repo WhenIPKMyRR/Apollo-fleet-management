@@ -69,6 +69,7 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false; 
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
             this.Size = new System.Drawing.Size(300, 450);
 
             this.lblTitle = new Label();
@@ -83,6 +84,7 @@ namespace Views
             this.lblName.Size = new Size(70, 20);
 
             this.txtName = new TextBox();
+            this.txtName.Text = seller.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
@@ -93,6 +95,7 @@ namespace Views
             this.lblEmail.Size = new Size(70, 20);
 
             this.txtEmail = new TextBox();
+            this.txtEmail.Text = seller.Email;
             this.txtEmail.Location = new Point(33, lblEmail.Bottom + 5);
             this.txtEmail.BorderStyle = BorderStyle.FixedSingle;
             this.txtEmail.Size = new Size(220, 20);
@@ -103,6 +106,7 @@ namespace Views
             this.lblTelephone.Size = new Size(70, 20);
 
             this.txtTelephone = new TextBox();
+            this.txtTelephone.Text = seller.Telephone;
             this.txtTelephone.Location = new Point(33, lblTelephone.Bottom + 5);
             this.txtTelephone.BorderStyle = BorderStyle.FixedSingle;
             this.txtTelephone.Size = new Size(220, 20);
@@ -113,6 +117,7 @@ namespace Views
             this.lblRegistration.Size = new Size(70, 20);
 
             this.txtRegistration = new TextBox();
+            this.txtRegistration.Text = seller.Registration.ToString();
             this.txtRegistration.Location = new Point(33, lblRegistration.Bottom + 5);
             this.txtRegistration.BorderStyle = BorderStyle.FixedSingle;
             this.txtRegistration.Size = new Size(220, 20);
@@ -122,8 +127,8 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

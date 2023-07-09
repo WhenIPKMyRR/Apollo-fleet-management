@@ -95,7 +95,7 @@ namespace Views
             this.MinimizeBox = true;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listSale = new ListView();
             listSale.Size = new Size(680, 260);
@@ -106,14 +106,14 @@ namespace Views
             listSale.View = View.Details;
             listSale.FullRowSelect = true;
             listSale.Columns.Add("Id");
-            listSale.Columns.Add("Data");
+            listSale.Columns.Add("Vendedor");
             listSale.Columns.Add("Carro");
             listSale.Columns.Add("Cliente");
-            listSale.Columns.Add("Vendedor");
-            listSale.Columns[0].Width = 50;
-            listSale.Columns[1].Width = 100;
-            listSale.Columns[2].Width = 100;
-            listSale.Columns[3].Width = 100;
+            listSale.Columns.Add("Data");
+            listSale.Columns[0].Width = 30;
+            listSale.Columns[1].Width = 150;
+            listSale.Columns[2].Width = 120;
+            listSale.Columns[3].Width = 120;
             listSale.Columns[4].Width = 100;
             this.Controls.Add(listSale);
 

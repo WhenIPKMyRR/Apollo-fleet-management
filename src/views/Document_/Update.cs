@@ -78,6 +78,7 @@ namespace Views
             this.lblType.Size = new Size(70, 20);
 
             this.txtType = new TextBox();
+            this.txtType.Text = document.Type;
             this.txtType.Location = new Point(33, lblType.Bottom + 5);
             this.txtType.BorderStyle = BorderStyle.FixedSingle;
             this.txtType.Size = new Size(220, 20);
@@ -88,6 +89,7 @@ namespace Views
             this.lblValue.Size = new Size(70, 20);
 
             this.txtValue = new TextBox();
+            this.txtValue.Text = document.Value;
             this.txtValue.Location = new Point(33, lblValue.Bottom + 5);
             this.txtValue.BorderStyle = BorderStyle.FixedSingle;
             this.txtValue.Size = new Size(220, 20);
@@ -98,6 +100,7 @@ namespace Views
             this.lblCarId.Size = new Size(70, 20);
 
             this.txtCarId = new TextBox();
+            this.txtCarId.Text = document.CarId.ToString();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
             this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarId.Size = new Size(220, 20);
@@ -108,7 +111,7 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

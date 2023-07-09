@@ -76,11 +76,7 @@ namespace Views
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Cliente";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-<<<<<<< HEAD
             this.lblTitle.Location = new Point(75, 30);
-=======
-            this.lblTitle.Location = new Point(80, 30);
->>>>>>> eca05c10354661058bbf89b7614c42395ea7f8af
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblName = new Label();
@@ -89,6 +85,7 @@ namespace Views
             this.lblName.Size = new Size(70, 20);
 
             this.txtName = new TextBox();
+            this.txtName.Text = client.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
@@ -99,6 +96,7 @@ namespace Views
             this.lblTelephone.Size = new Size(70, 20);
 
             this.txtTelephone = new TextBox();
+            this.txtTelephone.Text = client.Telephone;
             this.txtTelephone.Location = new Point(33, lblTelephone.Bottom + 5);
             this.txtTelephone.BorderStyle = BorderStyle.FixedSingle;
             this.txtTelephone.Size = new Size(220, 20);
@@ -109,6 +107,7 @@ namespace Views
             this.lblAddress.Size = new Size(70, 20);
 
             this.txtAddress = new TextBox();
+            this.txtAddress.Text = client.Address;
             this.txtAddress.Location = new Point(33, lblAddress.Bottom + 5);
             this.txtAddress.BorderStyle = BorderStyle.FixedSingle;
             this.txtAddress.Size = new Size(220, 20);
@@ -119,6 +118,7 @@ namespace Views
             this.lblDocument.Size = new Size(80, 20);
 
             this.txtDocument = new TextBox();
+            this.txtDocument.Text = client.Document;
             this.txtDocument.Location = new Point(33, lblDocument.Bottom + 5);
             this.txtDocument.BorderStyle = BorderStyle.FixedSingle;
             this.txtDocument.Size = new Size(220, 20);
@@ -129,7 +129,7 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

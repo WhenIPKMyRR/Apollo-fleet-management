@@ -138,7 +138,6 @@ namespace Views
             menuStrip.Dock = DockStyle.Top;
             menuStrip.AutoSize = true;
             menuStrip.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            // menuStrip.ForeColor = ColorTranslator.FromHtml("#000000");
             
 
             this.Controls.Add(menuStrip);

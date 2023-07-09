@@ -9,13 +9,17 @@ namespace Views
 
         private void AddListView(Models.Car car)
         {
-             string priceFormattedStr = string.Format("R$: {0:,##0.00}", car.Price);
+            string priceFormattedStr = string.Format("R$: {0:,##0.00}", car.Price);
+            
+            Models.Brand brand = Controllers.Brand.ReadBrandById(car.BrandId);
+            Models.Model model = Controllers.Model.ReadModelById(car.ModelId);
+        
 
             string[]row = 
             {
                 car.CarId.ToString(),
-                car.ModelId.ToString(),
-                car.BrandId.ToString(),
+                model.Name,
+                brand.Name,
                 car.Year.ToString(),
                 car.Color,
                 car.LicensePlate,
@@ -69,7 +73,7 @@ namespace Views
             {
                 Models.Car car = GetSelectedCar(Option.Update);
                 RefreshList();
-                var CarUpdateView = new Views.UpdateCar();
+                var CarUpdateView = new Views.UpdateCar(car);
                 if(CarUpdateView.ShowDialog() == DialogResult.OK)
                 {
                     RefreshList();
@@ -123,6 +127,7 @@ namespace Views
             this.ShowInTaskbar = false;
             this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
 
+
             listCar = new ListView();
             listCar.Size = new Size(880, 360);
             listCar.Location = new Point(50, 50);
@@ -148,12 +153,12 @@ namespace Views
             listCar.Columns.Add("Código renavan");
 
             listCar.Columns[0].Width = 30;
-            listCar.Columns[1].Width = 60;
-            listCar.Columns[2].Width = 100;
-            listCar.Columns[3].Width = 80;
-            listCar.Columns[4].Width = 80;
-            listCar.Columns[5].Width = 100;
-            listCar.Columns[6].Width = 100;
+            listCar.Columns[1].Width = 120;
+            listCar.Columns[2].Width = 120;
+            listCar.Columns[3].Width = 60;
+            listCar.Columns[4].Width = 120;
+            listCar.Columns[5].Width = 80;
+            listCar.Columns[6].Width = 80;
             listCar.Columns[7].Width = 100;
             listCar.Columns[8].Width = 100;
             listCar.Columns[9].Width = 100;

@@ -109,6 +109,9 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false; 
+            this.ShowIcon = false;
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
+
 
             listBrand = new ListView();
             listBrand.Size = new Size(680, 260);
@@ -117,7 +120,7 @@ namespace Views
             listBrand.Columns.Add("Id");
             listBrand.Columns.Add("Nome");
             listBrand.Columns[0].Width = 30;
-            listBrand.Columns[1].Width = 100;
+            listBrand.Columns[1].Width = 150;
             listBrand.FullRowSelect = true;
             this.Controls.Add(listBrand);
 

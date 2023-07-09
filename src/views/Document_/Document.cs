@@ -8,12 +8,14 @@ namespace Views
         ListView listDocument;
         private void AddListView(Models.Document document)
         {
+            Models.Car car = Controllers.Car.ReadCarById(document.CarId);
+            Models.Model model = Controllers.Model.ReadModelById(car.ModelId);
             string[]row = 
             {
                 document.DocumentId.ToString(),
                 document.Type,
                 document.Value,
-                document.CarId.ToString()
+                model.Name
             };
 
             ListViewItem item = new ListViewItem(row);
@@ -109,7 +111,7 @@ namespace Views
             this.MinimizeBox = true;
             this.ShowIcon = false;
             this.ShowInTaskbar = false; 
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listDocument = new ListView();
             listDocument.Size = new Size(680, 260);
@@ -124,8 +126,8 @@ namespace Views
             listDocument.Columns.Add("Carro");
             listDocument.Columns[0].Width = 30;
             listDocument.Columns[1].Width = 100;
-            listDocument.Columns[2].Width = 100;
-            listDocument.Columns[3].Width = 100;
+            listDocument.Columns[2].Width = 120;
+            listDocument.Columns[3].Width = 200;
             listDocument.FullRowSelect = true;
             this.Controls.Add(listDocument);
 

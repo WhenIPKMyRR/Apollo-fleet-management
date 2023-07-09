@@ -41,6 +41,7 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
             this.Size = new System.Drawing.Size(300, 350);
 
             this.lblTitle = new Label();
@@ -55,6 +56,7 @@ namespace Views
             this.lblName.Size = new Size(70, 20);
 
             this.txtName = new TextBox();
+            this.txtName.Text = model.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
@@ -65,6 +67,7 @@ namespace Views
             this.lblBrandId.Size = new Size(70, 20);
 
             this.txtBrandId = new TextBox();
+            this.txtBrandId.Text = model.BrandId.ToString();
             this.txtBrandId.Location = new Point(33, lblBrandId.Bottom + 5);
             this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
@@ -75,7 +78,7 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

@@ -56,12 +56,14 @@ namespace Views
         public UpdateGarage(Models.Garage garage)
         {
             this.garage = garage;
+
             this.Text = "Editar Garagem";
             this.Size = new Size(400, 250);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Cliente";
@@ -75,6 +77,7 @@ namespace Views
             this.lblName.Size = new Size(70, 20);
 
             this.txtName = new TextBox();
+            this.txtName.Text = garage.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
@@ -85,6 +88,7 @@ namespace Views
             this.lblAddress.Size = new Size(70, 20);
 
             this.txtAddress = new TextBox();
+            this.txtAddress.Text = garage.Address;
             this.txtAddress.Location = new Point(33, lblAddress.Bottom + 5);
             this.txtAddress.BorderStyle = BorderStyle.FixedSingle;
             this.txtAddress.Size = new Size(220, 20);
@@ -95,6 +99,7 @@ namespace Views
             this.lblPhoneNumber.Size = new Size(70, 20);
 
             this.txtPhoneNumber = new TextBox();
+            this.txtPhoneNumber.Text = garage.PhoneNumber;
             this.txtPhoneNumber.Location = new Point(33, lblPhoneNumber.Bottom + 5);
             this.txtPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
             this.txtPhoneNumber.Size = new Size(220, 20);
@@ -105,7 +110,7 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
