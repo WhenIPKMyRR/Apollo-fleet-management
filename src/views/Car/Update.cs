@@ -81,7 +81,7 @@ namespace Views
                 string color = txtColor.Text;
                 string licensePlate = txtLicensePlate.Text;
                 string bodyworkType = txtBodyworkType.Text;
-                decimal price = decimal.Parse(txtPrice.Text);
+                int price = Convert.ToInt32(txtPrice.Text);
                 string chassisCode = txtChassisCode.Text;
                 string renavanCode = txtRenavanCode.Text;
                 string fuelType = txtFuelType.Text;

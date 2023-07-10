@@ -48,9 +48,6 @@ namespace Views
             return brands;
         }
 
-// Faça o mesmo para GetModelsToComboBox e GetGaragesToComboBox
-
-
         public static List<Models.Garage> GetGaragesToComboBox(){
             List<Models.Garage> garages = new List<Models.Garage>();
             garages.Add(new Models.Garage{ GarageId=0 , Name=""});
@@ -116,7 +113,7 @@ namespace Views
                     car.Color,
                     car.LicensePlate,
                     car.BodyworkType,
-                    car.Price.ToString("N2"),
+                    "R$: " + car.Price.ToString("N2"),
                     car.FuelType,
                     car.TransmissionType,
                     car.CarMileage.ToString(),

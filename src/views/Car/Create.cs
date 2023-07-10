@@ -41,6 +41,7 @@ namespace Views
 
         public static List<Models.Model> GetModelsToComboBox(){
             List<Models.Model> models = new List<Models.Model>();
+            models.Add(new Models.Model{ ModelId=0 , Name=""});
             foreach(Models.Model model in Controllers.Model.ReadAllModels()){
                 if((model.ModelId != 0) && (model.Name != null)){
                     models.Add(model);
@@ -52,6 +53,7 @@ namespace Views
 
         public static List<Models.Brand> GetBrandsToComboBox(){
             List<Models.Brand> brands = new List<Models.Brand>();
+            brands.Add(new Models.Brand { BrandId = 0, Name = "" });
             foreach(Models.Brand brand in Models.Brand.ReadAllBrands()){
                 if((brand.BrandId != 0) && (brand.Name != null)){
                     brands.Add(brand);
@@ -63,6 +65,7 @@ namespace Views
 
         public static List<Models.Garage> GetGaragesToComboBox(){
             List<Models.Garage> garages = new List<Models.Garage>();
+            garages.Add(new Models.Garage{ GarageId=0 , Name=""});
             foreach(Models.Garage garage in Controllers.Garage.ReadAllGarages()){
                 if((garage.GarageId != 0) && (garage.Name != null)){
                     garages.Add(garage);
@@ -89,7 +92,7 @@ namespace Views
                 int carMileage = Convert.ToInt32(txtCarMileage.Text);
                 int garageId = Convert.ToInt32(txtGarageId.SelectedValue);
                 bool IsUsed = radioIsUsed.Checked;
-                decimal price = Convert.ToDecimal(txtPrice.Text);
+                int price = Convert.ToInt32(txtPrice.Text);
 
 
 

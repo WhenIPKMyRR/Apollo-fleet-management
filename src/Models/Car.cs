@@ -7,7 +7,7 @@ namespace Models
         public string Color { get; set; }
         public string LicensePlate { get; set; }
         public string BodyworkType  { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         public string ChassisCode { get; set; }
         public string RenavanCode { get; set; }
         public string FuelType { get; set; }
@@ -24,7 +24,7 @@ namespace Models
     
 
 
-        protected Car(int Year, string Color, string LicensePlate, string BodyworkType, decimal Price, string ChassisCode, string RenavanCode, string FuelType, string TransmissionType, int CarMileage, bool IsUsed, int ModelId, int BrandId, int GarageId)
+        protected Car(int Year, string Color, string LicensePlate, string BodyworkType, int Price, string ChassisCode, string RenavanCode, string FuelType, string TransmissionType, int CarMileage, bool IsUsed, int ModelId, int BrandId, int GarageId)
         {
             this.Year = Year;
             this.Color = Color;
@@ -81,7 +81,7 @@ namespace Models
             string Color,
             string LicensePlate,
             string BodyworkType,
-            decimal Price,
+            int Price,
             string ChassisCode,
             string RenavanCode,
             string FuelType,
@@ -123,7 +123,7 @@ namespace Models
             string Color,
             string LicensePlate,
             string BodyworkType,
-            decimal Price,
+            int Price,
             string ChassisCode,
             string RenavanCode,
             string FuelType,
