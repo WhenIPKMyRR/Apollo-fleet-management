@@ -6,6 +6,8 @@ namespace Views
     public class ListSale : Form
     {
         ListView listSale;
+        Menu menu = new Menu();
+
 
         private void AddListView(Models.Sale sale)
         {
@@ -197,10 +199,20 @@ namespace Views
                 this.Close();
             };
             
-            panel.Controls.Add(btCrt, 2, 0);
-            panel.Controls.Add(btUpdate, 3, 0);
-            panel.Controls.Add(btDelete, 4, 0);
-            panel.Controls.Add(btClose, 5, 0); 
+            
+            if(Menu.AcessAdmin)
+            {
+                panel.Controls.Add(btCrt, 2, 0);
+                panel.Controls.Add(btUpdate, 3, 0);
+                panel.Controls.Add(btDelete, 4, 0);
+                panel.Controls.Add(btClose, 5, 0); 
+
+            }
+            else
+            {
+                panel.Controls.Add(btCrt, 3, 0);
+                panel.Controls.Add(btClose, 4, 0); 
+            }
             this.Controls.Add(panel);
         }   
     }

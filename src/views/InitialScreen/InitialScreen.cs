@@ -15,6 +15,7 @@ namespace Views
         private ToolStripMenuItem menuItemViews;
         private ToolStripMenuItem menuItemStatements;
         private PictureBox pictureBox;
+        Menu menu = new Menu();
 
         
         private string[] GetValuesToHorizontalPanel()
@@ -100,7 +101,6 @@ namespace Views
                         UpdateButtonLabels();
                     };
 
-                    Menu menu = new Menu();
                     if(Menu.AcessAdmin)
                     {
                         employeeForm.ShowDialog(); 
@@ -219,11 +219,18 @@ namespace Views
             subMenuItemRegisterEmployees.Click += (sender, e) =>
             {
                 var registerEmployee = new CreateSeller();
-                 registerEmployee.FormClosed += (s, args) =>
+                registerEmployee.FormClosed += (s, args) =>
                 {
                     UpdateButtonLabels(); 
                 };
-                registerEmployee.ShowDialog();
+                if(Menu.AcessAdmin)
+                {
+                    registerEmployee.ShowDialog(); 
+                }
+                else
+                {
+                    MessageBox.Show("Você não tem permissão para acessar essa tela");
+                }
             };
 
             ToolStripMenuItem subMenuItemRegisterModels = new ToolStripMenuItem();

@@ -160,12 +160,6 @@ namespace Views
             btnToMainScreen.Dock = DockStyle.Fill;
             btnToMainScreen.Click += (sender, e) =>
             {
-                var initialScreen = new InitialScreen();
-                initialScreen.Show();
-            };
-
-            btnToMainScreen.Click += (sender, e) =>
-            {
                 if (IsUserExisting())
                 {
                     menu.Hide();
