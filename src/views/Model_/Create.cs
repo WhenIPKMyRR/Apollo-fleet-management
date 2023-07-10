@@ -26,15 +26,23 @@ namespace Views
 
         public void btCrt_Click(object sender, EventArgs e)
         {
-            Controllers.Model.CreateModel(
-                txtName.Text,
-                Convert.ToInt32(txtBrandId.Text)
-            );
+            try
+            {
+                Controllers.Model.CreateModel(
+                    txtName.Text,
+                    Convert.ToInt32(txtBrandId.SelectedValue)
+                );
 
-            MessageBox.Show("Modelo criado com sucesso.");
+                MessageBox.Show("Modelo criado com sucesso.");
+
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Erro ao criar modelo: " + error.Message);
+            }
             
             ListModel ModelList = Application.OpenForms.OfType<ListModel>().FirstOrDefault();
-            if(ModelList == null)
+            if(ModelList != null)
             {
                 ModelList.RefreshList();
             }
@@ -81,10 +89,9 @@ namespace Views
             this.txtBrandId.DropDownStyle = ComboBoxStyle.DropDownList;
             this.txtBrandId.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.txtBrandId.FlatStyle = FlatStyle.Flat;
-
             this.txtBrandId.DataSource = GetBrandsToComboBox();
             this.txtBrandId.DisplayMember = "Name";
-            this.txtBrandId.ValueMember = "ModelId";
+            this.txtBrandId.ValueMember = "BrandId";
 
 
             

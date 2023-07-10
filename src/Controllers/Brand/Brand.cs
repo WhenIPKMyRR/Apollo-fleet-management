@@ -4,13 +4,13 @@ namespace Controllers{
 
     public class Brand{
 
-        public static Brand CreateBrand(
+        public static Models.Brand CreateBrand(
             string name
         )
         {
-            if(name.Length > 3)
+            if(name.Length >= 3)
             {
-                return Brand.CreateBrand(
+                return Models.Brand.CreateBrand(
                     name
                 );
             }

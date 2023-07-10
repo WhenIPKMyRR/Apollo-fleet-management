@@ -116,7 +116,7 @@ namespace Views
                     car.Color,
                     car.LicensePlate,
                     car.BodyworkType,
-                    car.Price.ToString(),
+                    car.Price.ToString("N2"),
                     car.FuelType,
                     car.TransmissionType,
                     car.CarMileage.ToString(),

@@ -40,7 +40,7 @@ namespace Views
            }
 
             ListClient ClientList = Application.OpenForms.OfType<ListClient>().FirstOrDefault();
-            if(ClientList == null)
+            if(ClientList != null)
             {
                 ClientList.RefreshList();
             }

@@ -123,9 +123,13 @@ namespace Views
             listDocument = new ListView();
             listDocument.Size = new Size(680, 260);
             listDocument.Location = new Point(50, 50);
-            listDocument.BackColor = ColorTranslator.FromHtml("#ffffff");
             listDocument.Font = new Font("Arial", 10, FontStyle.Regular);
             listDocument.ForeColor = ColorTranslator.FromHtml("#242424");
+            listDocument.FullRowSelect = true;
+            listDocument.AllowColumnReorder = true;
+            listDocument.BorderStyle = BorderStyle.FixedSingle;  
+            listDocument.MultiSelect = true;
+            listDocument.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listDocument.View = View.Details;
             listDocument.Columns.Add("Id");
             listDocument.Columns.Add("Tipo");

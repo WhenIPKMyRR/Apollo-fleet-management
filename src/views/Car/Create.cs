@@ -185,8 +185,10 @@ namespace Views
             this.txtYear = new ComboBox();
             this.txtYear.Location = new Point(33, lblYear.Bottom + 5);
             this.txtYear.Size = new Size(220, 20);
+            this.txtYear.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.txtYear.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtYear.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtYear.FlatStyle = FlatStyle.Flat;
-            this.txtYear.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             ComboBoxAno();
             this.Controls.Add(txtYear);
 
@@ -208,8 +210,10 @@ namespace Views
 
             this.txtBodyworkType = new ComboBox();
             this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
+            this.txtBodyworkType.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.txtBodyworkType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtBodyworkType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtBodyworkType.FlatStyle = FlatStyle.Flat;
-            this.txtBodyworkType.ForeColor = ColorTranslator.FromHtml("#c7c7c7");
             this.txtBodyworkType.Size = new Size(220, 20);
             this.txtBodyworkType.Items.Add("Conversível");
             this.txtBodyworkType.Items.Add("Coupé");
@@ -263,8 +267,9 @@ namespace Views
             this.txtFuelType = new ComboBox();
             this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
             this.txtFuelType.Size = new Size(220, 20);
+            this.txtFuelType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtFuelType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtFuelType.FlatStyle = FlatStyle.Flat;
-            this.txtFuelType.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtFuelType.Items.Add("Álcool");
             this.txtFuelType.Items.Add("Diesel");
             this.txtFuelType.Items.Add("Elétrico");
@@ -292,8 +297,9 @@ namespace Views
 
             this.txtCarTransmissionType = new ComboBox();
             this.txtCarTransmissionType.Location = new Point(33, lblCarTransmissionType.Bottom + 5);
+            this.txtCarTransmissionType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtCarTransmissionType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtCarTransmissionType.FlatStyle = FlatStyle.Flat;
-            this.txtCarTransmissionType.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtCarTransmissionType.Size = new Size(220, 20);
             this.txtCarTransmissionType.Items.Add("Manual");
             this.txtCarTransmissionType.Items.Add("Automático");
@@ -319,8 +325,9 @@ namespace Views
             this.txtModelId = new ComboBox();
             this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
             this.txtModelId.Size = new Size(220, 20);
+            this.txtModelId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtModelId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtModelId.FlatStyle = FlatStyle.Flat;
-            this.txtModelId.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtModelId.ValueMember = "ModelId";
             this.txtModelId.DisplayMember = "Name";
             this.txtModelId.DataSource = GetModelsToComboBox();
@@ -337,8 +344,9 @@ namespace Views
 
             this.txtBrandId = new ComboBox();
             this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
+            this.txtBrandId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtBrandId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtBrandId.FlatStyle = FlatStyle.Flat;
-            this.txtBrandId.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtBrandId.ValueMember = "BrandId";
             this.txtBrandId.DisplayMember = "Name";
             this.txtBrandId.DataSource = GetBrandsToComboBox();
@@ -355,8 +363,9 @@ namespace Views
 
             this.txtGarageId = new ComboBox();
             this.txtGarageId.Location = new Point(32, lblGarageId.Bottom + 5);
+            this.txtGarageId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtGarageId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtGarageId.FlatStyle = FlatStyle.Flat;
-            this.txtGarageId.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtGarageId.ValueMember = "GarageId";
             this.txtGarageId.DisplayMember = "Name";
             this.txtGarageId.DataSource = GetGaragesToComboBox();

@@ -11,15 +11,23 @@ namespace Views
 
         public void btCrt_Click(object sender, EventArgs e)
         {
-
-            Controllers.Brand.CreateBrand(
+            try
+            {
+                Controllers.Brand.CreateBrand(
                 comboBoxName.Text
-            );
-
-            MessageBox.Show("Marca criada com sucesso.");
+                );
+                
+                MessageBox.Show("Marca criada com sucesso.");
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show(error.Message);
+                return;
+            }
+         
             
             ListBrand BrandList = Application.OpenForms.OfType<ListBrand>().FirstOrDefault();
-            if(BrandList == null)
+            if(BrandList != null)
             {
                 BrandList.RefreshList();
             }

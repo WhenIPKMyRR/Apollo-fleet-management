@@ -317,7 +317,14 @@ namespace Views
                 {
                     UpdateButtonLabels();
                 };
-                listEmployee.ShowDialog();
+                 if(Menu.AcessAdmin)
+                {
+                    listEmployee.ShowDialog(); 
+                }
+                else
+                {
+                    MessageBox.Show("Você não tem permissão para acessar essa tela");
+                }
                 this.Show();
             }; 
 

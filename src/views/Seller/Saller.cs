@@ -122,9 +122,13 @@ namespace Views
             listSeller = new ListView();
             listSeller.Size = new Size(680, 260);
             listSeller.Location = new Point(50, 50);
-            listSeller.BackColor = ColorTranslator.FromHtml("#ffffff");
             listSeller.Font = new Font("Arial", 10, FontStyle.Regular);
             listSeller.ForeColor = ColorTranslator.FromHtml("#242424");
+            listSeller.FullRowSelect = true;
+            listSeller.AllowColumnReorder = true;
+            listSeller.BorderStyle = BorderStyle.FixedSingle;  
+            listSeller.MultiSelect = true;
+            listSeller.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listSeller.View = View.Details;
             listSeller.Columns.Add("Id");
             listSeller.Columns.Add("Nome");
