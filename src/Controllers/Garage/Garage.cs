@@ -26,10 +26,10 @@ namespace Controllers
         
         public static Models.Garage ReadGarageById(int id)
         {
-            Models.Garage Garage = Models.Garage.ReadGarageById(id);
+            Models.Garage garage = Models.Garage.ReadGarageById(id);
             
-            if(Garage != null){
-                return Garage;
+            if(garage != null){
+                return garage;
             }
             else
             {
@@ -60,36 +60,19 @@ namespace Controllers
             return Garages;
         }
 
-        public static void UpdateGarage(
-            int id,
-            string name,
-            string address,
-            string phoneNumber
-        )
+        public static Models.Garage UpdateGarage(Models.Garage garage)
         {
-            Models.Garage garage = Models.Garage.ReadGarageById(id);
+            Models.Garage garageUpdated = Models.Garage.UpdateGarage(garage);
 
-           if (garage != null)
+           if (garageUpdated != null)
             {
-                if (!string.IsNullOrEmpty(name))
-                {
-                    garage.Name = name;
-                }
-
-                if (!string.IsNullOrEmpty(address))
-                {
-                    garage.Address = address;
-                }
-
-                if (!string.IsNullOrEmpty(phoneNumber))
-                {
-                    garage.PhoneNumber = phoneNumber;
-                }
+                return garageUpdated;
             }
             else
             {
-                throw new System.ArgumentException("Garagee não encontrado");
+                throw new System.ArgumentException("Garagem não encontrado");
             }
+
         }
 
         public static void DeleteGarage(int id)
@@ -101,7 +84,7 @@ namespace Controllers
             }
             else
             {
-                throw new System.ArgumentException("Garagee não encontrado");
+                throw new System.ArgumentException("Garagem não encontrado");
             }
         }
 

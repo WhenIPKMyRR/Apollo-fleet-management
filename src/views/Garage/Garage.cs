@@ -50,6 +50,8 @@ namespace Views
         {
             var CreateGarage = new Views.CreateGarage();
             CreateGarage.ShowDialog();
+
+            RefreshList();
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
@@ -59,6 +61,8 @@ namespace Views
                 Models.Garage garage = GetSelectedGarage(Option.Update);
                 var UpdateGarage = new Views.UpdateGarage(garage);
                 UpdateGarage.ShowDialog();
+
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -98,7 +102,7 @@ namespace Views
 
         public ListGarage()
         {
-            this.Text = "Garagens";
+            this.Text = "Garagem";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -114,6 +118,11 @@ namespace Views
             listGarage.BackColor = ColorTranslator.FromHtml("#ffffff");
             listGarage.Font = new Font("Arial", 10, FontStyle.Regular);
             listGarage.ForeColor = ColorTranslator.FromHtml("#242424");
+            listGarage.FullRowSelect = true;
+            listGarage.AllowColumnReorder = true;
+            listGarage.BorderStyle = BorderStyle.FixedSingle;  
+            listGarage.MultiSelect = true;
+            listGarage.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listGarage.View = View.Details;
             listGarage.Columns.Add("Id");
             listGarage.Columns.Add("Nome");

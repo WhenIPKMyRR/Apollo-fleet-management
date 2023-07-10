@@ -15,17 +15,22 @@ namespace Views
 
 
 
-        public static List<Models.Model> GetModelsToComboBox(){
-            List<Models.Model> models = new List<Models.Model>();
-            foreach(Models.Model model in Controllers.Model.ReadAllModels()){
-                if((model.ModelId != 0) && (model.Name != null)){
-                    models.Add(model);
+        public List<KeyValuePair<int, string>> GetModelsCarsToComboBox()
+        {
+            List<KeyValuePair<int, string>> modelsCars = new List<KeyValuePair<int, string>>();
+            
+            foreach(Models.Car car in Controllers.Car.ReadAllCars()){
+                if(car.CarId != 0){
+                    Models.Model modelCar = Controllers.Model.ReadModelById(car.ModelId);
+                    modelsCars.Add(new KeyValuePair<int, string>(car.CarId, modelCar.Name));
                 }
             }
+            
+            return modelsCars;
+        }
 
-            return models;
-        } 
 
+        //  
 
         public void btCrt_Click(object sender, EventArgs e)
         {
@@ -38,7 +43,7 @@ namespace Views
             MessageBox.Show("Documento cadastrado com sucesso.");
             
             ListDocument ListDocument = Application.OpenForms.OfType<ListDocument>().FirstOrDefault();
-            if(ListDocument == null)
+            if(ListDocument != null)
             {
                 ListDocument.RefreshList();
             }
@@ -92,9 +97,9 @@ namespace Views
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
             this.txtCarId.DropDownStyle = ComboBoxStyle.DropDownList;
             this.txtCarId.FlatStyle = FlatStyle.Flat;
-            this.txtCarId.ValueMember = "ModelId";
-            this.txtCarId.DisplayMember = "Name";
-            this.txtCarId.DataSource = GetModelsToComboBox();
+            this.txtCarId.ValueMember = "Key";
+            this.txtCarId.DisplayMember = "Value";
+            this.txtCarId.DataSource = GetModelsCarsToComboBox();
             if (txtCarId.Items.Count > 0)
             {
                 txtCarId.SelectedIndex = 0;
@@ -107,7 +112,7 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

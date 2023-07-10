@@ -13,12 +13,18 @@ namespace Models
         public string FuelType { get; set; }
         public string TransmissionType { get; set; }
         public int CarMileage { get; set; }
+        public bool IsUsed { get; set; }
         public int ModelId { get; set; }
         public int BrandId { get; set; }
+        public int GarageId { get; set; }
+        public virtual Brand brand {get; set;}
+        public virtual Model model {get; set;}
+        public virtual Garage garage {get; set;}
+
     
 
 
-        protected Car(int Year, string Color, string LicensePlate, string BodyworkType, decimal Price, string ChassisCode, string RenavanCode, string FuelType, string TransmissionType, int CarMileage, int ModelId, int BrandId)
+        protected Car(int Year, string Color, string LicensePlate, string BodyworkType, decimal Price, string ChassisCode, string RenavanCode, string FuelType, string TransmissionType, int CarMileage, bool IsUsed, int ModelId, int BrandId, int GarageId)
         {
             this.Year = Year;
             this.Color = Color;
@@ -30,8 +36,10 @@ namespace Models
             this.FuelType = FuelType;
             this.TransmissionType = TransmissionType;
             this.CarMileage = CarMileage;
+            this.IsUsed = IsUsed;
             this.ModelId = ModelId;
             this.BrandId = BrandId;
+            this.GarageId = GarageId;
 
             Repository.Context context = new Repository.Context();
             context.Cars.Add(this);
@@ -56,8 +64,10 @@ namespace Models
             "FuelType:" + FuelType + "\n" +
             "ransmissionType:" + TransmissionType + "\n" +
             "CarMileage:" + CarMileage + "\n" +
+            "IsUsed:" + IsUsed + "\n" +
             "ModelId:" + ModelId + "\n" +
-            "BrandId:" + BrandId;
+            "BrandId:" + BrandId + "\n" +
+            "GarageId:" + GarageId;
         }
 
         public override bool Equals(object obj)
@@ -77,8 +87,10 @@ namespace Models
             string FuelType,
             string TransmissionType,
             int CarMileage,
+            bool IsUsed,
             int ModelId,
-            int BrandId
+            int BrandId,
+            int GarageId
         )
         {
             return new Car(
@@ -92,8 +104,10 @@ namespace Models
                 FuelType,
                 TransmissionType,
                 CarMileage,
+                IsUsed,
                 ModelId,
-                BrandId
+                BrandId,
+                GarageId
             );
         }
 
@@ -115,8 +129,10 @@ namespace Models
             string FuelType,
             string TransmissionType,
             int CarMileage,
+            bool IsUsed,
             int ModelId,
-            int BrandId
+            int BrandId,
+            int GarageId
         )
         {
             Car car = ReadByIdCar(
@@ -133,8 +149,10 @@ namespace Models
             car.FuelType = FuelType;
             car.TransmissionType = TransmissionType;
             car.CarMileage = CarMileage;
+            car.IsUsed = IsUsed;
             car.ModelId = ModelId;
             car.BrandId = BrandId;
+            car.GarageId = GarageId;
 
             Repository.Context context = new Repository.Context();
             context.Cars.Update(car);

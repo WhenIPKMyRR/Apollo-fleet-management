@@ -6,20 +6,32 @@ namespace Views
         public Label lblName;
         public Label lblBrandId;
         public TextBox txtName;
-        public TextBox txtBrandId;
+        public ComboBox txtBrandId;
         public Button btUdpate;
         public Button btClose;
         public TableLayoutPanel panel;
 
         public Models.Model model;
 
+
+
+        public static List<Models.Brand> GetBrandsToComboBox(){
+            List<Models.Brand> brands = new List<Models.Brand>();
+            foreach(Models.Brand brand in Models.Brand.ReadAllBrands()){
+                if((brand.BrandId != 0) && (brand.Name != null)){
+                    brands.Add(brand);
+                }
+            }
+
+            return brands;
+        } 
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Model modelUpdate = this.model;
+
             Controllers.Model.UpdateModel(
-                modelUpdate.ModelId,
-                modelUpdate.Name,
-                modelUpdate.BrandId
+                model.ModelId,
+                txtName.Text,
+                Convert.ToInt32(txtBrandId.Text)
             );
             
             ListModel ModelList = Application.OpenForms.OfType<ListModel>().FirstOrDefault();
@@ -34,7 +46,7 @@ namespace Views
         {
             this.model = model;
 
-            this.Text = "Edição";
+           this.Text = "Cadastro";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -42,10 +54,10 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
-            this.Size = new System.Drawing.Size(300, 350);
+            this.Size = new System.Drawing.Size(300, 320);
 
             this.lblTitle = new Label();
-            this.lblTitle.Text = "Editar Modelo";
+            this.lblTitle.Text = "Cadastro de Modelo";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new Point(60, 30);
             this.lblTitle.Size = new Size(250, 40);
@@ -53,44 +65,50 @@ namespace Views
             this.lblName = new Label();
             this.lblName.Text = "Nome:";
             this.lblName.Location = new Point(33, lblTitle.Bottom + 10);
-            this.lblName.Size = new Size(70, 20);
+            this.lblName.Size = new Size(70, 40);
 
             this.txtName = new TextBox();
             this.txtName.Text = model.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
-            this.txtName.Size = new Size(220, 20);
+            this.txtName.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            this.txtName.Size = new Size(220, 50);
 
             this.lblBrandId = new Label();
             this.lblBrandId.Text = "Marca:";
             this.lblBrandId.Location = new Point(33, txtName.Bottom + 10);
             this.lblBrandId.Size = new Size(70, 20);
 
-            this.txtBrandId = new TextBox();
+            this.txtBrandId = new ComboBox();
             this.txtBrandId.Text = model.BrandId.ToString();
             this.txtBrandId.Location = new Point(33, lblBrandId.Bottom + 5);
-            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
+            this.txtBrandId.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.txtBrandId.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            this.txtBrandId.FlatStyle = FlatStyle.Flat;
+            this.txtBrandId.DataSource = GetBrandsToComboBox();
+            this.txtBrandId.DisplayMember = "Name";
+            this.txtBrandId.ValueMember = "ModelId";
 
+
+            
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
-            for (int i = 0; i < panel.ColumnCount; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             }
 
             this.btUdpate = new Button();
-            this.btUdpate.Text = "Editar";
-            //this.btUdpate.Location = new Point(90, 180);
-            this.btUdpate.Size = new Size(200, 25);
+            this.btUdpate.Text = "Adicionar";
             this.btUdpate.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btUdpate.FlatStyle = FlatStyle.Flat;
             this.btUdpate.FlatAppearance.BorderSize = 0;
@@ -101,8 +119,6 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
-            this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
             this.btClose.FlatAppearance.BorderSize = 0;
@@ -113,7 +129,7 @@ namespace Views
             {
                 this.Close();
             };
-
+            
             this.panel.Controls.Add(btUdpate, 1, 0);
             this.panel.Controls.Add(btClose, 2, 0);
 

@@ -29,7 +29,7 @@ namespace Views
 
 
             string[] textPanels = {
-                $"{quantityCars}\nCarros cadastrados",
+                $"{quantityCars - quantitySales}\nCarros cadastrados",
                 $"{quantityClients}\nClientes satisfeitos",
                 $"{quantitySales}\nVendas realizadas"
             };
@@ -37,7 +37,6 @@ namespace Views
             return textPanels;
         }
 
-        // Método para atualizar os valores do texto dos botões
         private void UpdateButtonLabels()
         {
             string[] buttonLabels = GetValuesToHorizontalPanel();
@@ -100,7 +99,16 @@ namespace Views
                     {
                         UpdateButtonLabels();
                     };
-                    employeeForm.ShowDialog();
+
+                    Menu menu = new Menu();
+                    if(Menu.AcessAdmin)
+                    {
+                        employeeForm.ShowDialog(); 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Você não tem permissão para acessar essa tela");
+                    }
                     break;
 
                 case "Balanços":
@@ -198,12 +206,12 @@ namespace Views
             subMenuItemregisterEmployees.Text = "Clientes";
             subMenuItemregisterEmployees.Click += (sender, e) =>
             {
-                var registerEmployee = new CreateClient();
-                registerEmployee.FormClosed += (s, args) =>
+                var registerClient = new CreateClient();
+                registerClient.FormClosed += (s, args) =>
                 {
                     UpdateButtonLabels();
                 };
-                registerEmployee.ShowDialog();
+                registerClient.ShowDialog();
             };
 
             ToolStripMenuItem subMenuItemRegisterEmployees = new ToolStripMenuItem();
@@ -217,6 +225,32 @@ namespace Views
                 };
                 registerEmployee.ShowDialog();
             };
+
+            ToolStripMenuItem subMenuItemRegisterModels = new ToolStripMenuItem();
+            subMenuItemRegisterModels.Text = "Modelos";
+            subMenuItemRegisterModels.Click += (sender, e) =>
+            {
+                var registerModel = new CreateModel();
+                 registerModel.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels(); 
+                };
+                registerModel.ShowDialog();
+            };
+
+            ToolStripMenuItem subMenuItemRegisterBrands = new ToolStripMenuItem();
+            subMenuItemRegisterBrands.Text = "Marcas";
+            subMenuItemRegisterBrands.Click += (sender, e) =>
+            {
+                var registerBrand = new CreateBrand();
+                 registerBrand.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels(); 
+                };
+                registerBrand.ShowDialog();
+            };
+
+
 
             ToolStripMenuItem subMenuItemViewsCars = new ToolStripMenuItem();
             subMenuItemViewsCars.Text = "Carros";
@@ -280,6 +314,34 @@ namespace Views
                 this.Show();
             }; 
 
+            ToolStripMenuItem subMenuItemViewsModels = new ToolStripMenuItem();
+            subMenuItemViewsModels.Text = "Modelos";
+            subMenuItemViewsModels.Click += (sender, e) =>
+            {
+                var listModels = new ListModel();
+                listModels.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels();
+                };
+                listModels.ShowDialog();
+                this.Show();
+            }; 
+
+            ToolStripMenuItem subMenuItemViewsBrands = new ToolStripMenuItem();
+            subMenuItemViewsBrands.Text = "Marcas";
+            subMenuItemViewsBrands.Click += (sender, e) =>
+            {
+                var listBrands = new ListBrand();
+                listBrands.FormClosed += (s, args) =>
+                {
+                    UpdateButtonLabels();
+                };
+                listBrands.ShowDialog();
+                this.Show();
+            };
+
+
+
             //Balanço
             ToolStripMenuItem subMenuItemStatementsSales = new ToolStripMenuItem();
             subMenuItemStatementsSales.Text = "Vendas";
@@ -303,12 +365,17 @@ namespace Views
             menuItemRegister.DropDownItems.Add(subMenuItemRegisterEmployees);
             menuItemRegister.DropDownItems.Add(subMenuItemRegisterGarages);
             menuItemRegister.DropDownItems.Add(subMenuItRegisterDocuments);
+            menuItemRegister.DropDownItems.Add(subMenuItemRegisterModels);
+            menuItemRegister.DropDownItems.Add(subMenuItemRegisterBrands);
             menuItemViews.DropDownItems.Add(subMenuItemViewsCars);
             menuItemViews.DropDownItems.Add(subMenuItemViewsClients);
             menuItemViews.DropDownItems.Add(subMenuItemViewsDocuments);
             menuItemViews.DropDownItems.Add(subMenuItemViewsEmployees);
             menuItemViews.DropDownItems.Add(subMenuItemViewsGarages);
+            menuItemViews.DropDownItems.Add(subMenuItemViewsModels);
+            menuItemViews.DropDownItems.Add(subMenuItemViewsBrands);
             menuItemStatements.DropDownItems.Add(subMenuItemStatementsSales);
+
 
 
             this.panelHorizontal = new Panel();

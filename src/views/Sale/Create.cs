@@ -8,25 +8,79 @@ namespace Views
         public Label lblClientId;
         public Label lblSellerId;
         public DateTimePicker txtDate;
-        public TextBox txtCarId;
-        public TextBox txtClientId;
-        public TextBox txtSellerId;
+        public ComboBox txtCarId;
+        public ComboBox txtClientId;
+        public ComboBox txtSellerId;
         public Button btCrt;
         public Button btClose;
         public TableLayoutPanel panel;
 
+
+        public List<KeyValuePair<int, string>> GetModelsCarsToComboBox()
+        {
+            List<KeyValuePair<int, string>> modelsCars = new List<KeyValuePair<int, string>>();
+            
+            List<int> soldCarIds = new List<int>();
+
+            foreach (Models.Sale sale in Controllers.Sale.ReadAllSale())
+            {
+                soldCarIds.Add(sale.CarId);
+            }
+
+            foreach (Models.Car car in Controllers.Car.ReadAllCars())
+            {
+                if (!soldCarIds.Contains(car.CarId))
+                {
+                    Models.Model modelCar = Controllers.Model.ReadModelById(car.ModelId);
+                    modelsCars.Add(new KeyValuePair<int, string>(car.CarId, modelCar.Name));
+                }
+            }
+            
+            return modelsCars;
+        }
+
+
+        public static List<Models.Client> GetClientsToComboBox(){
+            List<Models.Client> clients = new List<Models.Client>();
+            foreach(Models.Client client in Models.Client.ReadAllClients()){
+                if((client.ClientId != 0) && (client.Name != null)){
+                    clients.Add(client);
+                }
+            }
+
+            return clients;
+        } 
+
+        public static List<Models.Seller> GetSallersToComboBox(){
+            List<Models.Seller> sellers = new List<Models.Seller>();
+            foreach(Models.Seller seller in Controllers.Seller.ReadAllSeller()){
+                if((seller.SellerId != 0) && (seller.Name != null)){
+                    sellers.Add(seller);
+                }
+            }
+
+            return sellers;
+        } 
+
+
         public void btCrt_Click(object sender, EventArgs e)
         {
+            int carId = Convert.ToInt32(txtCarId.SelectedValue);
+            int clientId = Convert.ToInt32(txtClientId.SelectedValue);
+            int sellerId = Convert.ToInt32(txtSellerId.SelectedValue);
+
             Controllers.Sale.CreateSale(
-                Convert.ToInt32(txtCarId.Text),
-                Convert.ToInt32(txtClientId.Text),
-                Convert.ToInt32(txtSellerId.Text)
+                carId,
+                clientId,
+                sellerId
             );
+
+            Models.Car car = Controllers.Car.ReadCarById(carId);
 
             MessageBox.Show("Venda criada com sucesso");
 
             ListSale SaleList = Application.OpenForms.OfType<ListSale>().FirstOrDefault();
-            if (SaleList == null)
+            if (SaleList != null)
             {
                 SaleList.RefreshList();
             }
@@ -65,30 +119,48 @@ namespace Views
             this.lblCarId.Location = new Point(33, txtDate.Bottom + 10);
             this.lblCarId.Size = new Size(70, 20);
 
-            this.txtCarId = new TextBox();
+            this.txtCarId = new ComboBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
-            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarId.Size = new Size(220, 20);
+            this.txtCarId.ValueMember = "Key";
+            this.txtCarId.DisplayMember = "Value";
+            this.txtCarId.DataSource = GetModelsCarsToComboBox();
+            if (txtCarId.Items.Count > 0)
+            {
+                txtCarId.SelectedIndex = 0;
+            }
 
             this.lblClientId = new Label();
             this.lblClientId.Text = "Cliente:";
             this.lblClientId.Location = new Point(33, txtCarId.Bottom + 10);
             this.lblClientId.Size = new Size(70, 20);
             
-            this.txtClientId = new TextBox();
+            this.txtClientId = new ComboBox();
             this.txtClientId.Location = new Point(33, lblClientId.Bottom + 5);
-            this.txtClientId.BorderStyle = BorderStyle.FixedSingle;
             this.txtClientId.Size = new Size(220, 20);
+            this.txtClientId.ValueMember = "ClientId";
+            this.txtClientId.DisplayMember = "Name";
+            this.txtClientId.DataSource = GetClientsToComboBox();
+            if (txtClientId.Items.Count > 0)
+            {
+                txtClientId.SelectedIndex = 0;
+            }
 
             this.lblSellerId = new Label();
             this.lblSellerId.Text = "Vendedor:";
             this.lblSellerId.Location = new Point(33, txtClientId.Bottom + 10);
             this.lblSellerId.Size = new Size(70, 20);
 
-            this.txtSellerId = new TextBox();
+            this.txtSellerId = new ComboBox();
             this.txtSellerId.Location = new Point(33, lblSellerId.Bottom + 5);
-            this.txtSellerId.BorderStyle = BorderStyle.FixedSingle;
             this.txtSellerId.Size = new Size(220, 20);
+            this.txtSellerId.ValueMember = "SellerId";
+            this.txtSellerId.DisplayMember = "Name";
+            this.txtSellerId.DataSource = GetSallersToComboBox();
+            if (txtSellerId.Items.Count > 0)
+            {
+                txtSellerId.SelectedIndex = 0;
+            }
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
@@ -96,11 +168,11 @@ namespace Views
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
             this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
-            this.panel.ColumnCount = 3;
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             }

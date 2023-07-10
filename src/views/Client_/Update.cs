@@ -47,6 +47,7 @@ namespace Views
             {
                 ClientList.RefreshList();
             }
+            
             this.Close();
         }
 

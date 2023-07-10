@@ -6,7 +6,9 @@ namespace Controllers{
             string Name,
             string Email,
             string Telephone,
-            int Registration
+            int Registration,
+            bool IsAdm,
+            string Password
         )
         {
             if( Name.Length > 2 )
@@ -15,7 +17,9 @@ namespace Controllers{
                     Name,
                     Email,
                     Telephone,
-                    Registration
+                    Registration,
+                    IsAdm,
+                    Password
                 );
             }
             else
@@ -55,7 +59,9 @@ namespace Controllers{
             string Name,
             string Email,
             string Telephone,
-            int Registration
+            int Registration,
+            bool IsAdm,
+            string Password
         )
         {
             Models.Seller saller = ReadSellerById(
@@ -69,7 +75,9 @@ namespace Controllers{
                     Name,
                     Email,
                     Telephone,
-                    Registration
+                    Registration,
+                    IsAdm,
+                    Password
                 );
             }
             else
@@ -87,6 +95,19 @@ namespace Controllers{
                 Models.Seller.DeleteSeller(
                     SellerId
                 );
+            }
+            else
+            {
+                throw new Exception("Vendedor não encontrado");
+            }
+        }
+
+        public static Models.Seller Login(string email, string password)
+        {
+            if((email != null) && (password != null))
+            {
+                Models.Seller seller = Models.Seller.Login(email, password);
+                return seller;
             }
             else
             {

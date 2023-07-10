@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -10,9 +11,11 @@ using Repository;
 namespace Apollo_fleet_management.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230709045020_U´pdate-Sellers")]
+    partial class UpdateSellers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,12 +65,6 @@ namespace Apollo_fleet_management.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("GarageId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsUsed")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<string>("LicensePlate")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -90,12 +87,6 @@ namespace Apollo_fleet_management.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CarId");
-
-                    b.HasIndex("BrandId");
-
-                    b.HasIndex("GarageId");
-
-                    b.HasIndex("ModelId");
 
                     b.ToTable("Cars");
                 });
@@ -146,8 +137,6 @@ namespace Apollo_fleet_management.Migrations
 
                     b.HasKey("DocumentId");
 
-                    b.HasIndex("CarId");
-
                     b.ToTable("Documents");
                 });
 
@@ -189,8 +178,6 @@ namespace Apollo_fleet_management.Migrations
 
                     b.HasKey("ModelId");
 
-                    b.HasIndex("BrandId");
-
                     b.ToTable("Models");
                 });
 
@@ -213,12 +200,6 @@ namespace Apollo_fleet_management.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("SaleId");
-
-                    b.HasIndex("CarId");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("SellerId");
 
                     b.ToTable("Sales");
                 });
@@ -254,82 +235,6 @@ namespace Apollo_fleet_management.Migrations
                     b.HasKey("SellerId");
 
                     b.ToTable("Sellers");
-                });
-
-            modelBuilder.Entity("Models.Car", b =>
-                {
-                    b.HasOne("Models.Brand", "brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Garage", "garage")
-                        .WithMany()
-                        .HasForeignKey("GarageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Model", "model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("brand");
-
-                    b.Navigation("garage");
-
-                    b.Navigation("model");
-                });
-
-            modelBuilder.Entity("Models.Document", b =>
-                {
-                    b.HasOne("Models.Car", "car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("car");
-                });
-
-            modelBuilder.Entity("Models.Model", b =>
-                {
-                    b.HasOne("Models.Brand", "brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("brand");
-                });
-
-            modelBuilder.Entity("Models.Sale", b =>
-                {
-                    b.HasOne("Models.Car", "car")
-                        .WithMany()
-                        .HasForeignKey("CarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Client", "client")
-                        .WithMany()
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.Seller", "seller")
-                        .WithMany()
-                        .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("car");
-
-                    b.Navigation("client");
-
-                    b.Navigation("seller");
                 });
 #pragma warning restore 612, 618
         }

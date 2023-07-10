@@ -15,8 +15,10 @@ namespace Controllers{
             string fuel,
             string transmission,
             int mileage,
+            bool IsUsed,
             int idModel,
-            int idBrand
+            int idBrand,
+            int idGarage
         )
         {
             if((year > 1980))
@@ -32,8 +34,10 @@ namespace Controllers{
                     fuel,
                     transmission,
                     mileage,
+                    IsUsed,
                     idModel,
-                    idBrand
+                    idBrand,
+                    idGarage
                 );
             }
             else
@@ -132,8 +136,10 @@ namespace Controllers{
             string fuel,
             string transmission,
             int mileage,
+            bool IsUsed,
             int idModel,
-            int idBrand
+            int idBrand,
+            int idGarage
         )
         {
             Models.Car car = Models.Car.UpdateCar(
@@ -148,8 +154,10 @@ namespace Controllers{
                 fuel,
                 transmission,
                 mileage,
+                IsUsed,
                 idModel,
-                idBrand
+                idBrand,
+                idGarage
             );
 
             if(car != null){

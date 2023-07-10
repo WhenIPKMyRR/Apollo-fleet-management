@@ -51,6 +51,8 @@ namespace Views
         {
             var CreateClient = new Views.CreateClient();
             CreateClient.ShowDialog();
+            
+            RefreshList();
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
@@ -60,6 +62,8 @@ namespace Views
                 Models.Client client = GetSelectedClient(Option.Update);
                 var UpdateClient = new Views.UpdateClient(client);
                 UpdateClient.ShowDialog();
+
+                RefreshList();
             }
             catch (Exception error)
             {
@@ -76,9 +80,11 @@ namespace Views
                 if(result == DialogResult.Yes)
                 {
                     Models.Client.DeleteClient(client.ClientId);
-                    RefreshList();
                     MessageBox.Show("Cliente deletado com sucesso.");
                 }
+
+                RefreshList();
+
             }catch (Exception err)
             {
                 if(err.InnerException != null)

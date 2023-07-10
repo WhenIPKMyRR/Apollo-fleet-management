@@ -23,12 +23,13 @@ namespace Views
                 string address = txtAddress.Text;
                 string phoneNumber = txtPhoneNumber.Text;
 
-                Models.Garage.UpdateGarage(
-                    garage.GarageId,
+                Models.Garage garageToUpdate = new Models.Garage(
                     name,
                     address,
                     phoneNumber
                 );
+
+                Controllers.Garage.UpdateGarage(garageToUpdate);
 
                 MessageBox.Show("Garagem editada com sucesso.");
                 ClearForm();
@@ -58,7 +59,7 @@ namespace Views
             this.garage = garage;
 
             this.Text = "Editar Garagem";
-            this.Size = new Size(400, 250);
+            this.Size = new Size(300, 400);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -66,7 +67,7 @@ namespace Views
             this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
 
             this.lblTitle = new Label();
-            this.lblTitle.Text = "Editar Cliente";
+            this.lblTitle.Text = "Editar Garagem";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new Point(60, 30);
             this.lblTitle.Size = new Size(250, 40);
@@ -133,7 +134,6 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
             this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;

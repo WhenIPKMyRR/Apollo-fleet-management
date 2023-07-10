@@ -6,6 +6,8 @@ namespace Views
     public class ListDocument : Form
     {
         ListView listDocument;
+
+        
         private void AddListView(Models.Document document)
         {
             Models.Car car = Controllers.Car.ReadCarById(document.CarId);
@@ -38,6 +40,9 @@ namespace Views
         {
             var CreateDocument = new Views.CreateDocument();
             CreateDocument.Show();
+
+            RefreshList();
+
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
@@ -49,9 +54,10 @@ namespace Views
                 var DocumentUpdateView = new Views.UpdateDocument(document);
                 if(DocumentUpdateView.ShowDialog() == DialogResult.OK)
                 {
-                    RefreshList();
                     MessageBox.Show("Documento editado com sucesso.");
                 }
+
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -67,8 +73,9 @@ namespace Views
                 if (MessageBox.Show("Tem certeza?", "Deletar Documento", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Models.Document.DeleteDocument(document.DocumentId);
-                    RefreshList();
                 }
+                
+                RefreshList();
             }
             catch (Exception err)
             {

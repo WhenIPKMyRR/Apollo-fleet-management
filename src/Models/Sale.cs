@@ -7,6 +7,9 @@ namespace Models
         public int ClientId {get; set;}
         public int SellerId {get; set;}
         public DateTime Date {get; set;}
+        public virtual Car car {get; set;}
+        public virtual Client client {get; set;}
+        public virtual Seller seller {get; set;}
 
         public Sale(int CarId, int ClientId, int SellerId)
         {

@@ -8,12 +8,28 @@ namespace Views
         public Label lblCarId;
         public TextBox txtType;
         public TextBox txtValue;
-        public TextBox txtCarId;
+        public ComboBox txtCarId;
         public Button btUdpate;
         public Button btClose;
         public TableLayoutPanel panel;
 
         public Models.Document document;
+
+
+        public List<KeyValuePair<int, string>> GetModelsCarsToComboBox()
+        {
+            List<KeyValuePair<int, string>> modelsCars = new List<KeyValuePair<int, string>>();
+            
+            foreach(Models.Car car in Controllers.Car.ReadAllCars()){
+                if(car.CarId != 0){
+                    Models.Model modelCar = Controllers.Model.ReadModelById(car.ModelId);
+                    modelsCars.Add(new KeyValuePair<int, string>(car.CarId, modelCar.Name));
+                }
+            }
+            
+            return modelsCars;
+        }
+
         public void btUdpate_Click(object sender, EventArgs e)
         {
            try 
@@ -49,7 +65,6 @@ namespace Views
         {
             txtType.Clear();
             txtValue.Clear();
-            txtCarId.Clear();
         }
 
         public UpdateDocument(Models.Document document)
@@ -99,10 +114,17 @@ namespace Views
             this.lblCarId.Location = new Point(33, txtValue.Bottom + 10);
             this.lblCarId.Size = new Size(70, 20);
 
-            this.txtCarId = new TextBox();
-            this.txtCarId.Text = document.CarId.ToString();
+            this.txtCarId = new ComboBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
-            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtCarId.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.txtCarId.FlatStyle = FlatStyle.Flat;
+            this.txtCarId.ValueMember = "Key";
+            this.txtCarId.DisplayMember = "Value";
+            this.txtCarId.DataSource = GetModelsCarsToComboBox();
+            if (txtCarId.Items.Count > 0)
+            {
+                txtCarId.SelectedIndex = 0;
+            }
             this.txtCarId.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();

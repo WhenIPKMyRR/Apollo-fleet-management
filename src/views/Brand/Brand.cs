@@ -49,6 +49,7 @@ namespace Views
                     RefreshList();
                     MessageBox.Show("Marca editada com sucesso.");
                 }
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -101,44 +102,49 @@ namespace Views
 
         public ListBrand()
         {
-            this.Text = "Marcas";
+             this.Text = "Marcas";
             this.Size = new Size(800, 450);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.ShowIcon = false;
-            this.ShowInTaskbar = false; 
-            this.ShowIcon = false;
-            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
-
+            this.ShowInTaskbar = false;
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listBrand = new ListView();
             listBrand.Size = new Size(680, 260);
             listBrand.Location = new Point(50, 50);
+            listBrand.BackColor = ColorTranslator.FromHtml("#ffffff");
+            listBrand.Font = new Font("Arial", 10, FontStyle.Regular);
+            listBrand.ForeColor = ColorTranslator.FromHtml("#242424");
+            listBrand.FullRowSelect = true;
+            listBrand.AllowColumnReorder = true;
+            listBrand.BorderStyle = BorderStyle.FixedSingle;  
+            listBrand.MultiSelect = true;
+            listBrand.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listBrand.View = View.Details;
             listBrand.Columns.Add("Id");
             listBrand.Columns.Add("Nome");
             listBrand.Columns[0].Width = 30;
-            listBrand.Columns[1].Width = 150;
+            listBrand.Columns[1].Width = 390;
             listBrand.FullRowSelect = true;
             this.Controls.Add(listBrand);
 
-            RefreshList();
+             RefreshList();
 
             TableLayoutPanel panel = new TableLayoutPanel();
             panel.Dock = DockStyle.Bottom;
             panel.AutoSize = true;
-            panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel.Padding = new Padding(10, 10, 10, 10);
-            panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            panel.ColumnCount = 3;
+            panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            panel.ColumnCount = 8;
             panel.RowCount = 1;
             panel.ColumnStyles.Clear();
 
             for (int i = 0; i < panel.ColumnCount; i++)
             {
-                panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+                panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             }
 
             Button btCrt = new Button();
@@ -194,10 +200,10 @@ namespace Views
                 this.Close();
             };
             
-            panel.Controls.Add(btCrt, 0, 0);
-            panel.Controls.Add(btUpdate, 1, 0);
-            panel.Controls.Add(btDelete, 2, 0);
-            panel.Controls.Add(btClose, 3, 0); 
+            panel.Controls.Add(btCrt, 2, 0);
+            panel.Controls.Add(btUpdate, 3, 0);
+            panel.Controls.Add(btDelete, 4, 0);
+            panel.Controls.Add(btClose, 5, 0); 
             this.Controls.Add(panel);
         }
     }

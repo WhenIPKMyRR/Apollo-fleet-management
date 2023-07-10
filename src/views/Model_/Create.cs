@@ -6,10 +6,23 @@ namespace Views
         public Label lblName;
         public Label lblBrandId;
         public TextBox txtName;
-        public TextBox txtBrandId;
+        public ComboBox txtBrandId;
         public Button btCrt;
         public Button btClose;
         public TableLayoutPanel panel;
+
+
+        public static List<Models.Brand> GetBrandsToComboBox(){
+            List<Models.Brand> brands = new List<Models.Brand>();
+            foreach(Models.Brand brand in Models.Brand.ReadAllBrands()){
+                if((brand.BrandId != 0) && (brand.Name != null)){
+                    brands.Add(brand);
+                }
+            }
+
+            return brands;
+        } 
+
 
         public void btCrt_Click(object sender, EventArgs e)
         {
@@ -37,7 +50,8 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Size = new System.Drawing.Size(300, 350);
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
+            this.Size = new System.Drawing.Size(300, 320);
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Modelo";
@@ -48,34 +62,43 @@ namespace Views
             this.lblName = new Label();
             this.lblName.Text = "Nome:";
             this.lblName.Location = new Point(33, lblTitle.Bottom + 10);
-            this.lblName.Size = new Size(70, 20);
+            this.lblName.Size = new Size(70, 40);
 
             this.txtName = new TextBox();
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
-            this.txtName.Size = new Size(220, 20);
+            this.txtName.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            this.txtName.Size = new Size(220, 50);
 
             this.lblBrandId = new Label();
             this.lblBrandId.Text = "Marca:";
             this.lblBrandId.Location = new Point(33, txtName.Bottom + 10);
             this.lblBrandId.Size = new Size(70, 20);
 
-            this.txtBrandId = new TextBox();
+            this.txtBrandId = new ComboBox();
             this.txtBrandId.Location = new Point(33, lblBrandId.Bottom + 5);
-            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
             this.txtBrandId.Size = new Size(220, 20);
+            this.txtBrandId.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.txtBrandId.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            this.txtBrandId.FlatStyle = FlatStyle.Flat;
+
+            this.txtBrandId.DataSource = GetBrandsToComboBox();
+            this.txtBrandId.DisplayMember = "Name";
+            this.txtBrandId.ValueMember = "ModelId";
+
+
             
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             }
@@ -83,7 +106,6 @@ namespace Views
             this.btCrt = new Button();
             this.btCrt.Text = "Adicionar";
             //this.btCrt.Location = new Point(80, panel.Bottom + 10);
-            this.btCrt.Size = new Size(200, 25);
             this.btCrt.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btCrt.FlatStyle = FlatStyle.Flat;
             this.btCrt.FlatAppearance.BorderSize = 0;
@@ -95,7 +117,6 @@ namespace Views
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
             //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
-            this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
             this.btClose.FlatAppearance.BorderSize = 0;

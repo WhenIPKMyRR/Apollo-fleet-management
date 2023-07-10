@@ -57,11 +57,11 @@ namespace Models
         }
 
         public static Garage ReadGarageById(
-            int GarageId
+            int garageId
         )
         {
             Repository.Context context = new Repository.Context();
-            Garage garage = context.Garages.Find(GarageId);
+            Garage garage = context.Garages.Find(garageId);
 
             if (garage == null)
             {
@@ -84,15 +84,15 @@ namespace Models
 
             return garage;
         }
-        public static Garage UpdateGarage(int garageId, string name, string address, string phoneNumber)
+        public static Models.Garage UpdateGarage(Garage garage)
         {
-            Garage garage = ReadGarageById(garageId);
+            Models.Garage garageToUpdate = ReadGarageById(garage.GarageId);
 
             Repository.Context context = new Repository.Context();
-            context.Garages.Update(garage);
+            context.Garages.Update(garageToUpdate);
             context.SaveChanges();
             
-            return garage;
+            return garageToUpdate;
         }
 
 

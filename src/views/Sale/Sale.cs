@@ -9,12 +9,17 @@ namespace Views
 
         private void AddListView(Models.Sale sale)
         {
+            Models.Car car = Controllers.Car.ReadCarById(sale.CarId);
+            Models.Model model = Controllers.Model.ReadModelById(car.ModelId);
+            Models.Client client = Controllers.Client.ReadClientById(sale.ClientId);
+            Models.Seller seller = Controllers.Seller.ReadSellerById(sale.SellerId);
+
             string[] row = 
             {
                 sale.SaleId.ToString(),
-                sale.CarId.ToString(),
-                sale.ClientId.ToString(),
-                sale.SellerId.ToString(),
+                client.Name.ToString(),
+                seller.Name.ToString(),
+                model.Name.ToString(),
                 sale.Date.ToString()
             };
 
@@ -51,6 +56,8 @@ namespace Views
         {
             var CreateSale = new Views.CreateSale();
             CreateSale.Show();
+
+            RefreshList();
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
@@ -60,6 +67,8 @@ namespace Views
                 Models.Sale sale = GetSelectedSale(Option.Update);
                 var UpdateSale = new Views.UpdateSale(sale);
                 UpdateSale.ShowDialog();
+
+                RefreshList();
             }
             catch (Exception error)
             {
@@ -75,9 +84,10 @@ namespace Views
                 if(MessageBox.Show("Tem certeza?", "Deletar Venda", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     Controllers.Sale.DeleteSale(sale.SaleId);
-                    RefreshList();
                     MessageBox.Show("Venda deletada com sucesso.");
                 }
+
+                RefreshList();
             }
             catch (Exception error)
             {
@@ -106,9 +116,9 @@ namespace Views
             listSale.View = View.Details;
             listSale.FullRowSelect = true;
             listSale.Columns.Add("Id");
+            listSale.Columns.Add("Cliente");
             listSale.Columns.Add("Vendedor");
             listSale.Columns.Add("Carro");
-            listSale.Columns.Add("Cliente");
             listSale.Columns.Add("Data");
             listSale.Columns[0].Width = 30;
             listSale.Columns[1].Width = 150;

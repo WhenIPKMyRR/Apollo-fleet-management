@@ -6,13 +6,17 @@ namespace Views
 
         private void AddListView(Models.Seller seller)
         {
+            string positionEmployee = seller.IsAdm ? "Administrador" : "Vendedor";
+
             string[]row = 
             {
                 seller.SellerId.ToString(),
                 seller.Name,
                 seller.Email,
                 seller.Telephone,
-                seller.Registration.ToString()
+                seller.Registration.ToString(),
+                seller.Password,
+                positionEmployee
             };
 
             ListViewItem item = new ListViewItem(row);
@@ -35,6 +39,8 @@ namespace Views
         {
             var CreateSeller = new Views.CreateSeller();
             CreateSeller.Show();
+
+            RefreshList();
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
@@ -42,13 +48,13 @@ namespace Views
             try
             {
                 Models.Seller seller = GetSelectedSeller(Option.Update);
-                RefreshList();
                 var SellerUpdateView = new Views.UpdateSeller(seller);
                 if(SellerUpdateView.ShowDialog() == DialogResult.OK)
                 {
-                    RefreshList();
                     MessageBox.Show("Vendedor editado com sucesso.");
                 }
+
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -65,9 +71,10 @@ namespace Views
                 if(result == DialogResult.Yes)
                 {
                     Models.Seller.DeleteSeller(seller.SellerId);
-                    RefreshList();
                     MessageBox.Show("Vendedor deletado com sucesso.");
                 }
+
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -124,11 +131,16 @@ namespace Views
             listSeller.Columns.Add("Email");
             listSeller.Columns.Add("Telefone");
             listSeller.Columns.Add("Matrícula");
+            listSeller.Columns.Add("Senha");
+            listSeller.Columns.Add("Posição");
             listSeller.Columns[0].Width = 30;
             listSeller.Columns[1].Width = 200;
             listSeller.Columns[2].Width = 150;
             listSeller.Columns[3].Width = 120;
             listSeller.Columns[4].Width = 120;
+            listSeller.Columns[5].Width = 120;
+            listSeller.Columns[6].Width = 120;
+            listSeller.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listSeller.FullRowSelect = true;
             this.Controls.Add(listSeller);
 
@@ -161,6 +173,7 @@ namespace Views
             btCrt.Dock = DockStyle.Fill;
             btCrt.Click += new EventHandler(btCrt_Click);
             
+           
             Button btUpdate = new Button();
             btUpdate.Text = "Editar";
             btUpdate.Size = new Size(30, 30);
