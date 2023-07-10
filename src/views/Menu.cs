@@ -63,7 +63,6 @@ namespace Views
         {
 
             Form menu = new Form();
-            // menu.Icon = new Icon("Assets/logoUm.ico", 30, 30);
             menu.Text = "Seja Bem-vindo";
             menu.StartPosition = FormStartPosition.CenterScreen;
             menu.MaximizeBox = true;
@@ -74,14 +73,14 @@ namespace Views
             menu.FormBorderStyle = FormBorderStyle.FixedSingle;
             menu.Bounds = Screen.PrimaryScreen.Bounds;
             menu.ControlBox = true;
-            menu.BackColor = ColorTranslator.FromHtml("#ffffff");
+            menu.BackColor = ColorTranslator.FromHtml("#E0E6ED");
 
 
 
             Panel panel = new Panel();
             panel.Size = new Size(350, 500);
             panel.Location = new Point((menu.ClientSize.Width - panel.Width) / 2, (menu.ClientSize.Height - panel.Height) / 2);
-            panel.BackColor = ColorTranslator.FromHtml("#f8f8f8"); 
+            panel.BackColor = ColorTranslator.FromHtml("#ffffff"); 
             panel.BorderStyle = BorderStyle.FixedSingle;
             menu.Controls.Add(panel);
 
@@ -138,8 +137,8 @@ namespace Views
             buttonsLayoutpanel.Dock = DockStyle.Bottom;
             buttonsLayoutpanel.AutoSize = true;
             buttonsLayoutpanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonsLayoutpanel.Padding = new Padding(10, 10, 10, 10);
-            buttonsLayoutpanel.BackColor = ColorTranslator.FromHtml("#f8f8f8");
+            buttonsLayoutpanel.Padding = new Padding(10, 0, 10, 50);
+            buttonsLayoutpanel.BackColor = ColorTranslator.FromHtml("#ffffff");
             buttonsLayoutpanel.ColumnCount = 4;
             buttonsLayoutpanel.RowCount = 1;
             buttonsLayoutpanel.ColumnStyles.Clear();
@@ -151,12 +150,12 @@ namespace Views
 
             btnToMainScreen = new Button();
             btnToMainScreen.Text = "Entrar";
-            btnToMainScreen.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            btnToMainScreen.BackColor = ColorTranslator.FromHtml("#f8f8f8");
             btnToMainScreen.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             btnToMainScreen.Size = new Size(110, 35);
             btnToMainScreen.Font = new Font("Roboto", 8, FontStyle.Regular);
             btnToMainScreen.FlatStyle = FlatStyle.Flat;
-            btnToMainScreen.FlatAppearance.BorderSize = 0;
+            btnToMainScreen.FlatAppearance.BorderSize = 1;
             btnToMainScreen.Dock = DockStyle.Fill;
             btnToMainScreen.Click += (sender, e) =>
             {
@@ -182,11 +181,12 @@ namespace Views
 
             btnExit = new Button();
             btnExit.Text = "Sair";
-            btnExit.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            btnExit.BackColor = ColorTranslator.FromHtml("#f8f8f8");
             btnExit.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             btnExit.Size = new Size(110, 35);
             btnExit.Font = new Font("Roboto", 8, FontStyle.Regular);
             btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.FlatAppearance.BorderSize = 1;
             btnExit.Click += (sender, e) =>
             {
                 // ConfirmReserve();

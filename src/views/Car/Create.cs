@@ -438,8 +438,8 @@ namespace Views
                 this.Close();
             };
             
-            this.panel.Controls.Add(btCrt, 2, 0);
-            this.panel.Controls.Add(btClose, 3, 0);
+            this.panel.Controls.Add(btCrt, 1, 0);
+            this.panel.Controls.Add(btClose, 2, 0);
 
             this.Controls.Add(lblModelId);
             this.Controls.Add(txtModelId);
