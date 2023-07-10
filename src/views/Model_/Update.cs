@@ -25,14 +25,26 @@ namespace Views
 
             return brands;
         } 
+
         public void btUdpate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string name = txtName.Text;
 
-            Controllers.Model.UpdateModel(
-                model.ModelId,
-                txtName.Text,
-                Convert.ToInt32(txtBrandId.Text)
-            );
+                Controllers.Model.UpdateModel(
+                    model.ModelId,
+                    name,
+                    Convert.ToInt32(txtBrandId.SelectedValue)
+                );
+
+                MessageBox.Show("Modelo editado com sucesso!");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
             ListModel ModelList = Application.OpenForms.OfType<ListModel>().FirstOrDefault();
             if (ModelList != null)
@@ -88,7 +100,7 @@ namespace Views
             this.txtBrandId.FlatStyle = FlatStyle.Flat;
             this.txtBrandId.DataSource = GetBrandsToComboBox();
             this.txtBrandId.DisplayMember = "Name";
-            this.txtBrandId.ValueMember = "ModelId";
+            this.txtBrandId.ValueMember = "BrandId";
 
 
             
@@ -108,7 +120,7 @@ namespace Views
             }
 
             this.btUdpate = new Button();
-            this.btUdpate.Text = "Adicionar";
+            this.btUdpate.Text = "Editar";
             this.btUdpate.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btUdpate.FlatStyle = FlatStyle.Flat;
             this.btUdpate.FlatAppearance.BorderSize = 0;

@@ -60,19 +60,32 @@ namespace Controllers
             return Garages;
         }
 
-        public static Models.Garage UpdateGarage(Models.Garage garage)
+        public static Models.Garage UpdateGarage(
+            int id,
+            string name,
+            string address,
+            string phoneNumber
+        )
         {
-            Models.Garage garageUpdated = Models.Garage.UpdateGarage(garage);
+            Models.Garage garageToUpdate = Models.Garage.ReadGarageById(id);
 
-           if (garageUpdated != null)
-            {
-                return garageUpdated;
-            }
-            else
+            garageToUpdate.Name = name;
+            garageToUpdate.Address = address;
+            garageToUpdate.PhoneNumber = phoneNumber;
+
+            Models.Garage garageUpdated = Models.Garage.UpdateGarage(
+                garageToUpdate.GarageId,
+                garageToUpdate.Name,
+                garageToUpdate.Address,
+                garageToUpdate.PhoneNumber
+            );
+
+            if (garageUpdated == null)
             {
                 throw new System.ArgumentException("Garagem não encontrado");
             }
 
+            return garageUpdated;
         }
 
         public static void DeleteGarage(int id)

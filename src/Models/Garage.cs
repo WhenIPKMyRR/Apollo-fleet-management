@@ -84,9 +84,18 @@ namespace Models
 
             return garage;
         }
-        public static Models.Garage UpdateGarage(Garage garage)
+        public static Models.Garage UpdateGarage(
+            int GarageId,
+            string Name,
+            string Address,
+            string PhoneNumber
+        )
         {
-            Models.Garage garageToUpdate = ReadGarageById(garage.GarageId);
+            Models.Garage garageToUpdate = ReadGarageById(GarageId);
+
+            garageToUpdate.Name = Name;
+            garageToUpdate.Address = Address;
+            garageToUpdate.PhoneNumber = PhoneNumber;
 
             Repository.Context context = new Repository.Context();
             context.Garages.Update(garageToUpdate);

@@ -59,14 +59,22 @@ namespace Controllers{
             }
         }
 
-        public static void UpdateBrand(
+        public static Models.Brand UpdateBrand(
             int id,
             string name
         )
         {
+            Models.Brand brand = Models.Brand.UpdateBrand(
+                id,
+                name
+            );
+
             if((id != 0) && (name != null)){
-                Brand.UpdateBrand(id, name);
-            }else{
+
+                return brand;
+            }
+            else
+            {
                 throw new System.ArgumentException("Id ou nome da marca não podem ser nulos");
             }
 

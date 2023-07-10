@@ -87,10 +87,10 @@ namespace Views
                 string fuelType = txtFuelType.Text;
                 string carTransmissionType = txtCarTransmissionType.Text;
                 int carMileage = int.Parse(txtCarMileage.Text);
-                bool IsUsed = false;
-                int modelId = int.Parse(txtModelId.Text);
-                int brandId = int.Parse(txtBrandId.Text);
-                int garageId = 12;
+                bool IsUsed = radioIsUsed.Checked;
+                int modelId = Convert.ToInt32(txtModelId.SelectedValue);
+                int brandId = Convert.ToInt32(txtBrandId.SelectedValue);
+                int garageId = Convert.ToInt32(txtGarageId.SelectedValue);
 
                 Models.Car.UpdateCar(
                     car.CarId,
@@ -153,7 +153,7 @@ namespace Views
         {
             this.car = car;
 
-            this.Text = "Editar";
+             this.Text = "Edição";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -179,8 +179,10 @@ namespace Views
             this.txtYear.Text = car.Year.ToString();
             this.txtYear.Location = new Point(33, lblYear.Bottom + 5);
             this.txtYear.Size = new Size(220, 20);
+            this.txtYear.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.txtYear.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtYear.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtYear.FlatStyle = FlatStyle.Flat;
-            this.txtYear.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             ComboBoxAno();
             this.Controls.Add(txtYear);
 
@@ -202,9 +204,12 @@ namespace Views
             this.lblBodyworkType.Size = new Size(110, 20);
 
             this.txtBodyworkType = new ComboBox();
+            this.txtBodyworkType.Text = car.BodyworkType;
             this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
+            this.txtBodyworkType.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.txtBodyworkType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtBodyworkType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtBodyworkType.FlatStyle = FlatStyle.Flat;
-            this.txtBodyworkType.ForeColor = ColorTranslator.FromHtml("#c7c7c7");
             this.txtBodyworkType.Size = new Size(220, 20);
             this.txtBodyworkType.Items.Add("Conversível");
             this.txtBodyworkType.Items.Add("Coupé");
@@ -259,10 +264,12 @@ namespace Views
             this.lblFuelType.Size = new Size(120, 20);
 
             this.txtFuelType = new ComboBox();
+            this.txtFuelType.Text = car.FuelType;
             this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
             this.txtFuelType.Size = new Size(220, 20);
+            this.txtFuelType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtFuelType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtFuelType.FlatStyle = FlatStyle.Flat;
-            this.txtFuelType.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtFuelType.Items.Add("Álcool");
             this.txtFuelType.Items.Add("Diesel");
             this.txtFuelType.Items.Add("Elétrico");
@@ -290,9 +297,11 @@ namespace Views
             this.lblCarTransmissionType.Size = new Size(140, 20);
 
             this.txtCarTransmissionType = new ComboBox();
+            this.txtCarTransmissionType.Text = car.TransmissionType;
             this.txtCarTransmissionType.Location = new Point(33, lblCarTransmissionType.Bottom + 5);
+            this.txtCarTransmissionType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtCarTransmissionType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtCarTransmissionType.FlatStyle = FlatStyle.Flat;
-            this.txtCarTransmissionType.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtCarTransmissionType.Size = new Size(220, 20);
             this.txtCarTransmissionType.Items.Add("Manual");
             this.txtCarTransmissionType.Items.Add("Automático");
@@ -317,10 +326,12 @@ namespace Views
             this.lblModelId.Size = new Size(70, 20);
 
             this.txtModelId = new ComboBox();
+            this.txtModelId.Text = car.ModelId.ToString();
             this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
             this.txtModelId.Size = new Size(220, 20);
+            this.txtModelId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtModelId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtModelId.FlatStyle = FlatStyle.Flat;
-            this.txtModelId.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtModelId.ValueMember = "ModelId";
             this.txtModelId.DisplayMember = "Name";
             this.txtModelId.DataSource = GetModelsToComboBox();
@@ -329,8 +340,6 @@ namespace Views
                 txtModelId.SelectedIndex = 0;
             }
             this.txtModelId.Size = new Size(220, 20);
-            this.txtModelId.SelectedItem = car.ModelId;
-            
 
             this.lblBrandId = new Label();
             this.lblBrandId.Text = "Marca:";
@@ -338,9 +347,11 @@ namespace Views
             this.lblBrandId.Size = new Size(70, 20);
 
             this.txtBrandId = new ComboBox();
+            this.txtBrandId.Text = car.BrandId.ToString();
             this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
+            this.txtBrandId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtBrandId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtBrandId.FlatStyle = FlatStyle.Flat;
-            this.txtBrandId.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtBrandId.ValueMember = "BrandId";
             this.txtBrandId.DisplayMember = "Name";
             this.txtBrandId.DataSource = GetBrandsToComboBox();
@@ -349,8 +360,6 @@ namespace Views
                 txtBrandId.SelectedIndex = 0;
             }
             this.txtBrandId.Size = new Size(220, 20);
-            this.txtBrandId.SelectedItem = car.BrandId;
-
 
             this.lblGarageId = new Label();
             this.lblGarageId.Text = "Garagem:";
@@ -358,9 +367,11 @@ namespace Views
             this.lblGarageId.Size = new Size(70, 20);
 
             this.txtGarageId = new ComboBox();
+            this.txtGarageId.Text = car.GarageId.ToString();
             this.txtGarageId.Location = new Point(32, lblGarageId.Bottom + 5);
+            this.txtGarageId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtGarageId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
             this.txtGarageId.FlatStyle = FlatStyle.Flat;
-            this.txtGarageId.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtGarageId.ValueMember = "GarageId";
             this.txtGarageId.DisplayMember = "Name";
             this.txtGarageId.DataSource = GetGaragesToComboBox();
@@ -369,7 +380,6 @@ namespace Views
                 txtGarageId.SelectedIndex = 0;
             }
             this.txtGarageId.Size = new Size(220, 20);
-            this.txtGarageId.SelectedItem = car.GarageId;
 
             this.lblIsUsed = new Label();
             this.lblIsUsed.Text = "Estado:";
@@ -386,6 +396,7 @@ namespace Views
                 this.radioIsUsed.Checked = true;
             }
 
+
             this.radioIsNotUsed = new RadioButton();
             this.radioIsNotUsed.Location = new Point(420, lblIsUsed.Bottom + 5);
             this.radioIsNotUsed.Size = new Size(90, 20);
@@ -395,8 +406,9 @@ namespace Views
             {
                 this.radioIsNotUsed.Checked = true;
             }
-
             
+
+
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
@@ -413,7 +425,8 @@ namespace Views
             }
 
             this.btUpdate = new Button();
-            this.btUpdate.Text = "Editar";
+            this.btUpdate.Text = "Adicionar";
+            //this.btUpdate.Location = new Point(80, panel.Bottom + 10);
             this.btUpdate.Size = new Size(200, 25);
             this.btUpdate.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btUpdate.FlatStyle = FlatStyle.Flat;
@@ -436,41 +449,41 @@ namespace Views
             {
                 this.Close();
             };
+            
+            this.panel.Controls.Add(btUpdate, 2, 0);
+            this.panel.Controls.Add(btClose, 3, 0);
 
-            this.panel.Controls.Add(btUpdate, 1, 0);
-            this.panel.Controls.Add(btClose, 2, 0);
-
+            this.Controls.Add(lblModelId);
+            this.Controls.Add(txtModelId);
+            this.Controls.Add(lblBrandId);
+            this.Controls.Add(txtBrandId);
+            this.Controls.Add(panel);
             this.Controls.Add(lblTitle);
-            this.Controls.Add(this.lblYear);
-            this.Controls.Add(this.lblColor);
-            this.Controls.Add(this.lblLicensePlate);
-            this.Controls.Add(this.lblBodyworkType);
-            this.Controls.Add(this.lblPrice);
-            this.Controls.Add(this.lblChassisCode);
-            this.Controls.Add(this.lblRenavanCode);
-            this.Controls.Add(this.lblFuelType);
-            this.Controls.Add(this.lblCarTransmissionType);
-            this.Controls.Add(this.lblCarMileage);
-            this.Controls.Add(this.lblModelId);
-            this.Controls.Add(this.lblBrandId);
-            this.Controls.Add(this.txtYear);
-            this.Controls.Add(this.txtColor);
-            this.Controls.Add(this.txtLicensePlate);
-            this.Controls.Add(this.txtBodyworkType);
-            this.Controls.Add(this.txtPrice);
-            this.Controls.Add(this.txtChassisCode);
-            this.Controls.Add(this.txtRenavanCode);
-            this.Controls.Add(this.txtFuelType);
-            this.Controls.Add(this.txtCarTransmissionType);
-            this.Controls.Add(this.txtCarMileage);
-            this.Controls.Add(this.txtModelId);
-            this.Controls.Add(this.txtBrandId);
-            this.Controls.Add(this.lblGarageId);
-            this.Controls.Add(this.txtGarageId);
-            this.Controls.Add(this.lblIsUsed);
-            this.Controls.Add(this.radioIsUsed);
-            this.Controls.Add(this.radioIsNotUsed);
-            this.Controls.Add(this.panel);
+            this.Controls.Add(lblYear);
+            this.Controls.Add(txtYear);
+            this.Controls.Add(lblColor);
+            this.Controls.Add(txtColor);
+            this.Controls.Add(lblLicensePlate);
+            this.Controls.Add(txtLicensePlate);
+            this.Controls.Add(lblBodyworkType);
+            this.Controls.Add(txtBodyworkType);
+            this.Controls.Add(lblPrice);
+            this.Controls.Add(txtPrice);
+            this.Controls.Add(lblChassisCode);
+            this.Controls.Add(txtChassisCode);
+            this.Controls.Add(lblRenavanCode);
+            this.Controls.Add(txtRenavanCode);
+            this.Controls.Add(lblFuelType);
+            this.Controls.Add(txtFuelType);
+            this.Controls.Add(lblCarTransmissionType);
+            this.Controls.Add(txtCarTransmissionType);
+            this.Controls.Add(lblCarMileage);
+            this.Controls.Add(txtCarMileage);
+            this.Controls.Add(lblGarageId);
+            this.Controls.Add(txtGarageId);
+            this.Controls.Add(lblIsUsed);
+            this.Controls.Add(radioIsUsed);
+            this.Controls.Add(radioIsNotUsed);
         }
     }
 }

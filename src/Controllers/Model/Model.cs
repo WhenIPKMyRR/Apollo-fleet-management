@@ -68,11 +68,14 @@ namespace Controllers{
         {
             if(name.Length >= 2)
             {
-                return Models.Model.UpdateModel(
+                
+                Models.Model model = Models.Model.UpdateModel(
                     id,
                     name,
                     brandId
                 );
+
+                return model;
             }
             else
             {

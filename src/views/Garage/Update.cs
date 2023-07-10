@@ -23,13 +23,12 @@ namespace Views
                 string address = txtAddress.Text;
                 string phoneNumber = txtPhoneNumber.Text;
 
-                Models.Garage garageToUpdate = new Models.Garage(
+                Controllers.Garage.UpdateGarage(
+                    garage.GarageId,
                     name,
                     address,
                     phoneNumber
                 );
-
-                Controllers.Garage.UpdateGarage(garageToUpdate);
 
                 MessageBox.Show("Garagem editada com sucesso.");
                 ClearForm();

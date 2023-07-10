@@ -93,7 +93,7 @@ namespace Views
             }
 
             this.btUdpate = new Button();
-            this.btUdpate.Text = "Adicionar";
+            this.btUdpate.Text = "Editar";
             this.btUdpate.Size = new Size(200, 25);
             this.btUdpate.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btUdpate.FlatStyle = FlatStyle.Flat;

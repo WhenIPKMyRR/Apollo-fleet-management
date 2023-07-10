@@ -36,13 +36,12 @@ namespace Views
            {
                 string type = txtType.Text;
                 string value = txtValue.Text;
-                int carId = Convert.ToInt32(txtCarId.Text);
 
                 Controllers.Document.UpdateDocument(
                     document.DocumentId,
                     type,
                     value,
-                    carId
+                    Convert.ToInt32(txtCarId.SelectedValue)
                 );
 
                 MessageBox.Show("Document editado com sucesso!");
@@ -113,7 +112,7 @@ namespace Views
             this.lblCarId.Text = "Carro:";
             this.lblCarId.Location = new Point(33, txtValue.Bottom + 10);
             this.lblCarId.Size = new Size(70, 20);
-
+            
             this.txtCarId = new ComboBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
             this.txtCarId.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -121,11 +120,21 @@ namespace Views
             this.txtCarId.ValueMember = "Key";
             this.txtCarId.DisplayMember = "Value";
             this.txtCarId.DataSource = GetModelsCarsToComboBox();
-            if (txtCarId.Items.Count > 0)
-            {
-                txtCarId.SelectedIndex = 0;
-            }
             this.txtCarId.Size = new Size(220, 20);
+
+            foreach (KeyValuePair<int, string> item in this.txtCarId.Items)
+            {
+                if (item.Key == document.CarId)
+                {
+                    this.txtCarId.SelectedItem = item;
+                    break;
+                }
+            }
+
+
+
+           
+
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;

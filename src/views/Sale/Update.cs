@@ -9,14 +9,63 @@ namespace Views
         public Label lblClientId;
         public Label lblSellerId;
         public DateTimePicker txtDate;
-        public TextBox txtCarId;
-        public TextBox txtClientId;
-        public TextBox txtSellerId;
+        public ComboBox txtCarId;
+        public ComboBox txtClientId;
+        public ComboBox txtSellerId;
         public Button btUpdate;
         public Button btClose;
         public TableLayoutPanel panel;
 
         public Models.Sale sale;
+
+
+
+        public List<KeyValuePair<int, string>> GetModelsCarsToComboBox()
+        {
+            List<KeyValuePair<int, string>> modelsCars = new List<KeyValuePair<int, string>>();
+            
+            List<int> soldCarIds = new List<int>();
+
+            foreach (Models.Sale sale in Controllers.Sale.ReadAllSale())
+            {
+                soldCarIds.Add(sale.CarId);
+            }
+
+            foreach (Models.Car car in Controllers.Car.ReadAllCars())
+            {
+                if (!soldCarIds.Contains(car.CarId))
+                {
+                    Models.Model modelCar = Controllers.Model.ReadModelById(car.ModelId);
+                    modelsCars.Add(new KeyValuePair<int, string>(car.CarId, modelCar.Name));
+                }
+            }
+            
+            return modelsCars;
+        }
+
+
+        public static List<Models.Client> GetClientsToComboBox(){
+            List<Models.Client> clients = new List<Models.Client>();
+            foreach(Models.Client client in Models.Client.ReadAllClients()){
+                if((client.ClientId != 0) && (client.Name != null)){
+                    clients.Add(client);
+                }
+            }
+
+            return clients;
+        } 
+
+        public static List<Models.Seller> GetSallersToComboBox(){
+            List<Models.Seller> sellers = new List<Models.Seller>();
+            foreach(Models.Seller seller in Controllers.Seller.ReadAllSeller()){
+                if((seller.SellerId != 0) && (seller.Name != null)){
+                    sellers.Add(seller);
+                }
+            }
+
+            return sellers;
+        } 
+
 
         public void btUpdate_Click(object sender, EventArgs e)
         {
@@ -34,7 +83,6 @@ namespace Views
                 );
 
                 MessageBox.Show("Venda editada com sucesso!");
-                ClearForm();
             }
             catch (Exception ex)
             {
@@ -49,18 +97,12 @@ namespace Views
             this.Close();
         }
 
-        private void ClearForm()
-        {
-            txtCarId.Clear();
-            txtClientId.Clear();
-            txtSellerId.Clear();
-        }
 
         public UpdateSale(Models.Sale sale)
         {
             this.sale = sale;
 
-            this.Text = "Edição";
+            this.Text = "Editar Venda";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -68,10 +110,9 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(300, 450);
-            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
-            this.lblTitle.Text = "Editar Venda";
+            this.lblTitle.Text = "Cadastro de Venda";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new Point(60, 30);
             this.lblTitle.Size = new Size(250, 40);
@@ -82,7 +123,6 @@ namespace Views
             this.lblDate.Size = new Size(70, 20);
 
             this.txtDate = new DateTimePicker();
-            this.txtDate.Text = sale.Date.ToString();
             this.txtDate.Location = new Point(33, lblDate.Bottom + 5);
             this.txtDate.Size = new Size(220, 20);
             txtDate.Format = DateTimePickerFormat.Short;
@@ -92,34 +132,49 @@ namespace Views
             this.lblCarId.Location = new Point(33, txtDate.Bottom + 10);
             this.lblCarId.Size = new Size(70, 20);
 
-            this.txtCarId = new TextBox();
-            this.txtCarId.Text = sale.CarId.ToString();
+            this.txtCarId = new ComboBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
-            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
             this.txtCarId.Size = new Size(220, 20);
+            this.txtCarId.ValueMember = "Key";
+            this.txtCarId.DisplayMember = "Value";
+            this.txtCarId.DataSource = GetModelsCarsToComboBox();
+            if (txtCarId.Items.Count > 0)
+            {
+                txtCarId.SelectedIndex = 0;
+            }
 
             this.lblClientId = new Label();
             this.lblClientId.Text = "Cliente:";
             this.lblClientId.Location = new Point(33, txtCarId.Bottom + 10);
             this.lblClientId.Size = new Size(70, 20);
-
-            this.txtClientId = new TextBox();
-            this.txtClientId.Text = sale.ClientId.ToString();
+            
+            this.txtClientId = new ComboBox();
             this.txtClientId.Location = new Point(33, lblClientId.Bottom + 5);
-            this.txtClientId.BorderStyle = BorderStyle.FixedSingle;
             this.txtClientId.Size = new Size(220, 20);
+            this.txtClientId.ValueMember = "ClientId";
+            this.txtClientId.DisplayMember = "Name";
+            this.txtClientId.DataSource = GetClientsToComboBox();
+            if (txtClientId.Items.Count > 0)
+            {
+                txtClientId.SelectedIndex = 0;
+            }
 
             this.lblSellerId = new Label();
             this.lblSellerId.Text = "Vendedor:";
             this.lblSellerId.Location = new Point(33, txtClientId.Bottom + 10);
             this.lblSellerId.Size = new Size(70, 20);
 
-            this.txtSellerId = new TextBox();
-            this.txtSellerId.Text = sale.SellerId.ToString();
+            this.txtSellerId = new ComboBox();
             this.txtSellerId.Location = new Point(33, lblSellerId.Bottom + 5);
-            this.txtSellerId.BorderStyle = BorderStyle.FixedSingle;
             this.txtSellerId.Size = new Size(220, 20);
-            
+            this.txtSellerId.ValueMember = "SellerId";
+            this.txtSellerId.DisplayMember = "Name";
+            this.txtSellerId.DataSource = GetSallersToComboBox();
+            if (txtSellerId.Items.Count > 0)
+            {
+                txtSellerId.SelectedIndex = 0;
+            }
+
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
@@ -130,14 +185,14 @@ namespace Views
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
-            for (int i = 0; i < panel.ColumnCount; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             }
 
             this.btUpdate = new Button();
-            this.btUpdate.Text = "Editar";
-            //this.btUpdate.Location = new Point(90, 180);
+            this.btUpdate.Text = "Adicionar";
+            //this.btUpdate.Location = new Point(80, panel.Bottom + 10);
             this.btUpdate.Size = new Size(200, 25);
             this.btUpdate.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btUpdate.FlatStyle = FlatStyle.Flat;
@@ -149,7 +204,7 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
+            //this.btClose.Location = new Point(80, btUpdate.Bottom + 10);
             this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
@@ -161,12 +216,14 @@ namespace Views
             {
                 this.Close();
             };
-
+            
             this.panel.Controls.Add(btUpdate, 1, 0);
             this.panel.Controls.Add(btClose, 2, 0);
 
             this.Controls.Add(panel);
             this.Controls.Add(lblTitle);
+            this.Controls.Add(lblDate);
+            this.Controls.Add(txtDate);
             this.Controls.Add(lblCarId);
             this.Controls.Add(txtCarId);
             this.Controls.Add(lblClientId);

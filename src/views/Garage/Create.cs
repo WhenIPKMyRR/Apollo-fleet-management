@@ -36,7 +36,7 @@ namespace Views
             }
 
             ListGarage GarageList = Application.OpenForms.OfType<ListGarage>().FirstOrDefault();
-            if (GarageList == null)
+            if (GarageList != null)
             {
                 GarageList.RefreshList();
             }
