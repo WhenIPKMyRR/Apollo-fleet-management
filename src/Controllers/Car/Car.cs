@@ -9,14 +9,16 @@ namespace Controllers{
             string color,
             string plate,
             string type,
-            decimal price,
+            int price,
             string chassis,
             string renavam,
             string fuel,
             string transmission,
             int mileage,
+            bool IsUsed,
             int idModel,
-            int idBrand
+            int idBrand,
+            int idGarage
         )
         {
             if((year > 1980))
@@ -32,8 +34,10 @@ namespace Controllers{
                     fuel,
                     transmission,
                     mileage,
+                    IsUsed,
                     idModel,
-                    idBrand
+                    idBrand,
+                    idGarage
                 );
             }
             else
@@ -47,13 +51,12 @@ namespace Controllers{
         {
             IEnumerable<Models.Car> cars = Models.Car.ReadAllCars();
 
-            if(cars != null){
-                return cars;
-            }
-            else
+            if(cars == null)
             {
                 throw new System.ArgumentException("Nenhum carro encontrado");
             }
+
+            return cars;
         }
 
         public static Models.Car ReadCarById(int id)
@@ -127,14 +130,16 @@ namespace Controllers{
             string color,
             string plate,
             string type,
-            decimal price,
+            int price,
             string chassis,
             string renavam,
             string fuel,
             string transmission,
             int mileage,
+            bool IsUsed,
             int idModel,
-            int idBrand
+            int idBrand,
+            int idGarage
         )
         {
             Models.Car car = Models.Car.UpdateCar(
@@ -149,8 +154,10 @@ namespace Controllers{
                 fuel,
                 transmission,
                 mileage,
+                IsUsed,
                 idModel,
-                idBrand
+                idBrand,
+                idGarage
             );
 
             if(car != null){

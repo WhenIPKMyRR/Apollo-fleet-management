@@ -5,6 +5,7 @@ namespace Models
         public int ModelId {get; set;}
         public string Name {get; set;}
         public int BrandId {get; set;}
+        public virtual Brand brand {get; set;}
 
         protected Model(string Name, int BrandId)
         {

@@ -27,13 +27,11 @@ namespace Controllers{
         {
             IEnumerable<Models.Sale> sales = Models.Sale.ReadAllSale();
 
-            if(sales != null){
-                return sales;
-            }
-            else
+            if(sales == null)
             {
-                throw new System.ArgumentException("Nenhuma venda encontrada");
+                throw new System.ArgumentException("Não foi possivel listar as vendas");
             }
+            return sales;
         }
 
         public static Models.Sale ReadSaleById(int id)

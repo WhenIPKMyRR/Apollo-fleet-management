@@ -6,6 +6,9 @@ namespace Models
         public string Type {get; set;}
         public string Value {get; set;}
         public int CarId {get; set;}
+        public virtual Car car {get; set;}
+        
+        
 
 
         protected Document(string Type, string Value, int CarId)
@@ -90,6 +93,20 @@ namespace Models
             context.SaveChanges();
         }
 
+        public static void DeleteDocumentByValue(
+            string value
+        )
+        {
+            Document document = ReadByValueDocument(
+                value
+            );
+
+            Repository.Context context = new Repository.Context();
+            context.Documents.Remove(document);
+            context.SaveChanges();
+        }
+
+
         public static Document ReadByIdDocument(
             int DocumentId
         )
@@ -107,5 +124,22 @@ namespace Models
                 }
             }
         }
+
+        public static Document ReadByValueDocument(string value)
+        {
+            Repository.Context context = new Repository.Context();
+            Document document =  context.Documents.Where(d => d.Value == value).FirstOrDefault();
+            {
+                if (document == null)
+                {
+                    throw new ArgumentException("Documento não encontrado");
+                }
+                else
+                {
+                    return document;
+                }
+            }
+        }
+
     }
 }

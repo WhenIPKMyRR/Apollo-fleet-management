@@ -8,28 +8,41 @@ namespace Views
         public Label lblCarId;
         public TextBox txtType;
         public TextBox txtValue;
-        public TextBox txtCarId;
+        public ComboBox txtCarId;
         public Button btUdpate;
         public Button btClose;
         public TableLayoutPanel panel;
 
         public Models.Document document;
+
+
+        public List<KeyValuePair<int, string>> GetModelsCarsToComboBox()
+        {
+            List<KeyValuePair<int, string>> modelsCars = new List<KeyValuePair<int, string>>();
+            
+            foreach(Models.Car car in Controllers.Car.ReadAllCars()){
+                if(car.CarId != 0){
+                    Models.Model modelCar = Controllers.Model.ReadModelById(car.ModelId);
+                    modelsCars.Add(new KeyValuePair<int, string>(car.CarId, modelCar.Name));
+                }
+            }
+            
+            return modelsCars;
+        }
+
         public void btUdpate_Click(object sender, EventArgs e)
         {
            try 
            {
-                int type = Convert.ToInt32(txtType.Text);
-                int value = Convert.ToInt32(txtValue.Text);
-                int carId = Convert.ToInt32(txtCarId.Text);
+                string type = txtType.Text;
+                string value = txtValue.Text;
 
                 Controllers.Document.UpdateDocument(
                     document.DocumentId,
-                    type.ToString(),
-                    value.ToString(),
-                    carId
+                    type,
+                    value,
+                    Convert.ToInt32(txtCarId.SelectedValue)
                 );
-
-                Controllers.Document.UpdateDocument(document.DocumentId, document.Type, document.Value, document.CarId);
 
                 MessageBox.Show("Document editado com sucesso!");
                 ClearForm();
@@ -51,7 +64,6 @@ namespace Views
         {
             txtType.Clear();
             txtValue.Clear();
-            txtCarId.Clear();
         }
 
         public UpdateDocument(Models.Document document)
@@ -66,6 +78,7 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(300, 380);
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Documento";
@@ -79,6 +92,7 @@ namespace Views
             this.lblType.Size = new Size(70, 20);
 
             this.txtType = new TextBox();
+            this.txtType.Text = document.Type;
             this.txtType.Location = new Point(33, lblType.Bottom + 5);
             this.txtType.BorderStyle = BorderStyle.FixedSingle;
             this.txtType.Size = new Size(220, 20);
@@ -89,6 +103,7 @@ namespace Views
             this.lblValue.Size = new Size(70, 20);
 
             this.txtValue = new TextBox();
+            this.txtValue.Text = document.Value;
             this.txtValue.Location = new Point(33, lblValue.Bottom + 5);
             this.txtValue.BorderStyle = BorderStyle.FixedSingle;
             this.txtValue.Size = new Size(220, 20);
@@ -97,19 +112,37 @@ namespace Views
             this.lblCarId.Text = "Carro:";
             this.lblCarId.Location = new Point(33, txtValue.Bottom + 10);
             this.lblCarId.Size = new Size(70, 20);
-
-            this.txtCarId = new TextBox();
+            
+            this.txtCarId = new ComboBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
-            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtCarId.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.txtCarId.FlatStyle = FlatStyle.Flat;
+            this.txtCarId.ValueMember = "Key";
+            this.txtCarId.DisplayMember = "Value";
+            this.txtCarId.DataSource = GetModelsCarsToComboBox();
             this.txtCarId.Size = new Size(220, 20);
+
+            foreach (KeyValuePair<int, string> item in this.txtCarId.Items)
+            {
+                if (item.Key == document.CarId)
+                {
+                    this.txtCarId.SelectedItem = item;
+                    break;
+                }
+            }
+
+
+
+           
+
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

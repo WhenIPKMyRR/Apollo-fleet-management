@@ -17,57 +17,137 @@ namespace Views
         public Label lblBrandId;
         public ComboBox txtYear;
         public TextBox txtColor;
-        public TextBox txtLicensePlate;
-        public TextBox txtBodyworkType;
+        public TextBox mskLicensePlate ;
+        public ComboBox txtBodyworkType;
         public TextBox txtPrice;
         public TextBox txtChassisCode;
         public TextBox txtRenavanCode;
         public ComboBox txtFuelType;
         public ComboBox txtCarTransmissionType;
         public TextBox txtCarMileage;
-        public TextBox txtModelId;
-        public TextBox txtBrandId;
+        public ComboBox txtModelId;
+        public ComboBox txtBrandId;
+        public Label lblGarageId;
+        public ComboBox txtGarageId;
+        public Label lblIsUsed;
+        public RadioButton radioIsUsed;
+        public RadioButton radioIsNotUsed;
+        
+        
         public TableLayoutPanel panel;
         public Button btClose;
         public Button btCrt;
 
+
+        public static List<Models.Model> GetModelsToComboBox(){
+            List<Models.Model> models = new List<Models.Model>();
+            models.Add(new Models.Model{ ModelId=0 , Name=""});
+            foreach(Models.Model model in Controllers.Model.ReadAllModels()){
+                if((model.ModelId != 0) && (model.Name != null)){
+                    models.Add(model);
+                }
+            }
+
+            return models;
+        } 
+
+        public static List<Models.Brand> GetBrandsToComboBox(){
+            List<Models.Brand> brands = new List<Models.Brand>();
+            brands.Add(new Models.Brand { BrandId = 0, Name = "" });
+            foreach(Models.Brand brand in Models.Brand.ReadAllBrands()){
+                if((brand.BrandId != 0) && (brand.Name != null)){
+                    brands.Add(brand);
+                }
+            }
+
+            return brands;
+        } 
+
+        public static List<Models.Garage> GetGaragesToComboBox(){
+            List<Models.Garage> garages = new List<Models.Garage>();
+            garages.Add(new Models.Garage{ GarageId=0 , Name=""});
+            foreach(Models.Garage garage in Controllers.Garage.ReadAllGarages()){
+                if((garage.GarageId != 0) && (garage.Name != null)){
+                    garages.Add(garage);
+                }
+            }
+
+            return garages;
+        } 
+
         public void btCrt_Click(object sender, EventArgs e)
         {
-           Controllers.Car.CreateCar(
-                Convert.ToInt32(txtYear.Text),
-                txtColor.Text,
-                txtLicensePlate.Text,
-                txtBodyworkType.Text,
-                Convert.ToInt32(txtPrice.Text),
-                txtChassisCode.Text,
-                txtRenavanCode.Text,
-                txtFuelType.Text,
-                txtCarTransmissionType.Text,
-                Convert.ToInt32(txtCarMileage),
-                Convert.ToInt32(txtModelId.Text),
-                Convert.ToInt32(txtBrandId.Text)
-           );
-
-            // Controllers.Document.CreateDocument(
-            //     "Renavan",
-            //     txtRenavanCode.Text,
-            //     Convert.ToInt32(txtBrandId.Text)
-            // );
-            // Controllers.Model.CreateModel(
-            //     cboModels.Text,
+            try
+            {
+                int modelId = Convert.ToInt32(txtModelId.SelectedValue);
+                int brandId = Convert.ToInt32(txtBrandId.SelectedValue);
+                int year = Convert.ToInt32(txtYear.Text);
+                string color = txtColor.Text.ToUpper();
+                string licensePlate = mskLicensePlate .Text.ToUpper();
+                string bodyworkType = txtBodyworkType.Text;
+                string chassisCode = txtChassisCode.Text.ToUpper();
+                string renavanCode = txtRenavanCode.Text.ToUpper();
+                string fuelType = txtFuelType.Text;
+                string carTransmissionType = txtCarTransmissionType.Text;
+                int carMileage = Convert.ToInt32(txtCarMileage.Text);
+                int garageId = Convert.ToInt32(txtGarageId.SelectedValue);
+                bool IsUsed = radioIsUsed.Checked;
+                int price = Convert.ToInt32(txtPrice.Text);
 
 
+
+               Models.Car car = Controllers.Car.CreateCar(
+                    year,
+                    color,
+                    licensePlate,
+                    bodyworkType,
+                    price,
+                    chassisCode,
+                    renavanCode,
+                    fuelType,
+                    carTransmissionType,
+                    carMileage,
+                    !IsUsed,
+                    modelId,
+                    brandId,
+                    garageId
+                );
+
+                Controllers.Document.CreateDocument(
+                    "Renavam",
+                    txtRenavanCode.Text,
+                    car.CarId
+                );
+                Controllers.Document.CreateDocument(
+                    "Chassis",
+                    txtChassisCode.Text,
+                    car.CarId
+                );
                 
-            // );
-
-           MessageBox.Show("Carro criado com sucesso.");
+                MessageBox.Show("Carro cadastrado com sucesso.");
+                ClearForm();
+            }
+            catch (Exception err)
+            {
+                    MessageBox.Show(err.Message);
+            }
 
            ListCar CarList = Application.OpenForms.OfType<ListCar>().FirstOrDefault();
-           if (CarList == null)
+           if(CarList != null)
            {
                 CarList.RefreshList();
            }
-            this.Close();
+           this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtColor.Clear();
+            mskLicensePlate .Clear();
+            txtPrice.Clear();
+            txtChassisCode.Clear();
+            txtRenavanCode.Clear();
+            txtCarMileage.Clear();
         }
 
         private void ComboBoxAno()
@@ -80,10 +160,6 @@ namespace Views
             }
         }
 
-        private void Load(object sender, EventArgs e)
-        {
-            ComboBoxAno();
-        }
 
         public CreateCar()
         {
@@ -94,13 +170,15 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Size = new System.Drawing.Size(590, 580);
+            this.Size = new System.Drawing.Size(590, 620);
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Carros";
             this.lblTitle.Font = new Font("Segoe UI", 15, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new Point(190, 30);
             this.lblTitle.Size = new Size(250, 40);
+
 
             this.lblYear = new Label();
             this.lblYear.Text = "Ano:";
@@ -110,6 +188,10 @@ namespace Views
             this.txtYear = new ComboBox();
             this.txtYear.Location = new Point(33, lblYear.Bottom + 5);
             this.txtYear.Size = new Size(220, 20);
+            this.txtYear.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.txtYear.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtYear.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtYear.FlatStyle = FlatStyle.Flat;
             ComboBoxAno();
             this.Controls.Add(txtYear);
 
@@ -121,27 +203,41 @@ namespace Views
             this.txtColor = new TextBox();
             this.txtColor.Location = new Point(320, txtYear.Bottom - 23);
             this.txtColor.BorderStyle = BorderStyle.FixedSingle;
+            this.txtColor.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtColor.Size = new Size(220, 20);
-
-            this.lblLicensePlate = new Label();
-            this.lblLicensePlate.Text = "Placa:";
-            this.lblLicensePlate.Location = new Point(33, txtColor.Bottom + 10);
-            this.lblLicensePlate.Size = new Size(110, 20);
-
-            this.txtLicensePlate = new TextBox();
-            this.txtLicensePlate.Location = new Point(33, lblLicensePlate.Bottom + 5);
-            this.txtLicensePlate.BorderStyle = BorderStyle.FixedSingle;
-            this.txtLicensePlate.Size = new Size(220, 20);
 
             this.lblBodyworkType = new Label();
             this.lblBodyworkType.Text = "Carroceria:";
-            this.lblBodyworkType.Location = new Point(320, lblLicensePlate.Bottom - 20);
-            this.lblBodyworkType.Size = new Size(100, 20);
+            this.lblBodyworkType.Location = new Point(33, txtColor.Bottom + 10);
+            this.lblBodyworkType.Size = new Size(110, 20);
 
-            this.txtBodyworkType = new TextBox();
-            this.txtBodyworkType.Location = new Point(320, txtLicensePlate.Bottom - 23);
-            this.txtBodyworkType.BorderStyle = BorderStyle.FixedSingle;
+            this.txtBodyworkType = new ComboBox();
+            this.txtBodyworkType.Location = new Point(33, lblBodyworkType.Bottom + 5);
+            this.txtBodyworkType.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.txtBodyworkType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtBodyworkType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtBodyworkType.FlatStyle = FlatStyle.Flat;
             this.txtBodyworkType.Size = new Size(220, 20);
+            this.txtBodyworkType.Items.Add("Conversível");
+            this.txtBodyworkType.Items.Add("Coupé");
+            this.txtBodyworkType.Items.Add("Hatch");
+            this.txtBodyworkType.Items.Add("Picape");
+            this.txtBodyworkType.Items.Add("Sedan");
+            this.txtBodyworkType.Items.Add("SUV");
+            this.txtBodyworkType.Items.Add("Van");
+            this.txtBodyworkType.Items.Add("Wagon");
+            
+
+            this.lblLicensePlate = new Label();
+            this.lblLicensePlate.Text = "Placa:";
+            this.lblLicensePlate.Location = new Point(320, lblBodyworkType.Bottom - 20);
+            this.lblLicensePlate.Size = new Size(110, 20);
+
+            this.mskLicensePlate = new TextBox();
+            this.mskLicensePlate.BorderStyle = BorderStyle.FixedSingle;
+            this.mskLicensePlate.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
+            this.mskLicensePlate.Location = new Point(320, lblLicensePlate.Bottom + 5);
+            this.mskLicensePlate.Size = new System.Drawing.Size(220, 20);
 
             this.lblPrice = new Label();
             this.lblPrice.Text = "Preço:";
@@ -151,7 +247,9 @@ namespace Views
             this.txtPrice = new TextBox();
             this.txtPrice.Location = new Point(33, lblPrice.Bottom + 5);
             this.txtPrice.BorderStyle = BorderStyle.FixedSingle;
+            this.txtPrice.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtPrice.Size = new Size(220, 20);
+
 
             this.lblChassisCode = new Label();
             this.lblChassisCode.Text = "Código do Chassis:";
@@ -161,6 +259,7 @@ namespace Views
             this.txtChassisCode = new TextBox();
             this.txtChassisCode.Location = new Point(320, txtPrice.Bottom - 23);
             this.txtChassisCode.BorderStyle = BorderStyle.FixedSingle;
+            this.txtChassisCode.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtChassisCode.Size = new Size(220, 20);
 
             this.lblFuelType = new Label();
@@ -171,6 +270,10 @@ namespace Views
             this.txtFuelType = new ComboBox();
             this.txtFuelType.Location = new Point(33, lblFuelType.Bottom + 5);
             this.txtFuelType.Size = new Size(220, 20);
+            this.txtFuelType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtFuelType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtFuelType.FlatStyle = FlatStyle.Flat;
+            this.txtFuelType.Items.Add("Álcool");
             this.txtFuelType.Items.Add("Diesel");
             this.txtFuelType.Items.Add("Elétrico");
             this.txtFuelType.Items.Add("Etanol");
@@ -187,6 +290,7 @@ namespace Views
             this.txtRenavanCode = new TextBox();
             this.txtRenavanCode.Location = new Point(320, txtFuelType.Bottom - 23);
             this.txtRenavanCode.BorderStyle = BorderStyle.FixedSingle;
+            this.txtRenavanCode.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtRenavanCode.Size = new Size(220, 20);
 
             this.lblCarTransmissionType = new Label();
@@ -196,6 +300,9 @@ namespace Views
 
             this.txtCarTransmissionType = new ComboBox();
             this.txtCarTransmissionType.Location = new Point(33, lblCarTransmissionType.Bottom + 5);
+            this.txtCarTransmissionType.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtCarTransmissionType.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtCarTransmissionType.FlatStyle = FlatStyle.Flat;
             this.txtCarTransmissionType.Size = new Size(220, 20);
             this.txtCarTransmissionType.Items.Add("Manual");
             this.txtCarTransmissionType.Items.Add("Automático");
@@ -209,16 +316,28 @@ namespace Views
             this.txtCarMileage = new TextBox();
             this.txtCarMileage.Location = new Point(320, txtCarTransmissionType.Bottom - 23);
             this.txtCarMileage.BorderStyle = BorderStyle.FixedSingle;
+            this.txtCarMileage.ForeColor = ColorTranslator.FromHtml("#1c1c1e");
             this.txtCarMileage.Size = new Size(220, 20);
 
+                        
             this.lblModelId = new Label();
             this.lblModelId.Text = "Modelo:";
             this.lblModelId.Location = new Point(33, txtCarMileage.Bottom + 10);
             this.lblModelId.Size = new Size(70, 20);
 
-            this.txtModelId = new TextBox();
+            this.txtModelId = new ComboBox();
             this.txtModelId.Location = new Point(33, lblModelId.Bottom + 5);
-            this.txtModelId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtModelId.Size = new Size(220, 20);
+            this.txtModelId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtModelId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtModelId.FlatStyle = FlatStyle.Flat;
+            this.txtModelId.ValueMember = "ModelId";
+            this.txtModelId.DisplayMember = "Name";
+            this.txtModelId.DataSource = GetModelsToComboBox();
+            if (txtModelId.Items.Count > 0)
+            {
+                txtModelId.SelectedIndex = 0;
+            }
             this.txtModelId.Size = new Size(220, 20);
 
             this.lblBrandId = new Label();
@@ -226,18 +345,65 @@ namespace Views
             this.lblBrandId.Location = new Point(320, lblModelId.Bottom - 20);
             this.lblBrandId.Size = new Size(70, 20);
 
-            this.txtBrandId = new TextBox();
+            this.txtBrandId = new ComboBox();
             this.txtBrandId.Location = new Point(320, txtModelId.Bottom - 23);
-            this.txtBrandId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtBrandId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtBrandId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtBrandId.FlatStyle = FlatStyle.Flat;
+            this.txtBrandId.ValueMember = "BrandId";
+            this.txtBrandId.DisplayMember = "Name";
+            this.txtBrandId.DataSource = GetBrandsToComboBox();
+            if (txtBrandId.Items.Count > 0)
+            {
+                txtBrandId.SelectedIndex = 0;
+            }
             this.txtBrandId.Size = new Size(220, 20);
+
+            this.lblGarageId = new Label();
+            this.lblGarageId.Text = "Garagem:";
+            this.lblGarageId.Location = new Point(32, txtBrandId.Bottom + 20);
+            this.lblGarageId.Size = new Size(70, 20);
+
+            this.txtGarageId = new ComboBox();
+            this.txtGarageId.Location = new Point(32, lblGarageId.Bottom + 5);
+            this.txtGarageId.ForeColor = ColorTranslator.FromHtml("#242424");
+            this.txtGarageId.BackColor =  ColorTranslator.FromHtml("#E0E6ED");
+            this.txtGarageId.FlatStyle = FlatStyle.Flat;
+            this.txtGarageId.ValueMember = "GarageId";
+            this.txtGarageId.DisplayMember = "Name";
+            this.txtGarageId.DataSource = GetGaragesToComboBox();
+            if (txtGarageId.Items.Count > 0)
+            {
+                txtGarageId.SelectedIndex = 0;
+            }
+            this.txtGarageId.Size = new Size(220, 20);
+
+            this.lblIsUsed = new Label();
+            this.lblIsUsed.Text = "Estado:";
+            this.lblIsUsed.Location = new Point(320, txtBrandId.Bottom + 20);
+            this.lblIsUsed.Size = new Size(70, 20);
+
+            this.radioIsUsed = new RadioButton();
+            this.radioIsUsed.Location = new Point(320, lblIsUsed.Bottom + 5);
+            this.radioIsUsed.Size = new Size(90, 20);
+            this.radioIsUsed.FlatStyle = FlatStyle.Flat;
+            this.radioIsUsed.Text = "Seminovo";
+
+            this.radioIsNotUsed = new RadioButton();
+            this.radioIsNotUsed.Location = new Point(420, lblIsUsed.Bottom + 5);
+            this.radioIsNotUsed.Size = new Size(90, 20);
+            this.radioIsNotUsed.FlatStyle = FlatStyle.Flat;
+            this.radioIsNotUsed.Text = "Usado";
+            
+
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
@@ -260,7 +426,6 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
             this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
@@ -276,6 +441,10 @@ namespace Views
             this.panel.Controls.Add(btCrt, 1, 0);
             this.panel.Controls.Add(btClose, 2, 0);
 
+            this.Controls.Add(lblModelId);
+            this.Controls.Add(txtModelId);
+            this.Controls.Add(lblBrandId);
+            this.Controls.Add(txtBrandId);
             this.Controls.Add(panel);
             this.Controls.Add(lblTitle);
             this.Controls.Add(lblYear);
@@ -283,7 +452,7 @@ namespace Views
             this.Controls.Add(lblColor);
             this.Controls.Add(txtColor);
             this.Controls.Add(lblLicensePlate);
-            this.Controls.Add(txtLicensePlate);
+            this.Controls.Add(mskLicensePlate);
             this.Controls.Add(lblBodyworkType);
             this.Controls.Add(txtBodyworkType);
             this.Controls.Add(lblPrice);
@@ -298,10 +467,12 @@ namespace Views
             this.Controls.Add(txtCarTransmissionType);
             this.Controls.Add(lblCarMileage);
             this.Controls.Add(txtCarMileage);
-            this.Controls.Add(lblModelId);
-            this.Controls.Add(txtModelId);
-            this.Controls.Add(lblBrandId);
-            this.Controls.Add(txtBrandId);
+            this.Controls.Add(lblGarageId);
+            this.Controls.Add(txtGarageId);
+            this.Controls.Add(lblIsUsed);
+            this.Controls.Add(radioIsUsed);
+            this.Controls.Add(radioIsNotUsed);
+
         }
     }
 }

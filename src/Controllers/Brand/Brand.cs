@@ -4,13 +4,13 @@ namespace Controllers{
 
     public class Brand{
 
-        public static Brand CreateBrand(
+        public static Models.Brand CreateBrand(
             string name
         )
         {
-            if(name.Length > 3)
+            if(name.Length >= 3)
             {
-                return Brand.CreateBrand(
+                return Models.Brand.CreateBrand(
                     name
                 );
             }
@@ -33,9 +33,9 @@ namespace Controllers{
             }
         }
 
-        public static Brand ReadBrandById(int id)
+        public static Models.Brand ReadBrandById(int id)
         {
-            Brand brand = Brand.ReadBrandById(id);
+            Models.Brand brand = Models.Brand.ReadBrandById(id);
             
             if(brand != null){
                 return brand;
@@ -59,14 +59,22 @@ namespace Controllers{
             }
         }
 
-        public static void UpdateBrand(
+        public static Models.Brand UpdateBrand(
             int id,
             string name
         )
         {
+            Models.Brand brand = Models.Brand.UpdateBrand(
+                id,
+                name
+            );
+
             if((id != 0) && (name != null)){
-                Brand.UpdateBrand(id, name);
-            }else{
+
+                return brand;
+            }
+            else
+            {
                 throw new System.ArgumentException("Id ou nome da marca não podem ser nulos");
             }
 

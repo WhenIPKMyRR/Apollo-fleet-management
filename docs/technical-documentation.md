@@ -40,7 +40,7 @@ Além disso, este documento apresenta os protótipos de tela, que são represent
 
 ### Tela principal
 
-![Tela principal](../src/assets/images/screen-main.png)
+![Tela principal](../Assets/Component%2010.png)
 
 ### Avisos de exclusão de itens
 

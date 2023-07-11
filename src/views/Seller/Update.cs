@@ -11,6 +11,12 @@ namespace Views
         public TextBox txtEmail;
         public TextBox txtTelephone;
         public TextBox txtRegistration;
+        public Label lblPassword;
+        public TextBox txtPassword;
+        public Label lblIsAdm;
+        public RadioButton radioIsAdm;
+        public Label lblIsNotAdm;
+        public RadioButton radioIsNotAdm;
         public Button btUdpate;
         public Button btClose;
         public TableLayoutPanel panel;
@@ -19,14 +25,32 @@ namespace Views
 
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Seller sellerUpdate = this.seller;
-            Controllers.Seller.UpdateSeller(
-                sellerUpdate.SellerId,
-                sellerUpdate.Name,
-                sellerUpdate.Email,
-                sellerUpdate.Telephone,
-                sellerUpdate.Registration
-            );
+            try
+            {
+                string name = txtName.Text;
+                string email = txtEmail.Text;
+                string telephone = txtTelephone.Text;
+                int registration = Convert.ToInt32(txtRegistration.Text);
+                bool isAdmin = radioIsAdm.Checked;
+                string password = txtPassword.Text;
+
+                Controllers.Seller.UpdateSeller(
+                    seller.SellerId,
+                    name,
+                    email,
+                    telephone,
+                    registration,
+                    isAdmin,
+                    password
+                );
+
+                MessageBox.Show("Vendedor editado com sucesso!");
+                ClearForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             
             ListSeller SellerList = Application.OpenForms.OfType<ListSeller>().FirstOrDefault();
             if (SellerList != null)
@@ -34,6 +58,14 @@ namespace Views
                 SellerList.RefreshList();
             }
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtName.Clear();
+            txtEmail.Clear();
+            txtTelephone.Clear();
+            txtRegistration.Clear();
         }
 
         public UpdateSeller(Models.Seller seller)
@@ -47,7 +79,8 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false; 
-            this.Size = new System.Drawing.Size(300, 450);
+            this.BackColor = ColorTranslator.FromHtml("#f8f8f8");
+            this.Size = new System.Drawing.Size(300, 530);
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Vendedor";
@@ -61,6 +94,7 @@ namespace Views
             this.lblName.Size = new Size(70, 20);
 
             this.txtName = new TextBox();
+            this.txtName.Text = seller.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
@@ -71,6 +105,7 @@ namespace Views
             this.lblEmail.Size = new Size(70, 20);
 
             this.txtEmail = new TextBox();
+            this.txtEmail.Text = seller.Email;
             this.txtEmail.Location = new Point(33, lblEmail.Bottom + 5);
             this.txtEmail.BorderStyle = BorderStyle.FixedSingle;
             this.txtEmail.Size = new Size(220, 20);
@@ -81,6 +116,7 @@ namespace Views
             this.lblTelephone.Size = new Size(70, 20);
 
             this.txtTelephone = new TextBox();
+            this.txtTelephone.Text = seller.Telephone;
             this.txtTelephone.Location = new Point(33, lblTelephone.Bottom + 5);
             this.txtTelephone.BorderStyle = BorderStyle.FixedSingle;
             this.txtTelephone.Size = new Size(220, 20);
@@ -91,17 +127,56 @@ namespace Views
             this.lblRegistration.Size = new Size(70, 20);
 
             this.txtRegistration = new TextBox();
+            this.txtRegistration.Text = seller.Registration.ToString();
             this.txtRegistration.Location = new Point(33, lblRegistration.Bottom + 5);
             this.txtRegistration.BorderStyle = BorderStyle.FixedSingle;
             this.txtRegistration.Size = new Size(220, 20);
+
+            this.lblPassword = new Label();
+            this.lblPassword.Text = "Senha:";
+            this.lblPassword.Location = new Point(33, txtRegistration.Bottom + 10);
+            this.lblPassword.Size = new Size(70, 20);
+
+            this.txtPassword = new TextBox();
+            this.txtPassword.Text = seller.Password;
+            this.txtPassword.Location = new Point(33, lblPassword.Bottom + 5);
+            this.txtPassword.BorderStyle = BorderStyle.FixedSingle;
+            this.txtPassword.Size = new Size(220, 20);
+            
+
+            this.lblIsAdm = new Label();
+            this.lblIsAdm.Text = "Posição:";
+            this.lblIsAdm.Location = new Point(33, txtPassword.Bottom + 10);
+            this.lblIsAdm.Size = new Size(70, 20);
+
+            this.radioIsAdm = new RadioButton();
+            this.radioIsAdm.Location = new Point(33, lblIsAdm.Bottom + 5);
+            this.radioIsAdm.Size = new Size(100, 20);
+            this.radioIsAdm.FlatStyle = FlatStyle.Flat;
+            this.radioIsAdm.Text = "Administrador";
+            if (seller.IsAdm)
+            {
+                this.radioIsAdm.Checked = true;
+            }
+
+
+            this.radioIsNotAdm = new RadioButton();
+            this.radioIsNotAdm.Location = new Point(radioIsAdm.Width + 40, lblIsAdm.Bottom + 5);
+            this.radioIsNotAdm.Size = new Size(100, 20);
+            this.radioIsNotAdm.FlatStyle = FlatStyle.Flat;
+            this.radioIsNotAdm.Text = "Vendedor";
+            if (!seller.IsAdm)
+            {
+                this.radioIsNotAdm.Checked = true;
+            }
 
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
@@ -112,7 +187,6 @@ namespace Views
 
             this.btUdpate = new Button();
             this.btUdpate.Text = "Editar";
-            //this.btUdpate.Location = new Point(90, 180);
             this.btUdpate.Size = new Size(200, 25);
             this.btUdpate.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btUdpate.FlatStyle = FlatStyle.Flat;
@@ -124,7 +198,6 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
             this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
@@ -150,6 +223,12 @@ namespace Views
             this.Controls.Add(txtTelephone);
             this.Controls.Add(lblRegistration);
             this.Controls.Add(txtRegistration);
+            this.Controls.Add(lblPassword);
+            this.Controls.Add(txtPassword);
+            this.Controls.Add(lblIsAdm);
+            this.Controls.Add(radioIsAdm);
+            this.Controls.Add(radioIsNotAdm);
+
         }
     }
 }

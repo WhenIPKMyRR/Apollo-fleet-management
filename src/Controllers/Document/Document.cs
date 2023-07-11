@@ -48,6 +48,19 @@ namespace Controllers{
             }
         }
 
+        public static Models.Document ReadDocumentByValue(string value)
+        {
+            Models.Document document = Models.Document.ReadByValueDocument(value);
+
+            if(document != null){
+                return document;
+            }
+            else
+            {
+                throw new System.ArgumentException("Documento não encontrado");
+            }
+        }
+
         public static void UpdateDocument(
             int id,
             string Type,
@@ -82,6 +95,20 @@ namespace Controllers{
                 throw new System.ArgumentException("Documento não encontrado");
             }
         }
+
+         public static void DeleteDocumentByValue(string value)
+        {
+
+            if(value != null){
+                Models.Document.DeleteDocumentByValue(value);
+            }
+            else
+            {
+                throw new System.ArgumentException("Documento não encontrado");
+            }
+        }
+
+
 
 
     }

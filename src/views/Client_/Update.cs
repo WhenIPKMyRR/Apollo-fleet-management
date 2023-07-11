@@ -18,26 +18,45 @@ namespace Views
         public Models.Client client;
         public void btUdpate_Click(object sender, EventArgs e)
         {
-            Models.Client clientToUpdate = this.client;
-            clientToUpdate.Name = this.txtName.Text;
-            clientToUpdate.Telephone = this.txtTelephone.Text;
-            clientToUpdate.Address = this.txtAddress.Text;
-            clientToUpdate.Document = this.txtDocument.Text;
+            try
+            {
+                string name = txtName.Text;
+                string telephone = txtTelephone.Text;
+                string address = txtAddress.Text;
+                string document = txtDocument.Text;
 
-            Controllers.Client.UpdateClient(
-                clientToUpdate.ClientId,
-                clientToUpdate.Name,
-                clientToUpdate.Telephone,
-                clientToUpdate.Address,
-                clientToUpdate.Document
-            );
+                Models.Client.UpdateClient(
+                    client.ClientId,
+                    name,
+                    telephone,
+                    address,
+                    document
+                );
+
+                MessageBox.Show("Cliente editado com sucesso.");
+                ClearForm();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
 
             ListClient ClientList = Application.OpenForms.OfType<ListClient>().FirstOrDefault();
             if (ClientList != null)
             {
                 ClientList.RefreshList();
             }
+            
             this.Close();
+        }
+
+        private void ClearForm()
+        {
+            txtName.Clear();
+            txtTelephone.Clear();
+            txtAddress.Clear();
+            txtDocument.Clear();
         }
 
 
@@ -53,11 +72,12 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(300, 440);
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Editar Cliente";
             this.lblTitle.Font = new Font("Segoe UI", 13f, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(60, 30);
+            this.lblTitle.Location = new Point(75, 30);
             this.lblTitle.Size = new Size(250, 40);
 
             this.lblName = new Label();
@@ -66,6 +86,7 @@ namespace Views
             this.lblName.Size = new Size(70, 20);
 
             this.txtName = new TextBox();
+            this.txtName.Text = client.Name;
             this.txtName.Location = new Point(33, lblName.Bottom + 5);
             this.txtName.BorderStyle = BorderStyle.FixedSingle;
             this.txtName.Size = new Size(220, 20);
@@ -76,6 +97,7 @@ namespace Views
             this.lblTelephone.Size = new Size(70, 20);
 
             this.txtTelephone = new TextBox();
+            this.txtTelephone.Text = client.Telephone;
             this.txtTelephone.Location = new Point(33, lblTelephone.Bottom + 5);
             this.txtTelephone.BorderStyle = BorderStyle.FixedSingle;
             this.txtTelephone.Size = new Size(220, 20);
@@ -86,6 +108,7 @@ namespace Views
             this.lblAddress.Size = new Size(70, 20);
 
             this.txtAddress = new TextBox();
+            this.txtAddress.Text = client.Address;
             this.txtAddress.Location = new Point(33, lblAddress.Bottom + 5);
             this.txtAddress.BorderStyle = BorderStyle.FixedSingle;
             this.txtAddress.Size = new Size(220, 20);
@@ -96,6 +119,7 @@ namespace Views
             this.lblDocument.Size = new Size(80, 20);
 
             this.txtDocument = new TextBox();
+            this.txtDocument.Text = client.Document;
             this.txtDocument.Location = new Point(33, lblDocument.Bottom + 5);
             this.txtDocument.BorderStyle = BorderStyle.FixedSingle;
             this.txtDocument.Size = new Size(220, 20);
@@ -105,8 +129,8 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#0080FF");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
@@ -155,7 +179,6 @@ namespace Views
             this.Controls.Add(txtAddress);
             this.Controls.Add(lblDocument);
             this.Controls.Add(txtDocument);
-            this.Controls.Add(btUpdate);
         }
     }
 }

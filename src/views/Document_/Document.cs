@@ -6,14 +6,18 @@ namespace Views
     public class ListDocument : Form
     {
         ListView listDocument;
+
+        
         private void AddListView(Models.Document document)
         {
+            Models.Car car = Controllers.Car.ReadCarById(document.CarId);
+            Models.Model model = Controllers.Model.ReadModelById(car.ModelId);
             string[]row = 
             {
                 document.DocumentId.ToString(),
                 document.Type,
                 document.Value,
-                document.CarId.ToString()
+                model.Name
             };
 
             ListViewItem item = new ListViewItem(row);
@@ -36,6 +40,9 @@ namespace Views
         {
             var CreateDocument = new Views.CreateDocument();
             CreateDocument.Show();
+
+            RefreshList();
+
         }
 
         private void btUdpate_Click(object sender, EventArgs e)
@@ -47,9 +54,10 @@ namespace Views
                 var DocumentUpdateView = new Views.UpdateDocument(document);
                 if(DocumentUpdateView.ShowDialog() == DialogResult.OK)
                 {
-                    RefreshList();
                     MessageBox.Show("Documento editado com sucesso.");
                 }
+
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -65,8 +73,9 @@ namespace Views
                 if (MessageBox.Show("Tem certeza?", "Deletar Documento", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Models.Document.DeleteDocument(document.DocumentId);
-                    RefreshList();
                 }
+                
+                RefreshList();
             }
             catch (Exception err)
             {
@@ -108,11 +117,19 @@ namespace Views
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = false; 
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             listDocument = new ListView();
             listDocument.Size = new Size(680, 260);
             listDocument.Location = new Point(50, 50);
+            listDocument.Font = new Font("Arial", 10, FontStyle.Regular);
+            listDocument.ForeColor = ColorTranslator.FromHtml("#242424");
+            listDocument.FullRowSelect = true;
+            listDocument.AllowColumnReorder = true;
+            listDocument.BorderStyle = BorderStyle.FixedSingle;  
+            listDocument.MultiSelect = true;
+            listDocument.HeaderStyle = ColumnHeaderStyle.Nonclickable;
             listDocument.View = View.Details;
             listDocument.Columns.Add("Id");
             listDocument.Columns.Add("Tipo");
@@ -120,8 +137,8 @@ namespace Views
             listDocument.Columns.Add("Carro");
             listDocument.Columns[0].Width = 30;
             listDocument.Columns[1].Width = 100;
-            listDocument.Columns[2].Width = 100;
-            listDocument.Columns[3].Width = 100;
+            listDocument.Columns[2].Width = 120;
+            listDocument.Columns[3].Width = 200;
             listDocument.FullRowSelect = true;
             this.Controls.Add(listDocument);
 
@@ -132,7 +149,7 @@ namespace Views
             panel.AutoSize = true;
             // panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panel.Padding = new Padding(10, 10, 10, 10);
-            panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
+            panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
             panel.ColumnCount = 8;
             panel.RowCount = 1;
             panel.ColumnStyles.Clear();
@@ -195,10 +212,10 @@ namespace Views
                 this.Close();
             };
             
-            panel.Controls.Add(btCrt, 4, 0);
-            panel.Controls.Add(btUpdate, 5, 0);
-            panel.Controls.Add(btDelete, 6, 0);
-            panel.Controls.Add(btClose, 7, 0); 
+            panel.Controls.Add(btCrt, 2, 0);
+            panel.Controls.Add(btUpdate, 3, 0);
+            panel.Controls.Add(btDelete, 4, 0);
+            panel.Controls.Add(btClose, 5, 0); 
             this.Controls.Add(panel);
         }
     }

@@ -8,23 +8,42 @@ namespace Views
         public Label lblCarId;
         public TextBox txtType;
         public TextBox txtValue;
-        public TextBox txtCarId;
+        public ComboBox txtCarId;
         public Button btCrt;
         public Button btClose;
         public TableLayoutPanel panel;
+
+
+
+        public List<KeyValuePair<int, string>> GetModelsCarsToComboBox()
+        {
+            List<KeyValuePair<int, string>> modelsCars = new List<KeyValuePair<int, string>>();
+            
+            foreach(Models.Car car in Controllers.Car.ReadAllCars()){
+                if(car.CarId != 0){
+                    Models.Model modelCar = Controllers.Model.ReadModelById(car.ModelId);
+                    modelsCars.Add(new KeyValuePair<int, string>(car.CarId, modelCar.Name));
+                }
+            }
+            
+            return modelsCars;
+        }
+
+
+        //  
 
         public void btCrt_Click(object sender, EventArgs e)
         {
             Controllers.Document.CreateDocument(
                 txtType.Text,
                 txtValue.Text,
-                Convert.ToInt32(txtCarId.Text)
+                Convert.ToInt32(txtCarId.SelectedValue)
             );
 
             MessageBox.Show("Documento cadastrado com sucesso.");
             
             ListDocument ListDocument = Application.OpenForms.OfType<ListDocument>().FirstOrDefault();
-            if(ListDocument == null)
+            if(ListDocument != null)
             {
                 ListDocument.RefreshList();
             }
@@ -41,6 +60,7 @@ namespace Views
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Size = new System.Drawing.Size(300, 380);
+            Color color = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Documento";
@@ -73,9 +93,17 @@ namespace Views
             this.lblCarId.Location = new Point(33, txtValue.Bottom + 10);
             this.lblCarId.Size = new Size(70, 20);
 
-            this.txtCarId = new TextBox();
+            this.txtCarId = new ComboBox();
             this.txtCarId.Location = new Point(33, lblCarId.Bottom + 5);
-            this.txtCarId.BorderStyle = BorderStyle.FixedSingle;
+            this.txtCarId.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.txtCarId.FlatStyle = FlatStyle.Flat;
+            this.txtCarId.ValueMember = "Key";
+            this.txtCarId.DisplayMember = "Value";
+            this.txtCarId.DataSource = GetModelsCarsToComboBox();
+            if (txtCarId.Items.Count > 0)
+            {
+                txtCarId.SelectedIndex = 0;
+            }
             this.txtCarId.Size = new Size(220, 20);
 
             this.panel = new TableLayoutPanel();
@@ -83,8 +111,8 @@ namespace Views
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 

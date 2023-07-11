@@ -11,23 +11,33 @@ namespace Views
         public TextBox txtEmail;
         public TextBox txtTelephone;
         public TextBox txtRegistration;
+        public Label lblPassword;
+        public TextBox txtPassword;
+        public Label lblIsAdm;
+        public RadioButton radioIsAdm;
+        public Label lblIsNotAdm;
+        public RadioButton radioIsNotAdm;
         public Button btCrt;
         public Button btClose;
         public TableLayoutPanel panel;
 
         public void btCrt_Click(object sender, EventArgs e)
         {
+            bool IsAdm = radioIsAdm.Checked;
+
             Controllers.Seller.CreateSeller(
                 txtName.Text,
                 txtEmail.Text,
                 txtTelephone.Text,
-                Convert.ToInt32(txtRegistration.Text)
+                Convert.ToInt32(txtRegistration.Text),
+                IsAdm,
+                txtPassword.Text
             );
 
             MessageBox.Show("Vendedor criado com sucesso.");
 
             ListSeller SellerList = Application.OpenForms.OfType<ListSeller>().FirstOrDefault();
-            if (SellerList == null)
+            if (SellerList != null)
             {
                 SellerList.RefreshList();
             }
@@ -43,7 +53,8 @@ namespace Views
             this.MinimizeBox = false;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Size = new System.Drawing.Size(300, 450);
+            this.Size = new System.Drawing.Size(300, 530);
+            this.BackColor = ColorTranslator.FromHtml("#F8F8F8");
 
             this.lblTitle = new Label();
             this.lblTitle.Text = "Cadastro de Vendedor";
@@ -91,17 +102,46 @@ namespace Views
             this.txtRegistration.BorderStyle = BorderStyle.FixedSingle;
             this.txtRegistration.Size = new Size(220, 20);
 
+            this.lblPassword = new Label();
+            this.lblPassword.Text = "Senha:";
+            this.lblPassword.Location = new Point(33, txtRegistration.Bottom + 10);
+            this.lblPassword.Size = new Size(70, 20);
+
+            this.txtPassword = new TextBox();
+            this.txtPassword.Location = new Point(33, lblPassword.Bottom + 5);
+            this.txtPassword.BorderStyle = BorderStyle.FixedSingle;
+            this.txtPassword.Size = new Size(220, 20);
+
+
+            this.lblIsAdm = new Label();
+            this.lblIsAdm.Text = "Posição:";
+            this.lblIsAdm.Location = new Point(33, txtPassword.Bottom + 10);
+            this.lblIsAdm.Size = new Size(70, 20);
+
+            this.radioIsAdm = new RadioButton();
+            this.radioIsAdm.Location = new Point(33, lblIsAdm.Bottom + 5);
+            this.radioIsAdm.Size = new Size(100, 20);
+            this.radioIsAdm.FlatStyle = FlatStyle.Flat;
+            this.radioIsAdm.Text = "Administrador";
+
+            this.radioIsNotAdm = new RadioButton();
+            this.radioIsNotAdm.Location = new Point(radioIsAdm.Width + 40, lblIsAdm.Bottom + 5);
+            this.radioIsNotAdm.Size = new Size(100, 20);
+            this.radioIsNotAdm.FlatStyle = FlatStyle.Flat;
+            this.radioIsNotAdm.Text = "Vendedor";
+            
+
             this.panel = new TableLayoutPanel();
             this.panel.Dock = DockStyle.Bottom;
             this.panel.AutoSize = true;
             this.panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             this.panel.Padding = new Padding(10, 10, 10, 10);
-            this.panel.BackColor = ColorTranslator.FromHtml("#58ACFA");
-            this.panel.ColumnCount = 3;
+            this.panel.BackColor = ColorTranslator.FromHtml("#BFCBE9");
+            this.panel.ColumnCount = 4;
             this.panel.RowCount = 1;
             this.panel.ColumnStyles.Clear();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 this.panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             }
@@ -120,7 +160,6 @@ namespace Views
 
             this.btClose = new Button();
             this.btClose.Text = "Fechar";
-            //this.btClose.Location = new Point(80, btCrt.Bottom + 10);
             this.btClose.Size = new Size(200, 25);
             this.btClose.Font = new Font("Arial", 8, FontStyle.Regular);
             this.btClose.FlatStyle = FlatStyle.Flat;
@@ -146,6 +185,13 @@ namespace Views
             this.Controls.Add(txtTelephone);
             this.Controls.Add(lblRegistration);
             this.Controls.Add(txtRegistration);
+            this.Controls.Add(lblPassword);
+            this.Controls.Add(txtPassword);
+            this.Controls.Add(lblIsAdm);
+            this.Controls.Add(radioIsAdm);
+            this.Controls.Add(radioIsNotAdm);
+
+
         }
     }
 }
