@@ -33,7 +33,7 @@
 </ul>
 
 <h3>📌 Versão</h3>
-<p>Este projeto encontra-se em fase de desenvolvimento e ainda não possui uma versão estável.</p>
+<p>Este projeto encontra-se na sua primeira versão.</p>
 
 <h3>✒️ Autores</h3>
 <p> Vitor Aguiar - <a href="https://www.linkedin.com/in/vitor-aguiar-ab3937192/">LinkedIn</a></p>
