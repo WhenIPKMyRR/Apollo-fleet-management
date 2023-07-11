@@ -104,7 +104,7 @@ namespace Views
                     fuelType,
                     carTransmissionType,
                     carMileage,
-                    IsUsed,
+                    !IsUsed,
                     modelId,
                     brandId,
                     garageId

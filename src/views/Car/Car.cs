@@ -111,7 +111,7 @@ namespace Views
                     GetModelName(car.ModelId),
                     car.Year.ToString(),
                     car.Color,
-                    car.LicensePlate,
+                    car.LicensePlate.ToUpper(),
                     car.BodyworkType,
                     "R$: " + car.Price.ToString("N2"),
                     car.FuelType,
