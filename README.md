@@ -19,7 +19,11 @@
 <p>Após clonar o repositório, certifique-se de configurar corretamente o ambiente de desenvolvimento e o banco de dados de acordo com as configurações do projeto.</p>
 
 <h3>Execução</h3>
-<p>Para executar a aplicação, abra o projeto no Visual Studio e compile-o. Em seguida, execute o projeto no depurador ou gere um arquivo executável para utilização.</p>
+<p>Para executar a aplicação, abra o projeto no Visual Studio e siga até o diretório principal. Em seguida, execute os seguintes comandos:</p>
+
+<pre><code>dotnet restore</code></pre>
+<pre><code>dotnet-ef database update</code></pre>
+<pre><code>dotnet run</code></pre>
 
 <h3>🛠️ Construído com</h3>
 <ul>
